@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<datasources xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespaceSchemaLocation="http://www.ironjacamar.org/schema/datasources_1_0.xsd">
+
+
+    <xa-datasource jndi-name="java:jboss/datasources/jpaworksDS" pool-name="PostgresDS">
+        <xa-datasource-property name="ServerName">localhost</xa-datasource-property>
+        <xa-datasource-property name="PortNumber">5432</xa-datasource-property>
+        <xa-datasource-property name="DatabaseName">jpa_works</xa-datasource-property>
+        <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
+        <security>
+            <user-name>jpa_works</user-name>
+            <password>jpa_works</password>
+        </security>
+        <validation>
+            <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker"></valid-connection-checker>
+            <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter"></exception-sorter>
+        </validation>
+    </xa-datasource>
+
+</datasources>
+

@@ -12,6 +12,7 @@
         <module>hibernate-entity-manager-adapted</module>
         <module>mini-jpa</module>
         <module>projpa-se</module>
+        <module>projpa-war</module>
 
     </modules>
     <modelVersion>4.0.0</modelVersion>
