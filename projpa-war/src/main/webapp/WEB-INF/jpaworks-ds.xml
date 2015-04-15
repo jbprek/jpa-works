@@ -4,20 +4,18 @@
              xsi:noNamespaceSchemaLocation="http://www.ironjacamar.org/schema/datasources_1_0.xsd">
 
 
-    <xa-datasource jndi-name="java:jboss/datasources/jpaworksDS" pool-name="PostgresDS">
-        <xa-datasource-property name="ServerName">localhost</xa-datasource-property>
-        <xa-datasource-property name="PortNumber">5432</xa-datasource-property>
-        <xa-datasource-property name="DatabaseName">jpa_works</xa-datasource-property>
-        <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
+    <datasource jndi-name="java:jboss/datasources/jpaworksDS" pool-name="projpa-war-pool" enabled="true"
+                   use-java-context="true">
+
+        <connection-url>jdbc:postgresql://localhost:5432/jpa_works</connection-url>
+        <driver>postgresql-9.4-1201.jdbc41.jar</driver>
         <security>
             <user-name>jpa_works</user-name>
             <password>jpa_works</password>
         </security>
-        <validation>
-            <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker"></valid-connection-checker>
-            <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter"></exception-sorter>
-        </validation>
-    </xa-datasource>
+
+    </datasource>
 
 </datasources>
+
 
