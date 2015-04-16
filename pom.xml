@@ -13,6 +13,7 @@
         <module>mini-jpa</module>
         <module>projpa-se</module>
         <module>projpa-war</module>
+        <module>projpa-relationships</module>
 
     </modules>
     <modelVersion>4.0.0</modelVersion>
