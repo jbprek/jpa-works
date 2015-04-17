@@ -19,7 +19,7 @@ public class Employee {
     private String name;
 
     @ManyToMany
-    @JoinTable(name = "MANY_TO_MANY_EMP_PROJ", joinColumns = @JoinColumn(name = "PROJ_ID"), inverseJoinColumns = @JoinColumn(name = "EMP_ID"))
+    @JoinTable(name = "MANY_TO_MANY_EMP_PROJ", joinColumns = @JoinColumn(name = "EMP_ID"), inverseJoinColumns = @JoinColumn(name = "PROJ_ID"))
     private Collection<Project> projects;
 
 
