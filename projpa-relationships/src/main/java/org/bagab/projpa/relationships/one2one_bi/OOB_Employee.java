@@ -1,24 +1,23 @@
-package org.bagab.projpa.relationships.one2one_uni;
+package org.bagab.projpa.relationships.one2one_bi;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
  * @author prekezes.
  */
-@Table(name="ONE_TO_ONE_UNI_EMPLOYEE")
+@Table(name="ONE_TO_ONE_BI_EMPLOYEE")
 @Entity
-public class Employee {
+public class OOB_Employee {
     @Id
     private long id;
     private String name;
     @OneToOne
     @JoinColumn(name = "PARKING_ID")
-    private ParkingLot parkingLot;
+    private OOB_ParkingLot OOBParkingLot;
 
     public long getId() {
         return id;
@@ -36,12 +35,12 @@ public class Employee {
         this.name = name;
     }
 
-    public ParkingLot getParkingLot() {
-        return parkingLot;
+    public OOB_ParkingLot getOOBParkingLot() {
+        return OOBParkingLot;
     }
 
-    public void setParkingLot(ParkingLot parkingLot) {
-        this.parkingLot = parkingLot;
+    public void setOOBParkingLot(OOB_ParkingLot OOBParkingLot) {
+        this.OOBParkingLot = OOBParkingLot;
     }
 
     @Override
@@ -49,7 +48,7 @@ public class Employee {
         return "Employee{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", department=" + parkingLot +
+                ", department=" + OOBParkingLot +
                 '}';
     }
 }

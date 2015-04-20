@@ -1,23 +1,23 @@
-package org.bagab.projpa.relationships.one2one_bi;
+package org.bagab.projpa.relationships.many2one_uni;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
  * @author prekezes.
  */
-@Table(name="ONE_TO_ONE_BI_EMPLOYEE")
+@Table(name="MANY_TO_ONE_UNI_EMPLOYEE")
 @Entity
-public class Employee {
+public class MOU_Employee {
     @Id
     private long id;
     private String name;
-    @OneToOne
-    @JoinColumn(name = "PARKING_ID")
-    private ParkingLot parkingLot;
+    @ManyToOne
+    @JoinColumn(name = "DEPT_ID")
+    private MOU_Department MOUDepartment;
 
     public long getId() {
         return id;
@@ -35,12 +35,12 @@ public class Employee {
         this.name = name;
     }
 
-    public ParkingLot getParkingLot() {
-        return parkingLot;
+    public MOU_Department getMOUDepartment() {
+        return MOUDepartment;
     }
 
-    public void setParkingLot(ParkingLot parkingLot) {
-        this.parkingLot = parkingLot;
+    public void setMOUDepartment(MOU_Department MOUDepartment) {
+        this.MOUDepartment = MOUDepartment;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Employee {
         return "Employee{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", department=" + parkingLot +
+                ", department=" + MOUDepartment +
                 '}';
     }
 }

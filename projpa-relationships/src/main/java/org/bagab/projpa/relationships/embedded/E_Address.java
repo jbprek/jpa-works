@@ -4,11 +4,12 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
 
+
 /**
- * @author prekezes.
+ * Example of an Embeddable object
  */
 @Embeddable @Access(AccessType.FIELD)
-public class Address {
+public class E_Address {
     private String street;
     private String number;
     private String state;

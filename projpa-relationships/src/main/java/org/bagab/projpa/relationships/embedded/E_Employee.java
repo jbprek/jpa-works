@@ -1,6 +1,7 @@
 package org.bagab.projpa.relationships.embedded;
 
-import javax.persistence.*;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -8,11 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * @author prekezes.
+ * Example use of Embeddable object  with attribute overrides
  */
 @Entity
 @Table(name="EMBEDDED_EMPLOYEE")
-public class Employee {
+public class E_Employee {
     @Id
     private long id;
     private String name;
@@ -20,5 +21,5 @@ public class Employee {
     @AttributeOverrides({
             @AttributeOverride(name="state", column=@Column(name="PROVINCE")),
             @AttributeOverride(name="zip", column=@Column(name="POSTAL_CODE"))
-    })    private Address address;
+    })    private E_Address EAddress;
 }

@@ -11,12 +11,12 @@ import java.util.Collection;
  */
 @Entity
 @Table(name="MANY_TO_MANY_PROJ")
-public class Project {
+public class MM_Project {
     @Id
     private long id;
 
     private String name;
 
     @ManyToMany(mappedBy = "projects")
-    private Collection<Employee> employees;
+    private Collection<MM_Employee> MMEmployees;
 }

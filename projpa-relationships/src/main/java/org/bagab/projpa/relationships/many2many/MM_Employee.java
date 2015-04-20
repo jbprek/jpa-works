@@ -13,14 +13,14 @@ import java.util.Collection;
  */
 @Table(name = "MANY_TO_MANY_EMP")
 @Entity
-public class Employee {
+public class MM_Employee {
     @Id
     private long id;
     private String name;
 
     @ManyToMany
     @JoinTable(name = "MANY_TO_MANY_EMP_PROJ", joinColumns = @JoinColumn(name = "EMP_ID"), inverseJoinColumns = @JoinColumn(name = "PROJ_ID"))
-    private Collection<Project> projects;
+    private Collection<MM_Project> MMProjects;
 
 
 }

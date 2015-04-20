@@ -1,17 +1,17 @@
-package org.bagab.projpa.relationships.many2one_uni;
+package org.bagab.projpa.relationships.many2one_bi;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.*;
 
 /**
  * @author prekezes.
  */
 @Entity
-@Table(name="MANY_TO_ONE_UNI_DEPARTMENT")
-public class Department {
+@Table(name="MANY_TO_ONE_BI_DEPARTMENT")
+public class MOB_Department {
     @Id private long id;
 
     private String name;
@@ -32,6 +32,8 @@ public class Department {
         this.name = name;
     }
 
+    @OneToMany(mappedBy = "department")
+    Collection<MOB_Employee> MOBEmployees;
     @Override
     public String toString() {
         return "Department{" +

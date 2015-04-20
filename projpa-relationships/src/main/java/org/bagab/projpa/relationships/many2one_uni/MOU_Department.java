@@ -1,4 +1,4 @@
-package org.bagab.projpa.relationships.many2one_bi;
+package org.bagab.projpa.relationships.many2one_uni;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,15 +9,12 @@ import javax.persistence.Table;
 /**
  * @author prekezes.
  */
-@Table(name="MANY_TO_ONE_BI_EMPLOYEE")
 @Entity
-public class Employee {
-    @Id
-    private long id;
+@Table(name="MANY_TO_ONE_UNI_DEPARTMENT")
+public class MOU_Department {
+    @Id private long id;
+
     private String name;
-    @ManyToOne
-    @JoinColumn(name = "DEPT_ID")
-    private Department department;
 
     public long getId() {
         return id;
@@ -35,20 +32,11 @@ public class Employee {
         this.name = name;
     }
 
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
-
     @Override
     public String toString() {
-        return "Employee{" +
+        return "Department{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", department=" + department +
                 '}';
     }
 }

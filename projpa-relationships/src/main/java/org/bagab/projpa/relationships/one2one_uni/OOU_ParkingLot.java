@@ -1,22 +1,18 @@
-package org.bagab.projpa.relationships.one2many_uni;
+package org.bagab.projpa.relationships.one2one_uni;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
  * @author prekezes.
  */
 @Entity
-@Table(name="ONE_TO_MANY_UNI_PHONE")
-public class Phone {
+@Table(name="ONE_TO_ONE_UNI_PARKING_LOT")
+public class OOU_ParkingLot {
     @Id private long id;
 
-    private String name;
-
-    @OneToOne(mappedBy = "parkingLot")
-    private Employee employee;
+    private String lotCode;
 
     public long getId() {
         return id;
@@ -26,19 +22,20 @@ public class Phone {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getLotCode() {
+        return lotCode;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLotCode(String lotCode) {
+        this.lotCode = lotCode;
     }
+
 
     @Override
     public String toString() {
         return "ParkingLot{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", lotCode='" + lotCode + '\'' +
                 '}';
     }
 }
