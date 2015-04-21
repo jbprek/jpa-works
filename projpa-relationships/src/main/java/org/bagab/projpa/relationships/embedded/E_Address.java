@@ -55,4 +55,15 @@ public class E_Address {
     public void setCounty(String county) {
         this.county = county;
     }
+
+    @Override
+    public String toString() {
+        return "E_Address{" +
+                "street='" + street + '\'' +
+                ", number='" + number + '\'' +
+                ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' +
+                ", county='" + county + '\'' +
+                '}';
+    }
 }
