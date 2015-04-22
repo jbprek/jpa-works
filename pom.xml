@@ -12,7 +12,7 @@
         <module>hibernate-entity-manager-adapted</module>
         <module>mini-jpa</module>
         <module>projpa-se</module>
-        <module>projpa-war</module>
+        <module>example-war</module>
         <module>projpa-relationships</module>
 
     </modules>
