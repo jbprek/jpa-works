@@ -47,17 +47,34 @@ Note the driver name corresponds to the manually added driver.
         </validation>
     </xa-datasource>
     
-Status : Failed with indications that 
-2015-04-22 17:55:17,295 ERROR [org.jboss.jca.core.tx.jbossts.XAResourceRecoveryImpl] (Periodic Recovery) IJ000906: Error during crash recovery: java:jboss/PostgresXADS (Could not create connection): javax.resource.ResourceException: Could not create connection
+Status : Failed with indications that:
+ 
+`2015-04-22 17:55:17,295 ERROR [org.jboss.jca.core.tx.jbossts.XAResourceRecoveryImpl] (Periodic Recovery) IJ000906: Error during crash recovery: java:jboss/PostgresXADS (Could not create connection): javax.resource.ResourceException: Could not create connection
 	at org.jboss.jca.adapters.jdbc.xa.XAManagedConnectionFactory.getXAManagedConnection(XAManagedConnectionFactory.java:524)
 	.....
 Caused by: javax.resource.ResourceException: No XADataSourceClass supplied!
 	at org.jboss.jca.adapters.jdbc.xa.XAManagedConnectionFactory.getXADataSource(XAManagedConnectionFactory.java:640)
 	at org.jboss.jca.adapters.jdbc.xa.XAManagedConnectionFactory.getXAManagedConnection(XAManagedConnectionFactory.java:507)
-	... 12 more
+	... 12 more`
+	
+	
+### Persistence unit for JTA datasource
+    <persistence xmlns="http://java.sun.com/xml/ns/persistence"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+                 version="2.0">
+        <persistence-unit name="employee_pu">    
+            <jta-data-source>java:jboss/datasources/jpaworksDS</jta-data-source>
+            <properties>
+                <property name="hibernate.show_sql" value="true" />
+            </properties>    
+        </persistence-unit>
+    
+    </persistence>
+	
 
     
-### Normal datasource   
+### Resource local datasource   
 The following is a simple example
 
     <datasource jndi-name="java:jboss/datasources/defaultPostgresDS" pool-name="defaultPostgresDS" enabled="true"
@@ -69,4 +86,21 @@ The following is a simple example
             <password>default</password>
         </security>
     </datasource>
+    
+
+### Persistence unit for resource local datasource
+Almost identical to jta datasource 
+
+    <persistence xmlns="http://java.sun.com/xml/ns/persistence"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+                 version="2.0">
+        <persistence-unit name="employee_pu">    
+            <non-jta-data-source>java:jboss/datasources/jpaworksDS</non-jta-data-source>
+            <properties>
+                <property name="hibernate.show_sql" value="true" />
+            </properties>    
+        </persistence-unit>
+    
+    </persistence>
 

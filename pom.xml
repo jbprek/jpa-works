@@ -14,6 +14,11 @@
         <module>projpa-se</module>
         <module>example-war</module>
         <module>example-relationships</module>
+        <module>example-relationships-testdrive</module>
+        <!-- ABien pattern -->
+        <module>generic-dao</module>
+	    <module>ToyAppForJPA</module>
+        <module>ee7-persistence-tut</module>
 
     </modules>
     <modelVersion>4.0.0</modelVersion>
@@ -38,7 +43,7 @@
 
     <dependencies>
 
-        <!-- Hibernate uses jboss-logging for logging, for the tutorials we will use the sl4fj-simple backend -->
+        <!-- Hibernate uses jboss-logging for logging, for the tutorials we will use the sl4fj-element_collection backend -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
@@ -58,7 +63,7 @@
             <version>4.3.8.Final</version>
         </dependency>
 
-        <!-- Hibernate uses jboss-logging for logging, for the tutorials we will use the sl4fj-simple backend -->
+        <!-- Hibernate uses jboss-logging for logging, for the tutorials we will use the sl4fj-element_collection backend -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>

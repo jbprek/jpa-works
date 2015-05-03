@@ -1,17 +1,32 @@
 package org.bagab.entity.relationships.many2one;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Single value association
+ * Single value association, for bidirectional ManyToOne see bidirectional OneToMany which is a collection based association
  */
-@Entity
-//@Table(name="MOU_DEPARTMENT")
+@Entity(name = "org.bagab.entity.relationships.many2one.Department")
+@Table(name = "MOU_DEPARTMENT")
 public class Department {
-    @Id private long id;
 
+    @GeneratedValue
+    @Id
+    private long id;
+
+    @Basic(optional = false)
     private String name;
 
+    //----------- GET/SET --------------------------
 
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

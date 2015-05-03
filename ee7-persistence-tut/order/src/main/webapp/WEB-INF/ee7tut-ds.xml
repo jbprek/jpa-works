@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<datasources xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespaceSchemaLocation="http://www.ironjacamar.org/schema/datasources_1_0.xsd">
+
+
+    <datasource jndi-name="java:jboss/datasources/ee7tutDS" pool-name="ee7tut-war-pool" enabled="true"
+                   use-java-context="true">
+
+        <connection-url>jdbc:postgresql://localhost:5432/ee7tut</connection-url>
+        <driver>postgresql-9.4-1201.jdbc41.jar</driver>
+        <security>
+            <user-name>ee7tut</user-name>
+            <password>ee7tut</password>
+        </security>
+
+    </datasource>
+
+</datasources>
+
+

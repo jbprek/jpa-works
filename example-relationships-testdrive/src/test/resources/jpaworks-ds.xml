@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<datasources xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespaceSchemaLocation="http://www.ironjacamar.org/schema/datasources_1_0.xsd">
+
+
+    <datasource jndi-name="java:jboss/datasources/jpaworksDS" pool-name="projpa-war-pool" enabled="true"
+                   use-java-context="true">
+
+        <connection-url>jdbc:postgresql://localhost:5432/jpa_works</connection-url>
+        <driver>postgresql-9.4-1201.jdbc41.jar</driver>
+        <security>
+            <user-name>jpa_works</user-name>
+            <password>jpa_works</password>
+        </security>
+
+    </datasource>
+
+</datasources>
+
+
