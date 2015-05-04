@@ -66,28 +66,18 @@ public class OneToManyBiTest {
 //        Assert.assertTrue(l.contains(john));
 //        Assert.assertTrue(l.contains(george));
 
+        // Workaround for the above
         List<String> names = new ArrayList<>();
         for (Employee e : l)
             names.add(e.getName());
-
-        // TODO
         System.out.println("$$$:"+names+ "*"+john.getName()+"^"+george.getName());
         Assert.assertTrue(names.contains(john.getName()));
-        Assert.assertTrue(l.contains(george.getName()));
-
+        Assert.assertTrue(names.contains(george.getName()));
 
         // Promote george to Inferno
         svc.departmentAssign(george.getId(), inferno.getId());
         // Verify Association
         Assert.assertEquals("Inferno", svc.findEmployee(george.getId()).getDepartment().getName());
-
     }
 
-    private List<Employee> copy2List(Collection<Employee> employee) {
-        ArrayList<Employee> l = new ArrayList<>();
-        for(Employee e : employee) {
-            l.add(e);
-        }
-        return l;
-    }
 }
