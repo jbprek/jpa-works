@@ -68,6 +68,6 @@ private OneToOneBiService svc;
         Assert.assertNull( svc.findEmployee(e1.getId()).getParkingLot());
         Assert.assertEquals("George", svc.findLot(l1.getId()).getEmployee().getName());
         Assert.assertEquals("P1", svc.findEmployee(e2.getId()).getParkingLot().getCode());
-        /* Everything went smoothly since parkingAssign() has the provision to deassing the previous employee*/
+        /* Everything went smoothly since parkingAssign() has the provision to unassign the previous employee*/
     }
 }

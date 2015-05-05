@@ -36,6 +36,7 @@ public class Department {
         this.name = name;
     }
 
+
     public Collection<Employee> getEmployees() {
         return employees;
     }
@@ -55,16 +56,14 @@ public class Department {
         Department that = (Department) o;
 
         if (id != that.id) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        return !(employees != null ? !employees.equals(that.employees) : that.employees != null);
+        return name.equals(that.name);
 
     }
 
     @Override
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (employees != null ? employees.hashCode() : 0);
+        result = 31 * result + name.hashCode();
         return result;
     }
 }

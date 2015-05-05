@@ -19,6 +19,8 @@
         <class>org.bagab.entity.relationships.one2many_bi.Employee</class>
         <class>org.bagab.entity.relationships.one2many_uni.Person</class>
         <class>org.bagab.entity.relationships.one2many_uni.Phone</class>
+        <class>org.bagab.entity.relationships.many2many.Employee</class>
+        <class>org.bagab.entity.relationships.many2many.Project</class>
 
         <properties>
             <property name="hibernate.show_sql" value="true" />

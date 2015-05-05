@@ -62,17 +62,10 @@ public class OneToManyBiTest {
         for (Employee e : l)
             System.out.println("###"+e.getName() + "*"+ e.getId());
 
-        // TODO check why the following two do not work
-//        Assert.assertTrue(l.contains(john));
-//        Assert.assertTrue(l.contains(george));
+        Assert.assertTrue(l.contains(john));
+        Assert.assertTrue(l.contains(george));
 
-        // Workaround for the above
-        List<String> names = new ArrayList<>();
-        for (Employee e : l)
-            names.add(e.getName());
-        System.out.println("$$$:"+names+ "*"+john.getName()+"^"+george.getName());
-        Assert.assertTrue(names.contains(john.getName()));
-        Assert.assertTrue(names.contains(george.getName()));
+
 
         // Promote george to Inferno
         svc.departmentAssign(george.getId(), inferno.getId());

@@ -14,7 +14,6 @@ import javax.ejb.EJB;
  * Created by x on 5/3/15.
  */
 @RunWith(Arquillian.class)
-
 public class ManyToOneTest {
 
     @EJB

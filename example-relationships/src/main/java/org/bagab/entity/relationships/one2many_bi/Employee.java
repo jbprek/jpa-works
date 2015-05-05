@@ -17,7 +17,7 @@ public class Employee {
     @Basic(optional=false)
     private String name;
 
-    @ManyToOne//(cascade = CascadeType.PERSIST, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)//(cascade = CascadeType.PERSIST, optional = false)
     @JoinColumn(name = "DEPT_ID")
     private Department department;
 
@@ -50,6 +50,7 @@ public class Employee {
 
     // ----------- hashCode and equals -------------------
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,16 +59,14 @@ public class Employee {
         Employee employee = (Employee) o;
 
         if (id != employee.id) return false;
-        if (name != null ? !name.equals(employee.name) : employee.name != null) return false;
-        return !(department != null ? !department.equals(employee.department) : employee.department != null);
+        return name.equals(employee.name);
 
     }
 
     @Override
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (department != null ? department.hashCode() : 0);
+        result = 31 * result + name.hashCode();
         return result;
     }
 }
