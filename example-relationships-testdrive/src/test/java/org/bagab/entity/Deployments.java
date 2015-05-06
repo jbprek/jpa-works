@@ -1,4 +1,4 @@
-package org.bagab.entity.relationships.test;
+package org.bagab.entity;
 
 import org.eu.ingwar.tools.arquillian.extension.suite.annotations.ArquillianSuiteDeployment;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -24,7 +24,7 @@ public class Deployments {
                 .addAsWebInfResource(new File("src/test/resources/beans.xml"))
                 .addAsWebInfResource(new File("src/test/resources/jpaworks-ds.xml"))
                 .addAsResource("test-persistence.xml", "META-INF/persistence.xml")
-                .addPackage(Deployments.class.getPackage())
+                .addPackages(true, Package.getPackage("org.bagab.entity"))
                 ;
     }
 

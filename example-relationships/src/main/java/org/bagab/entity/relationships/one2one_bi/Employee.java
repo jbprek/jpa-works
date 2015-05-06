@@ -21,8 +21,7 @@ public class Employee {
 //    @JoinColumn(name = "PARKING_ID")
     private ParkingLot parkingLot;
 
-
-
+     //------------ GET/SET -----------------------
 
     public long getId() {
         return id;

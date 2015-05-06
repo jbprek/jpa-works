@@ -15,9 +15,7 @@ public class Phone {
 
     private String number;
 
-
-    // GET SET
-
+    // -------- GET/SET ---------------
 
     public long getId() {
         return id;

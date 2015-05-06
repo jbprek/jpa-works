@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 /**
  * Created by x on 5/1/15.
  */
-@Entity
+@Entity(name="org.bagab.entity.collectionmapping.list.order_by_column.PrintJob")
 public class PrintJob {
     @Id
     private long id;

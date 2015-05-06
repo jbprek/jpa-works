@@ -19,9 +19,7 @@ public class ParkingLot{
     @OneToOne(mappedBy = "parkingLot")
     private Employee employee;
 
-
     // -------- GET/SET ---------------
-
 
     public long getId() {
         return id;
