@@ -19,6 +19,10 @@
         <module>generic-dao</module>
 	    <module>ToyAppForJPA</module>
         <module>ee7-persistence-tut</module>
+        <module>rel_one2one_uni</module>
+        <module>rel_one2one_bi</module>
+        <module>rel_many2one</module>
+        <module>relationship-examples</module>
 
     </modules>
     <modelVersion>4.0.0</modelVersion>

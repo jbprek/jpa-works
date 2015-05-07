@@ -30,7 +30,7 @@ public class ConfigBeanImpl implements ConfigBean {
     @EJB
     public RequestBean request;
 
-    @EJB private DummySSB dummy;
+//    @EJB private DummySSB dummy;
 
 //    @Resource
 

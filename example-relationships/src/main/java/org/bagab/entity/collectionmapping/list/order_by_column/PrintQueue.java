@@ -11,12 +11,29 @@ import java.util.List;
  */
 @Entity
 public class PrintQueue {
-    @Id
-    private long id;
 
+    @Id
     private String name;
 
     @OneToMany
     @OrderColumn(name="PRINT_ORDER")
     private List<PrintJob> jobs;
+
+    // GET SET
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<PrintJob> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(List<PrintJob> jobs) {
+        this.jobs = jobs;
+    }
 }

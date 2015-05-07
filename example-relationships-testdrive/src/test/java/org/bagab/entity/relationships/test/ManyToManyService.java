@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 @Stateless
 public class ManyToManyService {
-    public static Logger log = Logger.getLogger(ManyToOneService.class.getName());
+    public static Logger log = Logger.getLogger(ManyToManyService.class.getName());
 
 
     @PersistenceContext(name = "test-relationships")

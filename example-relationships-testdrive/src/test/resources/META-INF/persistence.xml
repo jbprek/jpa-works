@@ -8,8 +8,8 @@
 
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <class>org.bagab.entity.relationships.one2one_uni.Employee</class>
-        <class>org.bagab.entity.relationships.one2one_uni.ParkingLot</class>
+        <class>org.bagab.entity.relationships.one2one_uni.model.Employee</class>
+        <class>org.bagab.entity.relationships.one2one_uni.model.ParkingLotEntity</class>
         <class>org.bagab.entity.relationships.one2one_bi.Employee</class>
         <class>org.bagab.entity.relationships.one2one_bi.ParkingLot</class>
         <class>org.bagab.entity.relationships.many2one.Department</class>
