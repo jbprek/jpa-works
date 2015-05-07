@@ -20,7 +20,6 @@ public class Employee {
 //    @JoinTable(name = "MM_EMP_PROJ", joinColumns = @JoinColumn(name = "EMP_ID"), inverseJoinColumns = @JoinColumn(name = "PROJ_ID"))
     private Set<Project> projects;
 
-
     /*---------- GET SET --------------------*/
 
     public long getId() {

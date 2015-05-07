@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by x on 5/1/15.
  */
-@Entity
+@Entity(name="org.bagab.entity.collectionmapping.list.order_by_column.PrintQueue")
 public class PrintQueue {
 
     @Id

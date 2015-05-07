@@ -1,9 +1,18 @@
 package org.bagab.entity.collectionmapping.element_collection;
 
-import javax.persistence.*;
+import javax.persistence.AttributeOverride;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
 import java.util.Collection;
+import java.util.Objects;
 
 /**
+ *
  * @author prekezes.
  */
 @Entity(name="org.bagab.entity.collectionmapping.element_collection.Employee")
@@ -15,23 +24,22 @@ public class Employee {
     private String name;
 
     @ElementCollection
+    @CollectionTable(
+            name = "EC_NICKNAMES",
+            joinColumns = @JoinColumn(name = "EMP_ID"))
     private Collection<String> nicknames;
 
-    @ElementCollection//(targetClass = VacationEntry.class)
+    @ElementCollection// (targetClass = VacationEntry.class)
     /* Optional*/
     @CollectionTable(
-            name = "EC_EMPLOYEE_VACATION_ENTRY",
+            name = "EC_VACATION_ENTRY",
             joinColumns = @JoinColumn(name = "EMP_ID"))
     /* Optional */
-    @AttributeOverride(name = "daysTaken",
+    @AttributeOverride(name = "duration",
             column = @Column(name = "DAYS_ABS"))
     private Collection<VacationEntry> absenceDays;
 
-    @ElementCollection
-    @CollectionTable(name="EC_EMPLOYEE_NICK_NAME")
-    private Collection<String> nickNames;
-
-    //------------ Get Set ------------
+    /*---------- GET SET --------------------*/
 
     public long getId() {
         return id;
@@ -65,11 +73,19 @@ public class Employee {
         this.absenceDays = absenceDays;
     }
 
-    public Collection<String> getNickNames() {
-        return nickNames;
+    //------- Hash Code and Equals ---------------/
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return Objects.equals(id, employee.id) &&
+                Objects.equals(name, employee.name);
     }
 
-    public void setNickNames(Collection<String> nickNames) {
-        this.nickNames = nickNames;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
     }
 }

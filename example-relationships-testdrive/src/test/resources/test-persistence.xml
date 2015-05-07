@@ -21,9 +21,11 @@
         <class>org.bagab.entity.relationships.one2many_uni.Phone</class>
         <class>org.bagab.entity.relationships.many2many.Employee</class>
         <class>org.bagab.entity.relationships.many2many.Project</class>
+        <class>org.bagab.entity.collectionmapping.element_collection.Employee</class>
 
         <properties>
             <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
             <property name="hibernate.hbm2ddl.auto" value="create" />
         </properties>
 
