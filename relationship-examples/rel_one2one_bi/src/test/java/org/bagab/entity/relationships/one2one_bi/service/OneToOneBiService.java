@@ -1,4 +1,7 @@
-package org.bagab.entity.relationships.one2one_bi;
+package org.bagab.entity.relationships.one2one_bi.service;
+
+import org.bagab.entity.relationships.one2one_bi.model.Employee;
+import org.bagab.entity.relationships.one2one_bi.model.ParkingLot;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

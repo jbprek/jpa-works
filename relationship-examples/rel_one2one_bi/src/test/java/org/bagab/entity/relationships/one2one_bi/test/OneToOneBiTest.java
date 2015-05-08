@@ -1,5 +1,8 @@
-package org.bagab.entity.relationships.one2one_bi;
+package org.bagab.entity.relationships.one2one_bi.test;
 
+import org.bagab.entity.relationships.one2one_bi.model.Employee;
+import org.bagab.entity.relationships.one2one_bi.model.ParkingLot;
+import org.bagab.entity.relationships.one2one_bi.service.OneToOneBiService;
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Assert;

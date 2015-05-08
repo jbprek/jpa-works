@@ -1,5 +1,8 @@
-package org.bagab.entity.relationships.many2one;
+package org.bagab.entity.relationships.many2one.test;
 
+import org.bagab.entity.relationships.many2one.model.Department;
+import org.bagab.entity.relationships.many2one.model.Employee;
+import org.bagab.entity.relationships.many2one.service.ManyToOneService;
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Assert;

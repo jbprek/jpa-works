@@ -1,4 +1,4 @@
-package org.bagab.entity.relationships.one2one_bi;
+package org.bagab.entity.relationships.one2one_bi.model;
 
 import javax.persistence.*;
 

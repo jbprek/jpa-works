@@ -1,27 +1,28 @@
-package org.bagab.entity.relationships.many2one;
+package org.bagab.entity.relationships.many2one.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * @author prekezes.
  */
 @Entity
-@Table(name="MOU_EMPLOYEE")
+@Table(name = "M2O_EMPLOYEE")
 public class Employee {
 
-    @GeneratedValue
     @Id
+    @GeneratedValue
     private long id;
 
-    @Basic(optional=false)
     private String name;
 
     @ManyToOne
-//    @JoinColumn(name = "DEPT_ID")
+    @JoinColumn(name = "DEPT_ID")
     private Department department;
-
-    //----------- GET/SET --------------------------
-
 
     public long getId() {
         return id;
@@ -47,3 +48,6 @@ public class Employee {
         this.department = department;
     }
 }
+
+
+

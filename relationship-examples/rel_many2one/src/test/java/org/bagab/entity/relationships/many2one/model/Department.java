@@ -1,20 +1,22 @@
-package org.bagab.entity.relationships.one2one_uni.model;
+package org.bagab.entity.relationships.many2one.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @author prekezes.
  */
 @Entity
-@Table(name="OOU_PARKING_LOT")
-public class ParkingLotEntity {
+@Table(name="M2O_DEPARTMENT")
+public class Department {
+
+    @Id
     @GeneratedValue
-    @Id private long id;
+    private long id;
 
-    @Basic(optional = false)
     private String name;
-
-    //--------  Get Set-----------------
 
     public long getId() {
         return id;

@@ -15,16 +15,16 @@ import java.io.File;
 @ArquillianSuiteDeployment
 public class Deployments {
 
-    static  File[] entitiesCode = Maven.resolver().resolve("org.bagab.jpa:example-relationships:1.0-SNAPSHOT").withTransitivity().asFile();
 
     @Deployment(name = "test-suite", order = 1)
     public static Archive<?> generateDefaultDeployment() {
+
         return ShrinkWrap.create(WebArchive.class, "normal.war")
-                .addAsLibraries(entitiesCode)
                 .addAsWebInfResource(new File("src/test/resources/beans.xml"))
                 .addAsWebInfResource(new File("src/test/resources/jpaworks-ds.xml"))
-                .addAsResource("test-persistence.xml", "META-INF/persistence.xml")
-                .addPackage(Deployments.class.getPackage())
+                .addAsResource("META-INF/persistence.xml")
+                .addPackages(true, Deployments.class.getPackage())
+
                 ;
     }
 

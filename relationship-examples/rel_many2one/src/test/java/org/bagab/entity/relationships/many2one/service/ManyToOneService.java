@@ -1,4 +1,7 @@
-package org.bagab.entity.relationships.many2one;
+package org.bagab.entity.relationships.many2one.service;
+
+import org.bagab.entity.relationships.many2one.model.Department;
+import org.bagab.entity.relationships.many2one.model.Employee;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
