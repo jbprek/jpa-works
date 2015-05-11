@@ -14,21 +14,17 @@
         <!-- Hibernate Entity Manager tutorial adapted -->
         <module>hibernate-entity-manager-tutorial</module>
         <module>hibernate-entity-manager-adapted</module>
-        <module>mini-jpa</module>
         <module>projpa-se</module>
         <module>example-war</module>
-        <module>example-relationships</module>
-        <module>example-relationships-testdrive</module>
+
         <!-- ABien pattern -->
         <module>generic-dao</module>
         <module>ee7-persistence-tut</module>
-        <module>rel_one2one_uni</module>
-        <module>rel_one2one_bi</module>
-        <module>rel_many2one</module>
         <module>relationship-examples</module>
+        <module>jpa-app</module>
+        <module>dummy</module>
 
     </modules>
-
 
     <properties>
         <!-- Maven Plugin versions -->
@@ -68,13 +64,6 @@
             <version>4.3.8.Final</version>
         </dependency>
 
-        <!-- Hibernate uses jboss-logging for logging, for the tutorials we will use the sl4fj-element_collection backend -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.5</version>
-        </dependency>
-
         <!-- The tutorials use JUnit test cases to illustrate usage -->
         <dependency>
             <groupId>junit</groupId>
@@ -82,7 +71,6 @@
             <version>${version.junit}</version>
             <scope>test</scope>
         </dependency>
-
 
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -97,19 +85,6 @@
             <version>1.2.145</version>
         </dependency>
 
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- The tutorials use the H2 in-memory database -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.2.145</version>
-        </dependency>
     </dependencies>
 
     <build>

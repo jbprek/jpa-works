@@ -5,7 +5,7 @@
 	
     <servlet>
         <servlet-name>QueryServiceServlet</servlet-name>
-        <servlet-class>examples.servlet.QueryServiceServlet</servlet-class>
+        <servlet-class>dyn_query.web.QueryServiceServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

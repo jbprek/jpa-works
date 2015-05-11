@@ -2,12 +2,12 @@
     <persistence-unit name="jpqlExamples">
     <!--persistence-unit name="jpqlExamples" transaction-type="RESOURCE_LOCAL"-->
         <jta-data-source>jdbc/jpqlExamples</jta-data-source>
-		<class>examples.model.Employee</class>
-		<class>examples.model.Department</class>
+		<class>dyn_query.model.Employee</class>
+		<class>dyn_query.model.Department</class>
 		<class>examples.model.Address</class>
 		<class>examples.model.DesignProject</class>
 		<class>examples.model.Phone</class>
-		<class>examples.model.Project</class>
+		<class>dyn_query.model.Project</class>
 		<class>examples.model.QualityProject</class>
         <validation-mode>NONE</validation-mode>
         <properties>

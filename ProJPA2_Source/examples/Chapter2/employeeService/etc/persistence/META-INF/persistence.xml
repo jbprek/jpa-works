@@ -1,6 +1,6 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
     <persistence-unit name="EmployeeService" transaction-type="RESOURCE_LOCAL">
-        <class>examples.model.Employee</class>
+        <class>dyn_query.model.Employee</class>
         <validation-mode>NONE</validation-mode>
 		<properties>
             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
