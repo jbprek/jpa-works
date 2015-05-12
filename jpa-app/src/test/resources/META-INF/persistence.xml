@@ -9,23 +9,27 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!--<non-jta-data-source>java:jboss/datasources/jpa-app-DS</non-jta-data-source>-->
 
-        <!--<class>org.bagab.example.jpa.app.model.Address</class>-->
-        <!--<class>org.bagab.example.jpa.app.model.Department</class>-->
-        <!--<class>org.bagab.example.jpa.app.model.Employee</class>-->
-        <!--<class>org.bagab.example.jpa.app.model.Phone</class>-->
-        <!--<class>org.bagab.example.jpa.app.model.Project</class>-->
-        <!--<class>org.bagab.example.jpa.app.model.DesignProject</class>-->
-        <!--<class>org.bagab.example.jpa.app.model.QualityProject</class>-->
+        <class>org.bagab.example.jpa.app.model.Address</class>
+        <class>org.bagab.example.jpa.app.model.Department</class>
+        <class>org.bagab.example.jpa.app.model.Employee</class>
+        <class>org.bagab.example.jpa.app.model.Phone</class>
+        <class>org.bagab.example.jpa.app.model.Project</class>
+        <class>org.bagab.example.jpa.app.model.DesignProject</class>
+        <class>org.bagab.example.jpa.app.model.QualityProject</class>
 
         <!--<exclude-unlisted-classes>true</exclude-unlisted-classes>-->
 
         <properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect" />
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/jpa_test" />
+            <property name="javax.persistence.jdbc.user" value="jpa_test" />
+            <property name="javax.persistence.jdbc.password" value="jpa_test" />
+
             <property name="hibernate.show_sql" value="true" />
-            <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="create" />
         </properties>
 
     </persistence-unit>
 
 </persistence>
+

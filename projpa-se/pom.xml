@@ -28,6 +28,14 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>4.3.8.Final</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <!--<version>9.3-1101-jdbc41</version>-->
+            <version>9.4-1201-jdbc41</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

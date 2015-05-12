@@ -22,7 +22,6 @@
         <module>ee7-persistence-tut</module>
         <module>relationship-examples</module>
         <module>jpa-app</module>
-        <module>dummy</module>
 
     </modules>
 
