@@ -48,7 +48,7 @@ public class ManyToOneService {
     }
 
     public void departmentAssign(long employeeId, long departmentId) {
-        log.info("Assign ParkingLot");
+        log.info("Assign to Department");
         Employee e = findEmployee(employeeId);
         Department d  = findDepartment(departmentId);
         Objects.nonNull(d);

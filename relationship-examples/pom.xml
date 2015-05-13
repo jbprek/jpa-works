@@ -20,7 +20,7 @@
         <module>rel_one2many_bi</module>
         <module>rel_many2many_uni</module>
         <module>rel_many2many_bi</module>
-        <module>rel_element_collection</module>
+        <module>cm_element_collection</module>
     </modules>
 
     <properties>

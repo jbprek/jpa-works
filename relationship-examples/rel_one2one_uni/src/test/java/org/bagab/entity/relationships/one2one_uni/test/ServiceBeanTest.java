@@ -43,7 +43,6 @@ public class ServiceBeanTest {
         // Verify Association
         Assert.assertNull( svc.findEmployee(e1.getId()).getParkingLot());
 
-
         /** See what happens when we try to assign another employee to a used parking */
         // Associate again e1 to l1
         svc.parkingAssign(e1.getId(), l1.getId());

@@ -1,7 +1,6 @@
-package org.bagab.entity.relationships.many2one.model;
+package org.bagab.entity.relationships.one2many_bi.model;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -12,7 +11,7 @@ import javax.persistence.Table;
  * @author prekezes.
  */
 @Entity
-@Table(name = "MO_EMPLOYEE")
+@Table(name = "OMB_EMPLOYEE")
 public class Employee {
 
     @Id
@@ -21,7 +20,7 @@ public class Employee {
 
     private String name;
 
-    @ManyToOne//  TODO Check (fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "DEPT_ID")
     private Department department;
 

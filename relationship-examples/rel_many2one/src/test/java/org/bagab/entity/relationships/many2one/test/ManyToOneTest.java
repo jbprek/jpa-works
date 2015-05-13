@@ -51,6 +51,7 @@ public class ManyToOneTest {
         // Associate george with Hell
         svc.departmentAssign(george.getId(), hell.getId());
         // Verify Association
+
         Assert.assertEquals("Hell", svc.findEmployee(george.getId()).getDepartment().getName());
 
         // Promote george to Inferno
