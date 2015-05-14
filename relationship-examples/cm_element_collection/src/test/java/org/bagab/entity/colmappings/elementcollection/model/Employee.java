@@ -1,17 +1,6 @@
 package org.bagab.entity.colmappings.elementcollection.model;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
-import javax.persistence.Basic;
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.*;
 
 /**
@@ -28,16 +17,19 @@ public class Employee {
     //@Column(nullable = false, unique = true)
     private String name;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-//    @CollectionTable(name = "CM_EC_EMP_NNAMES", joinColumns = @JoinColumn(name = "EMP_ID"))
-//    @AttributeOverrides({@AttributeOverride(name = "startDate", column = @Column(name = "ST_DT")),
-//            @AttributeOverride(name = "duration", column = @Column(name = "NUM"))})
-    private List<VacationEntry> vacationEntries = new ArrayList<>();
+    @ElementCollection(fetch = FetchType.EAGER, targetClass=VacationEntry.class)
+    @CollectionTable(name = "CM_EC_EMP_VACATION", joinColumns = @JoinColumn(name = "EMP_ID"))
+    @AttributeOverrides({@AttributeOverride(name = "startDate", column = @Column(name = "ST_DT")),
+            @AttributeOverride(name = "duration", column = @Column(name = "NUM"))})
+    @OrderColumn
+
+    private Collection vacationEntries;// = new ArrayList<>();
     /* NOTE Without vacationEntries construction getVacationEntries() returns null */
 
-    @ElementCollection(fetch = FetchType.EAGER)
-//    @CollectionTable(name = "CM_EC_EMP_NNAMES")
-    private List<String> nickNames;
+//    @ElementCollection(fetch = FetchType.EAGER)
+//    @CollectionTable(name = "CM_EC_EMP_NNAMES", joinColumns = @JoinColumn(name = "EMP_ID"))
+//    @OrderColumn
+//    private Collection<String> nickNames;
 
     public long getId() {
         return id;
@@ -55,7 +47,7 @@ public class Employee {
         this.name = name;
     }
 
-    public List<VacationEntry> getVacationEntries() {
+    public Collection<VacationEntry> getVacationEntries() {
         return vacationEntries;
     }
 
@@ -63,11 +55,11 @@ public class Employee {
         this.vacationEntries = vacationEntries;
     }
 
-    public List<String> getNickNames() {
-        return nickNames;
-    }
-
-    public void setNickNames(List<String> nickNames) {
-        this.nickNames = nickNames;
-    }
+//    public Collection<String> getNickNames() {
+//        return nickNames;
+//    }
+//
+//    public void setNickNames(List<String> nickNames) {
+//        this.nickNames = nickNames;
+//    }
 }

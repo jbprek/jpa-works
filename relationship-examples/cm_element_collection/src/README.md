@@ -1,27 +1,35 @@
 Equivalent SQL schema
 =====================
                                       
-                             
-    create table OOU_EMPLOYEE (                           
-        id int8 not null,                                 
-        name varchar(255) not null,                       
-        parkingLot_id int8,                               
-        primary key (id)                                  
-    )                                                     
+      create table CM_EC_EMPLOYEE (                     
+          id int8 not null,                             
+          name varchar(255),                            
+          primary key (id)                              
+      )                                                 
 
-    create table OOU_PARKING_LOT (                        
-        id int8 not null,                                 
-        name varchar(255) not null,                       
-        primary key (id)                                  
-    )                                                     
+      create table CM_EC_EMP_NNAMES (                   
+          EMP_ID int8 not null,                         
+          nickNames varchar(255)                        
+      )                                                 
 
-    alter table OOU_EMPLOYEE                              
-        add constraint FK_4hsxxjy7930pbfa5cytnphxf2       
-        foreign key (parkingLot_id)                       
-        references OOU_PARKING_LOT                        
+      create table CM_EC_EMP_VACATION (                 
+          EMP_ID int8 not null,                         
+          NUM int4,                                     
+          ST_DT date                                    
+      )                                                 
 
-    alter table OOU_EMPLOYEE                              
-        add constraint FK_4hsxxjy7930pbfa5cytnphxf2       
-        foreign key (parkingLot_id)                       
-        references OOU_PARKING_LOT  
-                             
+      alter table CM_EC_EMP_NNAMES                      
+          add constraint FK_tni9rovq3hthhjuaawcjnab3l   
+          foreign key (EMP_ID)                          
+          references CM_EC_EMPLOYEE                     
+
+      alter table CM_EC_EMP_VACATION                    
+          add constraint FK_43f753skm3s0uv7egcbhyn84v   
+          foreign key (EMP_ID)                          
+          references CM_EC_EMPLOYEE       
+                        
+                        
+Problem 
+=======
+
+Having issues with @ElementCollection and @Embeddable

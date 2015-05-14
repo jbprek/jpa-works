@@ -8,6 +8,7 @@ import org.bagab.entity.colmappings.elementcollection.model.VacationEntry;
 import javax.ejb.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -36,33 +37,38 @@ public class ServiceBean {
         return em.find(Employee.class, id);
     }
 
-    public void addNickName(long employeeId, String nickname) {
-        log.info("Adding nickName "+nickname);
-
-        Objects.requireNonNull(nickname);
-        Employee e = findEmployee(employeeId);
-        Objects.requireNonNull(e);
-        e.getNickNames().add(nickname);
-    }
-
-    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-    public List<String> getNickNames(long employeeId) {
-        log.info("Getting nickNames");
-
-        Employee e = findEmployee(employeeId);
-        Objects.requireNonNull(e);
-        List<String> nickName = e.getNickNames();
-        return e.getNickNames();
-    }
+//    public void addNickName(long employeeId, String nickname) {
+//        log.info("Adding nickName " + nickname);
+//
+//        Objects.requireNonNull(nickname);
+//        Employee e =  em.find(Employee.class, employeeId);
+//        Objects.requireNonNull(e);
+//        e.getNickNames().add(nickname);
+//    }
+//
+//    public Collection<String> getNickNames(long employeeId) {
+//        log.info("Getting nickNames");
+//
+//        Employee e = em.find(Employee.class, employeeId);
+//        Objects.requireNonNull(e);
+//        return e.getNickNames();
+//    }
 
     public void addVacationEntry(long employeeId, Date startDate, int duration) {
-        Employee e = findEmployee(employeeId);
+        log.info("Adding vacation entry");
+        Employee e = em.find(Employee.class, employeeId);
         Objects.requireNonNull(e);
         VacationEntry v = new VacationEntry();
+        v.setStartDate((Date) startDate.clone());
+        v.setDuration(duration);
+        e.getVacationEntries().add(v);
+
     }
 
-    public List<VacationEntry> getVacationEntries(long employeeId) {
-        Employee e = findEmployee(employeeId);
+    public Collection<VacationEntry> getVacationEntries(long employeeId) {
+        log.info("Getting vacation Entries");
+
+        Employee e = em.find(Employee.class, employeeId);
         Objects.requireNonNull(e);
         return e.getVacationEntries();
     }

@@ -3,6 +3,7 @@ package org.bagab.entity.colmappings.elementcollection.model;
 import javax.persistence.Embeddable;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
@@ -10,13 +11,21 @@ import java.util.Objects;
  * @author prekezes.
  */
 @Embeddable
-public class VacationEntry {
+public class VacationEntry implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date startDate;
     private int duration;
 
+    public Date getStartDate() {
+        return startDate;
+    }
+
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
+    }
+
+    public int getDuration() {
+        return duration;
     }
 
     public void setDuration(int duration) {
@@ -35,5 +44,14 @@ public class VacationEntry {
     @Override
     public int hashCode() {
         return Objects.hash(startDate, duration);
+    }
+
+
+    @Override
+    public String toString() {
+        return "VacationEntry{" +
+                "startDate=" + startDate +
+                ", duration=" + duration +
+                '}';
     }
 }
