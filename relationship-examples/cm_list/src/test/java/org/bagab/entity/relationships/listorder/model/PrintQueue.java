@@ -1,28 +1,23 @@
 package org.bagab.entity.relationships.listorder.model;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderColumn;
-import javax.persistence.Table;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.ArrayList;
+
+import javax.persistence.*;
 
 @Entity
-@Table(name="CML_PRINT_QUEUE")
+@Table(name = "CML_PRINT_QUEUE")
 public class PrintQueue {
+    @Id private String name;
 
-    private final AtomicLong printOrderSequence = new AtomicLong(0);
-
-    @Id
-    private String name;
-
-    @OneToMany(mappedBy="queue", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="queue")
     @OrderColumn(name="PRINT_ORDER")
-    private List<PrintItem> jobs;
-
+    private List<PrintJob> jobs;
+    
+    public PrintQueue() {
+        jobs = new ArrayList<PrintJob>();
+    }
+    
     public String getName() {
         return name;
     }
@@ -31,15 +26,16 @@ public class PrintQueue {
         this.name = name;
     }
 
-    public List<PrintItem> getJobs() {
+    public List<PrintJob> getJobs() {
         return jobs;
     }
 
-    public void setJobs(List<PrintItem> jobs) {
-        this.jobs = jobs;
+    public void addJob(PrintJob job) {
+        this.jobs.add(job);
+        job.setQueue(this);
     }
-
-    public long nextPrintOrderValue() {
-        return printOrderSequence.incrementAndGet();
+    
+    public String toString() {
+        return "PrintQueue: " + name;
     }
 }

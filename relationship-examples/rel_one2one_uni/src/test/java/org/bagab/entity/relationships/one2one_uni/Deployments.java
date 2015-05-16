@@ -20,7 +20,7 @@ public class Deployments {
 
         return ShrinkWrap.create(WebArchive.class, "normal.war")
                 .addAsWebInfResource(new File("src/test/resources/beans.xml"))
-                .addAsWebInfResource(new File("src/test/resources/jpaworks-ds.xml"))
+                .addAsWebInfResource(new File("src/test/resources/jpaworks-ds.xml.OLD"))
                 .addAsResource("META-INF/persistence.xml")
                 .addPackages(true, Deployments.class.getPackage())
                 ;

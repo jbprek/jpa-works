@@ -22,6 +22,7 @@
         <module>rel_many2many_bi</module>
         <module>cm_element_collection</module>
         <module>cm_list</module>
+        <module>cm_map_key_basic</module>
     </modules>
 
     <properties>

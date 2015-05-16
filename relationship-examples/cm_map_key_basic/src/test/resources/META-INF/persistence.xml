@@ -14,8 +14,8 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
 
 
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/jpaworks" />
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/jpaworks" />
             <property name="javax.persistence.jdbc.user" value="jpaworks" />
             <property name="javax.persistence.jdbc.password" value="jpaworks" />
 

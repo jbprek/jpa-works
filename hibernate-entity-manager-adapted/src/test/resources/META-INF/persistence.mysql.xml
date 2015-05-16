@@ -1,10 +1,11 @@
+
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              version="2.1">
 
-    <persistence-unit name="test-relationships" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="tutorial_entity_manager" transaction-type="RESOURCE_LOCAL">
         <description>
             Persistence unit for the JPA tutorial of the Hibernate Getting Started Guide
         </description>
@@ -14,8 +15,8 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
 
 
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/jpaworks" />
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/jpaworks" />
             <property name="javax.persistence.jdbc.user" value="jpaworks" />
             <property name="javax.persistence.jdbc.password" value="jpaworks" />
 

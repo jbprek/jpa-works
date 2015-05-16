@@ -15,26 +15,26 @@ Key terms : *Single Value Association*, *Collection Value Association*.
     Relationship of Employee and ParkingLot again.
     
     
-2. Many to One , see project rel_many2one
+3. Many to One , see project rel_many2one
 
     Relationship of Employee and Department.
     
     
-2. One to Many unidirectional, see project rel_one2many_uni
+4. One to Many unidirectional, see project rel_one2many_uni
 
     Relationship of Person and Phones
     
     
-2. One to Many bidirectional , see project rel_one2many_bi
+5. One to Many bidirectional , see project rel_one2many_bi
 
     Relationship of Employee and Department again.
     
     
-2. Many to Many unidirectional, see project rel_many2many_uni
+6. Many to Many unidirectional, see project rel_many2many_uni
 
      RelationShip of Tasks and Employees.  (Task is owner).
     
-2. Many to Many bidirectional , see project rel_many2many_bi
+7. Many to Many bidirectional , see project rel_many2many_bi
 
     Relationship of Employee and Project.
 
@@ -42,6 +42,17 @@ Key terms : *Single Value Association*, *Collection Value Association*.
 Collection Mappings
 ===================
 
-1. Element collection example 
+1. Element collection example, see project cm_element_collection 
 
-    Collection Mapping of Employee to NickName(s) and VacationEntry(ies)
+    Collection Mapping of Employee to NickName(s) and VacationEntry(ies). Unresolved **problem** so far with Entity having two element collections.
+    
+2. List Ordering , see project  cm_list
+    
+    - Use of @OrderBy in Employees-Department relationship, Unresolved **problem**: cannot obtain sorted list of department employess.
+    - Example of @OrderColumn  with PrintQueue PrintJob, same  **problem** cannot get them in proper order
+    
+    
+Future
+=======
+- Explore @OrderBy when applied at @ElementCollection of basic type
+

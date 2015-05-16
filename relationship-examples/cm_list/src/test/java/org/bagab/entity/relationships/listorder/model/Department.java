@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,16 +17,14 @@ import java.util.List;
 @Table(name="CML_DEPARTMENT")
 public class Department {
 
-    @Id
-    @GeneratedValue
+
     private long id;
 
     private String name;
 
-    @OneToMany(mappedBy="department", fetch = FetchType.EAGER)
-    @OrderBy("name") //   alternative ("name DESC")
     private List<Employee> employees;
-
+    @Id
+    @GeneratedValue
     public long getId() {
         return id;
     }
@@ -42,6 +41,8 @@ public class Department {
         this.name = name;
     }
 
+    @OneToMany(mappedBy = "department")
+    @OrderBy("name ASC") //   alternative ("name DESC")
     public List<Employee> getEmployees() {
         return employees;
     }

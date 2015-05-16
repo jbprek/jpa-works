@@ -131,7 +131,7 @@
             FROM Employee e </br>
             WHERE EXISTS (SELECT p </br>
                           FROM Phone p </br>
-                          WHERE p.employee = e AND p.type = 'Cell')</td></tr>
+                          WHERE p.person = e AND p.type = 'Cell')</td></tr>
     <tr><td><input name="query" type="submit" value="WHERE7"/></td>
 	    <td>SELECT e </br>
             FROM Employee e </br>
@@ -285,7 +285,7 @@
 	    <td>UPDATE Phone p </br>
             SET p.number = CONCAT('288', SUBSTRING(p.number, LOCATE(p.number, '-'), 4)), </br>
                 p.type = 'Business' </br>
-            WHERE p.employee.address.city = 'New York' AND p.type = 'Office'</td></tr>
+            WHERE p.person.address.city = 'New York' AND p.type = 'Office'</td></tr>
     </tbody></table>
 
     <h3>DELETE Query example</h3>
