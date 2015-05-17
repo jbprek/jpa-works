@@ -56,23 +56,18 @@ Key terms : *Single Value Association*, *Collection Value Association*.
     Relationship of Employee and Department again.
     
         @Entity
-        public class Department {
-        
+        public class Department {        
             @Id
             private long id;
-        
-            private String name;
-        
+            ....
             @OneToMany(mappedBy="department")
             private List<Employee> employees = new ArrayList<>();
 
         @Entity
-        public class Employee {
-        
+        public class Employee {        
             @Id
             private long id;
-        
-            private String name;
+            ....
             /* OWNER SIDE*/
             @ManyToOne
             @JoinColumn(name = "DEPT_ID")
@@ -84,9 +79,30 @@ Key terms : *Single Value Association*, *Collection Value Association*.
 
      RelationShip of Tasks and Employees.  (Task is owner).
     
-7. Many to Many bidirectional , see project rel_many2many_bi
+7. **Many to Many bidirectional** , see project rel_many2many_bi
 
     Relationship of Employee and Project.
+    
+        @Entity
+        public class Employee {
+            @Id
+            private long id;
+            ...
+            @ManyToMany
+            @JoinTable(name = "EMPLOYEE_PROJECT", 
+                joinColumns = @JoinColumn(name="EMPLOYEE_ID"), 
+                inverseJoinColumns = @JoinColumn(name="PROJECT_ID"))
+            private Set<Project> projects;
+            
+            
+        @Entity
+        public class Project {
+            @Id
+            private long id;
+            ...
+            @ManyToMany(mappedBy = "projects")
+            private Set<Employee> employees;
+
 
 Collection Mappings
 -------------------
@@ -148,7 +164,7 @@ Collection Mappings
         
     - Key is Emum under package jpa.relationship.mapuse.emumkey
     
-        Same as above using an Enum instead of a String.
+     Same as above using an Enum instead of a String.
         
         public enum PhoneType {
             HOME, MOBILE
@@ -168,15 +184,34 @@ Collection Mappings
         @Column(name = "PHONE_NUM")
         private Map<PhoneType, String> phoneNumbers = new HashMap<>();
  
-5. Map used in One to Many relationship, see project cm_map_one2many
+5. **Map used in One to Many relationship**, see project cm_map_one2many
 
-6. Map used in Many to Many relationship, see project cm_map_many2many
+        @Entity
+        public class Employee {        
+            @Id
+            private long id;
+            ...        
+            @ManyToOne
+            @JoinColumn(name = "DEPT_ID")
+            private Department department;
+            
+            
+        Entity
+        public class Department {        
+            @Id
+            private long id;
+            ...
+            @OneToMany(mappedBy="department")
+            @MapKeyColumn(name="CUB_ID", nullable = true)
+            private Map<String, Employee> employeesByCubicle;
+
+6. **Map used in Many to Many relationship**, see project cm_map_many2many
 
 
 Weaknesses
 ----------
 
-- Further investigate the issues with @OrderBy
+- Unresolved issues with @OrderBy
     
 Future
 ------
