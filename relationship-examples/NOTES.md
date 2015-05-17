@@ -3,7 +3,7 @@ JPA Relationships and operations on entities
 
 TODO
 ----
-1. arel_many2many_state
+
 
 Standard Relationships
 ----------------------
@@ -18,23 +18,16 @@ Key terms : *Single Value Association*, *Collection Value Association*.
     
         @Entity
         public class Employee {
-            @Id
-            private long id;
-        
-            @Basic(optional = false)
-            private String name;
-        
+            @Id private long id;        
             @OneToOne
             //@JoinColumn(name = "PARKING_ID")
             private ParkingLotEntity parkingLot;
-
+            ...
 
         @Entity
         public class ParkingLotEntity {
             @Id private long id;
-        
-            @Basic(optional = false)
-            private String name;
+            ...
 
     Note: It's possible for two Employess to refer to the same ParkingLot
 
@@ -60,16 +53,14 @@ Key terms : *Single Value Association*, *Collection Value Association*.
     
         @Entity
         public class Department {        
-            @Id
-            private long id;
+            @Id  private long id;
             ....
             @OneToMany(mappedBy="department")
             private List<Employee> employees = new ArrayList<>();
 
         @Entity
         public class Employee {        
-            @Id
-            private long id;
+            @Id private long id;
             ....
             /* OWNER SIDE*/
             @ManyToOne
@@ -88,8 +79,7 @@ Key terms : *Single Value Association*, *Collection Value Association*.
     
         @Entity
         public class Employee {
-            @Id
-            private long id;
+            @Id  private long id;
             ...
             @ManyToMany
             @JoinTable(name = "EMPLOYEE_PROJECT", 
@@ -100,8 +90,7 @@ Key terms : *Single Value Association*, *Collection Value Association*.
             
         @Entity
         public class Project {
-            @Id
-            private long id;
+            @Id  private long id;
             ...
             @ManyToMany(mappedBy = "projects")
             private Set<Employee> employees;
@@ -122,8 +111,7 @@ Collection Mappings
             
         @Entity
         public class Employee {
-            @Id
-            private long id;
+            @Id private long id;
                
             private String name;
         
@@ -150,18 +138,14 @@ Collection Mappings
         Person with phones mapped by category
          
         @Entity
-        public class PersonStringPhoneType {
-        
-        @Id 
-        private int id;
-        
-        private String name;
-        
-        @ElementCollection
-        @CollectionTable(name = "PERSON_PHONE")
-        @MapKeyColumn(name = "PHONE_TYPE")
-        @Column(name = "PHONE_NUM")
-        private Map<String, String> phoneNumbers = new HashMap<>();
+        public class PersonStringPhoneType {        
+            @Id private int id;
+            ....
+            @ElementCollection
+            @CollectionTable(name = "PERSON_PHONE")
+            @MapKeyColumn(name = "PHONE_TYPE")
+            @Column(name = "PHONE_NUM")
+            private Map<String, String> phoneNumbers = new HashMap<>();
 
 4. **Map mapping keyed by enum**, see project cm_map_key_enum       
         
@@ -174,18 +158,14 @@ Collection Mappings
         }
          
         @Entity
-        public class PersonEnumPhoneType {
-        
-        @Id   
-        private int id;
-        
-        private String name;
-        
-        @ElementCollection
-        @CollectionTable(name = "EMP_PHONE")
-        @MapKeyEnumerated(EnumType.STRING)
-        @Column(name = "PHONE_NUM")
-        private Map<PhoneType, String> phoneNumbers = new HashMap<>();
+        public class PersonEnumPhoneType {        
+            @Id  private int id;
+            ....
+            @ElementCollection
+            @CollectionTable(name = "EMP_PHONE")
+            @MapKeyEnumerated(EnumType.STRING)
+            @Column(name = "PHONE_NUM")
+            private Map<PhoneType, String> phoneNumbers = new HashMap<>();
  
 5. **Map used in One to Many relationship**, see project cm_map_one2many
 
@@ -201,8 +181,7 @@ Collection Mappings
             
         @Entity
         public class Department {        
-            @Id
-            private long id;
+            @Id  private long id;
             ...
             @OneToMany(mappedBy="department")
             @MapKeyColumn(name="CUB_ID", nullable = true)
@@ -211,14 +190,9 @@ Collection Mappings
 6. **Map used in Many to Many relationship**, see project cm_map_many2many
 
         @Entity
-        public class Employee {
-        
-            @Id
-            @GeneratedValue
-            private long id;
-        
-            private String name;
-        
+        public class Employee {        
+            @Id private long id;
+            ...
             @ManyToMany
             @JoinTable(name = "CM_MMB_EMPLOYEE_PROJECT",
                     joinColumns = @JoinColumn(name="EMPLOYEE_ID"),
@@ -228,12 +202,8 @@ Collection Mappings
             
         @Entity
         public class Project {
-            @Id
-            @GeneratedValue
-            private long id;
-        
-            private String name;
-        
+            @Id  private long id;
+            ...
             @ManyToMany(mappedBy = "projectsByAssignement")
             private Set<Employee> employees = new HashSet<>();
             
@@ -260,7 +230,6 @@ Advanced Topics - Primary Key
 ---------------------------
 1. Compound PK @IdClass, adv_map_cpk_idclass
 
-
     // IdClass - No Setters
     public class EmployeeId implements Serializable {
         private long code;
@@ -277,15 +246,13 @@ Advanced Topics - Primary Key
     
 2. Compound PK @EmbeddedId, adv_map_cpk_embedid
 
-
     @Embeddable
     public class EmployeeId implements Serializable {
         private long code;
         private String county;
 
     @Entity
-    public class Employee implements Serializable {
-    
+    public class Employee implements Serializable {    
         @EmbeddedId
         private EmployeeId id;
 
