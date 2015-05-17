@@ -23,6 +23,9 @@
         <module>cm_element_collection</module>
         <module>cm_list</module>
         <module>cm_map_key_basic</module>
+        <module>cm_map_key_enum</module>
+        <module>cm_map_one2many</module>
+        <module>cm_map_many2many</module>
     </modules>
 
     <properties>

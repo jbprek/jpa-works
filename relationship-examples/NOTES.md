@@ -1,14 +1,40 @@
 JPA Relationships and operations on entities
 ============================================
 
+
+Standard Relationships
+----------------------
+
 The following describe the basic entity relationships, see more notes inside each project.
 
 Key terms : *Single Value Association*, *Collection Value Association*.
 
-1. One to One unidirectional, see project rel_one2one_uni
+1. **One to One unidirectional**, see project rel_one2one_uni
 
-    Relationship of Employee and ParkingLot.
+    Relationship of Employee and ParkingLot:
     
+        @Entity
+        public class Employee {
+            @Id
+            private long id;
+        
+            @Basic(optional = false)
+            private String name;
+        
+            @OneToOne
+            //@JoinColumn(name = "PARKING_ID")
+            private ParkingLotEntity parkingLot;
+
+
+        @Entity
+        public class ParkingLotEntity {
+            @Id private long id;
+        
+            @Basic(optional = false)
+            private String name;
+
+    Note: It's possible for two Employess to refer to the same ParkingLot
+
     
 2. One to One bidirectional , see project rel_one2one_bi 
 
@@ -25,9 +51,33 @@ Key terms : *Single Value Association*, *Collection Value Association*.
     Relationship of Person and Phones
     
     
-5. One to Many bidirectional , see project rel_one2many_bi
+5. **One to Many bidirectional** , see project rel_one2many_bi
 
     Relationship of Employee and Department again.
+    
+        @Entity
+        public class Department {
+        
+            @Id
+            private long id;
+        
+            private String name;
+        
+            @OneToMany(mappedBy="department")
+            private List<Employee> employees = new ArrayList<>();
+
+        @Entity
+        public class Employee {
+        
+            @Id
+            private long id;
+        
+            private String name;
+            /* OWNER SIDE*/
+            @ManyToOne
+            @JoinColumn(name = "DEPT_ID")
+            private Department department;
+    
     
     
 6. Many to Many unidirectional, see project rel_many2many_uni
@@ -38,21 +88,97 @@ Key terms : *Single Value Association*, *Collection Value Association*.
 
     Relationship of Employee and Project.
 
-
 Collection Mappings
-===================
+-------------------
 
-1. Element collection example, see project cm_element_collection 
+1. **Element collection example**, see project cm_element_collection 
 
-    Collection Mapping of Employee to NickName(s) and VacationEntry(ies). Unresolved **problem** so far with Entity having two element collections.
+    Collection Mapping of Employee to NickName(s) and VacationEntry(ies). 
+    
+        @Embeddable
+        public class VacationEntry {
+            @Temporal(TemporalType.DATE)
+            private Date startDate;
+            private int duration;
+            
+        @Entity
+        public class Employee {
+            @Id
+            private long id;
+               
+            private String name;
+        
+            @ElementCollection
+            @CollectionTable(name="CM_EC_EMP_VACATION",
+                             joinColumns = @JoinColumn(name="EMP_ID"))
+            @AttributeOverrides({ .. })
+            private List<VacationEntry> vacationEntries  = new ArrayList<>();
+        
+            @ElementCollection
+            @CollectionTable(name = "CM_EC_EMP_NNAMES", joinColumns = @JoinColumn(name = "EMP_ID"))
+            private List<String> nickNames = new ArrayList<>();
+
+
     
 2. List Ordering , see project  cm_list
     
     - Use of @OrderBy in Employees-Department relationship, Unresolved **problem**: cannot obtain sorted list of department employess.
     - Example of @OrderColumn  with PrintQueue PrintJob, same  **problem** cannot get them in proper order
     
+3. **Map mapping keyed by basic type**, String in our case, see project cm_map_key_basic
+    - Key is String under package jpa.relationship.mapuse.stringkey
+    
+        Person with phones mapped by category
+         
+        @Entity
+        public class PersonStringPhoneType {
+        
+        @Id 
+        private int id;
+        
+        private String name;
+        
+        @ElementCollection
+        @CollectionTable(name = "PERSON_PHONE")
+        @MapKeyColumn(name = "PHONE_TYPE")
+        @Column(name = "PHONE_NUM")
+        private Map<String, String> phoneNumbers = new HashMap<>();
+
+4. **Map mapping keyed by enum**, see project cm_map_key_enum       
+        
+    - Key is Emum under package jpa.relationship.mapuse.emumkey
+    
+        Same as above using an Enum instead of a String.
+        
+        public enum PhoneType {
+            HOME, MOBILE
+        }
+         
+        @Entity
+        public class PersonEnumPhoneType {
+        
+        @Id   
+        private int id;
+        
+        private String name;
+        
+        @ElementCollection
+        @CollectionTable(name = "EMP_PHONE")
+        @MapKeyEnumerated(EnumType.STRING)
+        @Column(name = "PHONE_NUM")
+        private Map<PhoneType, String> phoneNumbers = new HashMap<>();
+ 
+5. Map used in One to Many relationship, see project cm_map_one2many
+
+6. Map used in Many to Many relationship, see project cm_map_many2many
+
+
+Weaknesses
+----------
+
+- Further investigate the issues with @OrderBy
     
 Future
-=======
+------
 - Explore @OrderBy when applied at @ElementCollection of basic type
 
