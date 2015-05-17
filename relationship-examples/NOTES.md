@@ -1,6 +1,9 @@
 JPA Relationships and operations on entities
 ============================================
 
+TODO
+----
+1. arel_many2many_state
 
 Standard Relationships
 ----------------------
@@ -253,10 +256,45 @@ Collection Mappings
             add constraint FK_479ucto5kbsc9tqx4v2equvvw 
             foreign key (PROJECT_ID) references CM_MMB_PROJECT (id) 
             
-Advanced Relationships
-----------------------
+Advanced Topics Primary Key
+---------------------------
+1. Compound PK @IdClass, arel_cpk_idclass
+
+
+    // IdClass - No Setters
+    public class EmployeeId implements Serializable {
+        private long code;
+        private String county;
+        
+    @Entity
+    @IdClass(value = EmployeeId.class)
+    public class Employee implements Serializable {    
+        @Id
+        private long code;
+        @Id
+        private String county;
+        ...    
+    
+2. Compound PK @EmbeddedId, arel_cpk_embedid
+
+
+    @Embeddable
+    public class EmployeeId implements Serializable {
+        private long code;
+        private String county;
+
+    @Entity
+    public class Employee implements Serializable {
+    
+        @EmbeddedId
+        private EmployeeId id;
+
+Advanced Topics Relationships
+-----------------------------
 
 1. Many To Many with relationship state, project arel_many2many_state
+
+
 
 Weaknesses
 ----------

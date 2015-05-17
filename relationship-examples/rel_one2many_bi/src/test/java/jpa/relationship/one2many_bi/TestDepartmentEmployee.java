@@ -1,8 +1,7 @@
-package jpa.relationship.one2many_bi.test;
+package jpa.relationship.one2many_bi;
 
-import jpa.relationship.one2many_bi.model.*;
-import jpa.relationship.one2many_bi.model.Employee;
-import org.bagab.entity.relationships.many2many.*;
+import jpa.relationship.one2many_bi.Department;
+import jpa.relationship.one2many_bi.Employee;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
