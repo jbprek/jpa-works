@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -23,7 +24,7 @@ public class Project {
     private String name;
 
     @ManyToMany(mappedBy = "projects", fetch = FetchType.EAGER)
-    private Set<Employee> employees;
+    private Set<Employee> employees = new HashSet<>();
 
     public long getId() {
         return id;

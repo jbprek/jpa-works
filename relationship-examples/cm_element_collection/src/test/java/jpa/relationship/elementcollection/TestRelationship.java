@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by x on 5/17/15.
  */
-public class TestEmployee {
+public class TestRelationship {
 
     private static EntityManagerFactory entityManagerFactory;
     private static EntityManager em;

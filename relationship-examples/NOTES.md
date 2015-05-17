@@ -196,7 +196,7 @@ Collection Mappings
             private Department department;
             
             
-        Entity
+        @Entity
         public class Department {        
             @Id
             private long id;
@@ -207,11 +207,62 @@ Collection Mappings
 
 6. **Map used in Many to Many relationship**, see project cm_map_many2many
 
+        @Entity
+        public class Employee {
+        
+            @Id
+            @GeneratedValue
+            private long id;
+        
+            private String name;
+        
+            @ManyToMany
+            @JoinTable(name = "CM_MMB_EMPLOYEE_PROJECT",
+                    joinColumns = @JoinColumn(name="EMPLOYEE_ID"),
+                    inverseJoinColumns = @JoinColumn(name="PROJECT_ID"))
+            @MapKeyColumn(name="ASSIGNEMENT")
+            private Map<String, Project> projectsByAssignement = new HashMap<>();
+            
+        @Entity
+        public class Project {
+            @Id
+            @GeneratedValue
+            private long id;
+        
+            private String name;
+        
+            @ManyToMany(mappedBy = "projectsByAssignement")
+            private Set<Employee> employees = new HashSet<>();
+            
+    ***Not Working*** , see in DDL below that PK in CM_MMB_EMPLOYEE_PROJECT is (EMPLOYEE_ID, ASSIGNEMENT) instead of the expected (EMPLOYEE_ID, PROJECT_ID)
+     
+        create table CM_MMB_EMPLOYEE (
+            id bigint not null auto_increment, 
+            name varchar(255), 
+            primary key (id))
+        create table CM_MMB_EMPLOYEE_PROJECT (
+            EMPLOYEE_ID bigint not null,
+            PROJECT_ID bigint not null, 
+            ASSIGNEMENT varchar(255) not null, 
+            primary key (EMPLOYEE_ID, ASSIGNEMENT))
+        create table CM_MMB_PROJECT (
+            id bigint not null auto_increment, 
+            name varchar(255), 
+            primary key (id))
+        alter table CM_MMB_EMPLOYEE_PROJECT 
+            add constraint FK_479ucto5kbsc9tqx4v2equvvw 
+            foreign key (PROJECT_ID) references CM_MMB_PROJECT (id) 
+            
+Advanced Relationships
+----------------------
+
+1. Many To Many with relationship state, project arel_many2many_state
 
 Weaknesses
 ----------
 
-- Unresolved issues with @OrderBy
+- Unresolved issues with @OrderBy project cm_list
+- Unresolved issues with ManyToMany and Map(s) project cm_map_many2many
     
 Future
 ------

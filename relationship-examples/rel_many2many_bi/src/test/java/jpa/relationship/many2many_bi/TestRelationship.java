@@ -18,7 +18,7 @@ import javax.persistence.Persistence;
 /**
  * Created by x on 5/5/15.
  */
-public class ManyToManyBiTest {
+public class TestRelationship {
 
     private static EntityManagerFactory entityManagerFactory;
     private static EntityManager em;
@@ -97,7 +97,7 @@ public class ManyToManyBiTest {
 
 
     @Test
-    private void test() {
+    public void test() {
         // Create employees John and George
         Employee john = createEmployee("John");
         Assert.assertEquals("John", findEmployee(john.getId()).getName());

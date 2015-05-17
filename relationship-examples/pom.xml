@@ -24,8 +24,9 @@
         <module>cm_list</module>
         <module>cm_map_key_basic</module>
         <module>cm_map_key_enum</module>
-        <module>cm_map_one2many</module>
-        <module>cm_map_many2many</module>
+        <module>cm_map_key_basic_one2many</module>
+        <module>cm_map_key_basic_many2many</module>
+        <module>arel_many2many_state</module>
     </modules>
 
     <properties>

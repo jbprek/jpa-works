@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -27,7 +28,7 @@ public class Employee {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "MMB_EMPLOYEE_PROJECT", joinColumns = @JoinColumn(name="EMPLOYEE_ID"), inverseJoinColumns = @JoinColumn(name="PROJECT_ID"))
-    private Set<Project> projects;
+    private Set<Project> projects = new HashSet<>();
 
     public long getId() {
         return id;
