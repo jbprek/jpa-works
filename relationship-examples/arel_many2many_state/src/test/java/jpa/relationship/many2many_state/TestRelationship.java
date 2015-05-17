@@ -32,68 +32,72 @@ public class TestRelationship {
         entityManagerFactory.close();
     }
 //
-//    private Employee createEmployee(String name) {
-//        Employee e = new Employee();
-//        e.setName(name);
-//
-//        EntityTransaction tx = em.getTransaction();
-//        tx.begin();
-//        em.persist(e);
-//        tx.commit();
-//
-//        return e;
-//    }
+    private Employee createEmployee(String name) {
+        Employee e = new Employee();
+        e.setName(name);
+
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.persist(e);
+        tx.commit();
+
+        return e;
+    }
 //
 //    private Employee findEmployee(long id) {
 //        return em.find(Employee.class, id);
 //    }
 //
-//    private Project createProject(String name) {
-//        Project e = new Project();
-//        e.setName(name);
-//
-//        EntityTransaction tx = em.getTransaction();
-//        tx.begin();
-//        em.persist(e);
-//        tx.commit();
-//
-//        return e;
-//    }
+    private Project createProject(String name) {
+        Project e = new Project();
+        e.setName(name);
+
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.persist(e);
+        tx.commit();
+
+        return e;
+    }
 //
 //    private Project findProject(long id) {
 //        return em.find(Project.class, id);
 //    }
 //
-//    private void assignToProject(Employee e, Project p) {
+    private void assignToProject(Employee e, Project p, String assignentDescription) {
+        ProjectAssignement a = new ProjectAssignement();
+        a.setEmployee(e);
+        a.setProject(p);
+        a.setJobDescription(assignentDescription);
+        e.getProjectAssignements().add(a);
+        p.getProjectAssignements().add(a);
+
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.persist(a);
+        em.merge(e);
+        em.merge(p);
+        tx.commit();
+    }
 //
-//        p.getEmployees().add(e);
-//        e.getProjects().add(p);
+    private void dismissFromAssignement(ProjectAssignement assignement) {
+
+        Employee e = assignement.getEmployee();
+        e.getProjectAssignements().remove(assignement);
+        Project p = assignement.getProject();
+        p.getProjectAssignements().remove(assignement);
+
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.merge(e);
+        em.merge(p);
+        em.remove(assignement);
+        tx.commit();
+    }
 //
 //
-//        EntityTransaction tx = em.getTransaction();
-//        tx.begin();
-//        em.merge(e);
-//        em.merge(p);
-//
-//        tx.commit();
-//    }
-//
-//    private void dismissFromProject(Employee e, Project p) {
-//
-//        e.getProjects().remove(p);
-//        p.getEmployees().remove(e);
-//
-//        EntityTransaction tx = em.getTransaction();
-//        tx.begin();
-//        em.merge(e);
-//        em.merge(p);
-//
-//        tx.commit();
-//    }
-//
-//
-//    @Test
-//    public void test() {
+    @Test
+    public void test() {
 //        // Create employees John and George
 //        Employee john = createEmployee("John");
 //        Assert.assertEquals("John", findEmployee(john.getId()).getName());
@@ -135,6 +139,6 @@ public class TestRelationship {
 //        Assert.assertEquals(1, findProject(inferno.getId()).getEmployees().size());
 //        Assert.assertTrue(findEmployee(george.getId()).getProjects().contains(inferno));
 //        Assert.assertTrue(findEmployee(george.getId()).getProjects().contains(hell));
-//    }
+    }
 
 }

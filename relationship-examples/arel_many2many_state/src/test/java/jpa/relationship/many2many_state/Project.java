@@ -9,11 +9,10 @@ import java.util.Set;
  * @author prekezes.
  */
 
-@Table(name = "AREL_MMBST_ROJECT")
+@Table(name = "PROJECT")
 @Entity
 public class Project {
     @Id
-    @GeneratedValue
     private long id;
 
     private String name;
@@ -27,5 +26,21 @@ public class Project {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<ProjectAssignement> getProjectAssignements() {
+        return projectAssignements;
+    }
+
+    public void setProjectAssignements(Set<ProjectAssignement> projectAssignements) {
+        this.projectAssignements = projectAssignements;
     }
 }

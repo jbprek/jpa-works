@@ -9,20 +9,51 @@ import java.util.Date;
  * Created by x on 5/17/15.
  */
 
-@Table(name = "AREL_MMBST_EMPLOYEE_PROJECT")
+@Table(name = "EMPLOYEE_PROJECT")
 @Entity
-@IdClass(value = ProjectAssignementId.class)
+//@IdClass(value = ProjectAssignementId.class)
 public class ProjectAssignement {
+   @Id
+   @GeneratedValue
+   private long id;
+//
+//    @Column(name = "EMP_ID")
+//    private long employeeId;
+//    @Id
+//    @Column(name = "RROJ_ID")
+//
+//    private long projectId;
 
     @ManyToOne
     @JoinColumn(name = "EMP_ID")
     private Employee employee;
+
     @ManyToOne
     @JoinColumn(name = "RROJ_ID")
     private Project project;
-    private Date startDate;
+    //
     private String jobDescription;
 
+//    public long getEmployeeId() {
+//        return employeeId;
+//    }
+//
+//    public void setEmployeeId(long employeeId) {
+//        this.employeeId = employeeId;
+//    }
+//
+//    public long getProjectId() {
+//        return projectId;
+//    }
+//
+//    public void setProjectId(long projectId) {
+//        this.projectId = projectId;
+//    }
+
+
+    public long getId() {
+        return id;
+    }
 
     public Employee getEmployee() {
         return employee;
@@ -40,13 +71,6 @@ public class ProjectAssignement {
         this.project = project;
     }
 
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
 
     public String getJobDescription() {
         return jobDescription;

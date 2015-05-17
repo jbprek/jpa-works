@@ -256,9 +256,9 @@ Collection Mappings
             add constraint FK_479ucto5kbsc9tqx4v2equvvw 
             foreign key (PROJECT_ID) references CM_MMB_PROJECT (id) 
             
-Advanced Topics Primary Key
+Advanced Topics - Primary Key
 ---------------------------
-1. Compound PK @IdClass, arel_cpk_idclass
+1. Compound PK @IdClass, adv_map_cpk_idclass
 
 
     // IdClass - No Setters
@@ -275,7 +275,7 @@ Advanced Topics Primary Key
         private String county;
         ...    
     
-2. Compound PK @EmbeddedId, arel_cpk_embedid
+2. Compound PK @EmbeddedId, adv_map_cpk_embedid
 
 
     @Embeddable
@@ -289,18 +289,57 @@ Advanced Topics Primary Key
         @EmbeddedId
         private EmployeeId id;
 
-Advanced Topics Relationships
+Advanced Topics - Relationships
 -----------------------------
 
 1. Many To Many with relationship state, project arel_many2many_state
+**Unresolved problem** follows the entities as they should be:
 
 
+    //Employee Entity
+    @Entity
+    public class Employee {
+        @Id  private long id;
+        private String name;
+        @OneToMany(mappedBy = "employee")
+        private Set<ProjectAssignement> projectAssignements = new HashSet<>();
+
+    //Project Entity
+    @Entity
+    public class Project {
+        @Id private long id;
+        private String name;
+        @OneToMany(mappedBy = "project")
+        private Set<ProjectAssignement> projectAssignements = new HashSet<>();
+
+    //IdClass for ProjectAssignement entity
+    public class ProjectAssignementId implements Serializable {
+        private long employeeId;
+        private long projectId;
+   
+    //ProjectAssignement Entity
+    @Entity
+    @IdClass(value = ProjectAssignementId.class)
+    public class ProjectAssignement {
+        @Id
+        @ManyToOne
+        @JoinColumn(name = "EMP_ID")
+        private Employee employee;
+        Id
+        @ManyToOne
+        @JoinColumn(name = "RROJ_ID")
+        private Project project;
+   
+
+**Problem Description** Use of Id class combined with @Id within ProjectAssignement doesn't seem to work.
+As a workaround a generated surrogate key is been used.
 
 Weaknesses
 ----------
 
 - Unresolved issues with @OrderBy project cm_list
 - Unresolved issues with ManyToMany and Map(s) project cm_map_many2many
+- Unresolved issues with @IdClass when their fields are used as part of @OneToMany, project arel_many2many_state
     
 Future
 ------

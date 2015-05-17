@@ -9,12 +9,11 @@ import java.util.Set;
  * @author prekezes.
  */
 
-@Table(name = "AREL_MMBST_EMPLOYEE")
+@Table(name = "EMPLOYEE")
 @Entity
 public class Employee {
 
     @Id
-    @GeneratedValue
     private long id;
 
     private String name;
