@@ -1,4 +1,4 @@
-package jpa.relationship.one2many_bi;
+package jpa.inheritance.tableperclass;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

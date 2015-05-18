@@ -1,17 +1,14 @@
-package jpa.relationship.one2many_bi;
+package jpa.inheritance.tableperclass;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Root class of the hierarchy
  */
 
 @Entity
+@Inheritance(strategy= InheritanceType.JOINED)
+@DiscriminatorColumn(name="EMP_TYPE", discriminatorType = DiscriminatorType.INTEGER)
 public abstract class Employee {
 
     @Id

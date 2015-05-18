@@ -24,11 +24,15 @@ JPA Relationships and operations on entities
 * [Many to Many with relationship state](#ARLM2MS)
 
 ## [Entity Inheritance](#INH)
-* [Mapped super class](#INH_MS)
+* [Intoduction](#INH_INTRO)
+* [Single Table Strategy](#INH_MS)
+----
 
 ## <a name="INH">Entity Inheritance </a>
 
-### <a name="INH">Mapped super class </a>
+## <a name="INH_INTRO">Inheritance Introduction</a>
+
+### <a name="INH">Single Table Strategy </a>
 
 ----
 

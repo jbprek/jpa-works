@@ -1,4 +1,4 @@
-package jpa.relationship.one2many_bi;
+package jpa.inheritance.singletable;
 
 import javax.persistence.MappedSuperclass;
 

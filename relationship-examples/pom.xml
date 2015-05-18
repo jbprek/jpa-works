@@ -11,7 +11,6 @@
 
     <packaging>pom</packaging>
 
-
     <modules>
         <module>rel_one2one_uni</module>
         <module>rel_one2one_bi</module>
@@ -30,7 +29,9 @@
         <module>adv_map_cpk_idclass</module>
         <module>adv_map_cpk_embedid</module>
         <module>embed_example</module>
-        <module>inh_mapped_superclass</module>
+        <module>inh_single_table_strategy</module>
+        <module>inh_join_strategy</module>
+        <module>inh_table_per_class_strategy</module>
     </modules>
 
     <properties>
