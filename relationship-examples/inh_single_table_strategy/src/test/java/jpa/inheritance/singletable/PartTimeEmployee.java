@@ -8,7 +8,6 @@ import javax.persistence.Entity;
  */
 @Entity
 @DiscriminatorValue("PT_EMP")
-
 public class PartTimeEmployee extends CompanyEmployee{
     private int hourlyRate;
 
