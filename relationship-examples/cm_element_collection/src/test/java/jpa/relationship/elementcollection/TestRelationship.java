@@ -49,6 +49,16 @@ public class TestRelationship {
         return emp;
     }
 
+    private Employee findEmployee(long id) {
+        EntityTransaction tx = em.getTransaction();
+
+        tx.begin();
+        Employee emp = em.find(Employee.class, id);
+        tx.commit();
+
+        return emp;
+    }
+
 
     private void addNickName(Employee e, String nickname) {
         e.getNickNames().add(nickname);
@@ -81,11 +91,13 @@ public class TestRelationship {
         addVacationEntry(john, LocalDate.of(2015, 10, 11), 3);
 
         addVacationEntry(john, LocalDate.of(2014, 10, 11), 3);
-
-        System.out.println(daysOf);
-
         addNickName(john, "Master");
         addNickName(john, "Blaster");
-        System.out.println(nickNames);
+
+        Employee found = findEmployee(john.getId());
+
+        System.out.println(found.getVacationEntries());
+
+        System.out.println(found.getNickNames());
     }
 }

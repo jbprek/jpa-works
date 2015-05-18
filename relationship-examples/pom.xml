@@ -30,6 +30,7 @@
         <module>adv_map_cpk_idclass</module>
         <module>adv_map_cpk_embedid</module>
         <module>embed_example</module>
+        <module>inh_mapped_superclass</module>
     </modules>
 
     <properties>

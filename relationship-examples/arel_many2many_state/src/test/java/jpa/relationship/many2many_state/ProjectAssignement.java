@@ -13,9 +13,9 @@ import java.util.Date;
 @Entity
 //@IdClass(value = ProjectAssignementId.class)
 public class ProjectAssignement {
-   @Id
-   @GeneratedValue
-   private long id;
+
+    @EmbeddedId
+    private ProjectAssignementId id;
 //
 //    @Column(name = "EMP_ID")
 //    private long employeeId;
@@ -25,10 +25,12 @@ public class ProjectAssignement {
 //    private long projectId;
 
     @ManyToOne
+    @MapsId("employeeId")
     @JoinColumn(name = "EMP_ID")
     private Employee employee;
 
     @ManyToOne
+    @MapsId("projectId")
     @JoinColumn(name = "RROJ_ID")
     private Project project;
     //
@@ -51,8 +53,12 @@ public class ProjectAssignement {
 //    }
 
 
-    public long getId() {
+    public ProjectAssignementId getId() {
         return id;
+    }
+
+    public void setId(ProjectAssignementId id) {
+        this.id = id;
     }
 
     public Employee getEmployee() {

@@ -20,7 +20,7 @@ public class Employee {
 
     private String name;
 
-    @ManyToOne//  TODO Check (fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "DEPT_ID")
     private Department department;
 

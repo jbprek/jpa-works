@@ -1,11 +1,13 @@
 package jpa.relationship.many2many_state;
 
+import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 /**
  * Created by x on 5/17/15.
  */
 
+@Embeddable
 public class ProjectAssignementId implements Serializable {
     private long employeeId;
     private long projectId;

@@ -1,18 +1,44 @@
 JPA Relationships and operations on entities
 ============================================
+##[Standard Relationships](#SR)
+* [One to One unidirectional](#SRO2OU)
+* [One to One bidirectional](#SRO2OB)   
+* [Many to One](#SRM2O)
+* [One to Many unidirectional](#SRO2MU)
+* [One to Many bidirectional](#SRO2MB)   
+* [Many to Many unidirectional](#SRM2MU)
+* [Many to Many bidirectional](#SRM2MB)   
+    
+##[Mappings](#MP)
+* [Use of @Embeddable](#EMBED) 
+* [Composite PK - Use of @IdClass](#IDCLASS)   
+* [Composite PK - Use of @EmbeddedIds](#EMBEDDEDID) 
 
-TODO
+##[Collection Mapping](#CM)
+* [@ElementCollection Example](#CMEC)
+* [List Ordering @OrderBy and @OrderColumn](#CMLO)   
+* [Map keyed by basic (String)](#CMKB)
+* [Map keyed by Enum (String)](#CMKE)
+
+## [Advanced Relationships](#ARL)
+* [Many to Many with relationship state](#ARLM2MS)
+
+## [Entity Inheritance](#INH)
+* [Mapped super class](#INH_MS)
+
+## <a name="INH">Entity Inheritance </a>
+
+### <a name="INH">Mapped super class </a>
+
 ----
 
-
-Standard Relationships
-----------------------
+##<a name="SR">Standard Relationships</a>
 
 The following describe the basic entity relationships, see more notes inside each project.
 
 Key terms : *Single Value Association*, *Collection Value Association*.
 
-1. **One to One unidirectional**, see project rel_one2one_uni
+###1. <a name="SRO2OU">**One to One unidirectional**</a>, see project rel_one2one_uni
 
     Relationship of Employee and ParkingLot:
     
@@ -32,22 +58,22 @@ Key terms : *Single Value Association*, *Collection Value Association*.
     Note: It's possible for two Employess to refer to the same ParkingLot
 
     
-2. One to One bidirectional , see project rel_one2one_bi 
+###2.  <a name="SRO2OB">One to One bidirectional</a> , see project rel_one2one_bi 
 
     Relationship of Employee and ParkingLot again.
     
     
-3. Many to One , see project rel_many2one
+###3. <a name="SRM2O">Many to One</a> , see project rel_many2one
 
     Relationship of Employee and Department.
     
     
-4. One to Many unidirectional, see project rel_one2many_uni
+###4. <a name="SRO2MU">One to Many unidirectional</a>, see project rel_one2many_uni
 
     Relationship of Person and Phones
     
     
-5. **One to Many bidirectional** , see project rel_one2many_bi
+###5. <a name="SRO2MB">**One to Many bidirectional**</a> , see project rel_one2many_bi
 
     Relationship of Employee and Department again.
     
@@ -69,11 +95,11 @@ Key terms : *Single Value Association*, *Collection Value Association*.
     
     
     
-6. Many to Many unidirectional, see project rel_many2many_uni
+###6. <a name="SRM2MU">Many to Many unidirectional</a>, see project rel_many2many_uni
 
      RelationShip of Tasks and Employees.  (Task is owner).
     
-7. **Many to Many bidirectional** , see project rel_many2many_bi
+###7. <a name="SRM2MU">**Many to Many bidirectional**</a> , see project rel_many2many_bi
 
     Relationship of Employee and Project.
     
@@ -95,7 +121,9 @@ Key terms : *Single Value Association*, *Collection Value Association*.
             @ManyToMany(mappedBy = "projects")
             private Set<Employee> employees;
 
-8. **Embeddable use**, project embed_example
+##<a name="MP">Mappings</a>
+
+### <a name="EMBED">Embeddable use</a>, project embed_example
 Demonstration of @Embeddable 
 
         @Embeddable
@@ -119,10 +147,40 @@ Demonstration of @Embeddable
             private Address address; 
             ....
 
-Collection Mappings
+### <a name="IDCLASS">Compound PK @IdClass</a> , adv_map_cpk_idclass
+
+        // IdClass - No Setters
+        public class EmployeeId implements Serializable {
+            private long code;
+            private String county;
+            
+        @Entity
+        @IdClass(value = EmployeeId.class)
+        public class Employee implements Serializable {    
+            // Same fields as IdClass
+            @Id
+            private long code;
+            @Id
+            private String county;
+            ...    
+    
+### <a name="EMBEDDEDID">Compound PK @EmbeddedId</a>, adv_map_cpk_embedid
+
+        @Embeddable
+        public class EmployeeId implements Serializable {
+            private long code;
+            private String county;
+    
+        @Entity
+        public class Employee implements Serializable {    
+            @EmbeddedId
+            private EmployeeId id;
+
+
+## <a name = "CM">Collection Mappings</a>
 -------------------
 
-1. **Element collection example**, see project cm_element_collection 
+###1. <a name="CMEC">@ElementCollection Example</a>, see project cm_element_collection 
 
     Collection Mapping of Employee to NickName(s) and VacationEntry(ies). 
     
@@ -150,7 +208,7 @@ Collection Mappings
 
 
     
-2. List Ordering , see project  cm_list
+###2. <a name="CMLO">List Ordering @OrderBy and @OrderColumn</a> , see project  cm_list
     
     - Use of @OrderBy in Employees-Department relationship, Unresolved **problem**: cannot obtain sorted list of department employess.
     - Example of @OrderColumn  with PrintQueue PrintJob, same  **problem** cannot get them in proper order
@@ -251,39 +309,11 @@ Collection Mappings
             
 Advanced Topics - Primary Key
 ---------------------------
-1. **Compound PK @IdClass** , adv_map_cpk_idclass
 
-        // IdClass - No Setters
-        public class EmployeeId implements Serializable {
-            private long code;
-            private String county;
-            
-        @Entity
-        @IdClass(value = EmployeeId.class)
-        public class Employee implements Serializable {    
-            // Same fields as IdClass
-            @Id
-            private long code;
-            @Id
-            private String county;
-            ...    
-    
-2. **Compound PK @EmbeddedId**, adv_map_cpk_embedid
+## <a name="ARL">Advanced Topics - Relationships</a>
 
-        @Embeddable
-        public class EmployeeId implements Serializable {
-            private long code;
-            private String county;
-    
-        @Entity
-        public class Employee implements Serializable {    
-            @EmbeddedId
-            private EmployeeId id;
 
-Advanced Topics - Relationships
------------------------------
-
-1. **Many To Many with relationship state**, project arel_many2many_state
+###1. <a name="ARLM2MS">Many To Many with relationship state</a>, project arel_many2many_state
 **Unresolved problem** follows the entities as they should be:
 
 
