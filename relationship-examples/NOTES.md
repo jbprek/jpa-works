@@ -95,6 +95,29 @@ Key terms : *Single Value Association*, *Collection Value Association*.
             @ManyToMany(mappedBy = "projects")
             private Set<Employee> employees;
 
+8. **Embeddable use**, project embed_example
+Demonstration of @Embeddable 
+
+        @Embeddable
+        @Access(AccessType.FIELD)
+        public class Address implements Serializable {
+            private String street;
+            private String number;
+            private String town;
+            private String country;
+            @Column(name="ZIP_CODE")
+            private String zip;
+            
+        @Entity
+        public class Employee implements Serializable {
+            @Id  private long id;
+            @Embedded
+            @AttributeOverrides({
+                    @AttributeOverride(name= "country", column = @Column(name="CNTRY")),
+                    @AttributeOverride(name= "zip", column = @Column(name="ZIP")),
+            })
+            private Address address; 
+            ....
 
 Collection Mappings
 -------------------
@@ -228,38 +251,39 @@ Collection Mappings
             
 Advanced Topics - Primary Key
 ---------------------------
-1. Compound PK @IdClass, adv_map_cpk_idclass
+1. **Compound PK @IdClass** , adv_map_cpk_idclass
 
-    // IdClass - No Setters
-    public class EmployeeId implements Serializable {
-        private long code;
-        private String county;
-        
-    @Entity
-    @IdClass(value = EmployeeId.class)
-    public class Employee implements Serializable {    
-        @Id
-        private long code;
-        @Id
-        private String county;
-        ...    
+        // IdClass - No Setters
+        public class EmployeeId implements Serializable {
+            private long code;
+            private String county;
+            
+        @Entity
+        @IdClass(value = EmployeeId.class)
+        public class Employee implements Serializable {    
+            // Same fields as IdClass
+            @Id
+            private long code;
+            @Id
+            private String county;
+            ...    
     
-2. Compound PK @EmbeddedId, adv_map_cpk_embedid
+2. **Compound PK @EmbeddedId**, adv_map_cpk_embedid
 
-    @Embeddable
-    public class EmployeeId implements Serializable {
-        private long code;
-        private String county;
-
-    @Entity
-    public class Employee implements Serializable {    
-        @EmbeddedId
-        private EmployeeId id;
+        @Embeddable
+        public class EmployeeId implements Serializable {
+            private long code;
+            private String county;
+    
+        @Entity
+        public class Employee implements Serializable {    
+            @EmbeddedId
+            private EmployeeId id;
 
 Advanced Topics - Relationships
 -----------------------------
 
-1. Many To Many with relationship state, project arel_many2many_state
+1. **Many To Many with relationship state**, project arel_many2many_state
 **Unresolved problem** follows the entities as they should be:
 
 
