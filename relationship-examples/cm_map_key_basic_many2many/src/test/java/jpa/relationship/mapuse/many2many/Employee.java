@@ -7,7 +7,7 @@ import java.util.*;
  * @author prekezes.
  */
 
-@Table(name = "CM_MMB_EMPLOYEE")
+@Table(name = "EMPLOYEE")
 @Entity
 public class Employee {
 
@@ -17,8 +17,8 @@ public class Employee {
 
     private String name;
 
-    @ManyToMany(mappedBy="employees")
-    private Set<Project> projectsByAssignement = new HashSet<>();
+    @ManyToMany(mappedBy="employeesByAssignment")
+    private Collection<Project> projects = new HashSet<>();
 
     public long getId() {
         return id;
@@ -36,11 +36,11 @@ public class Employee {
         this.name = name;
     }
 
-    public Set<Project> getProjectsByAssignement() {
-        return projectsByAssignement;
+    public Collection<Project> getProjects() {
+        return projects;
     }
 
-    public void setProjectsByAssignement(Set<Project> projectsByAssignement) {
-        this.projectsByAssignement = projectsByAssignement;
+    public void setProjects(Collection<Project> projects) {
+        this.projects = projects;
     }
 }

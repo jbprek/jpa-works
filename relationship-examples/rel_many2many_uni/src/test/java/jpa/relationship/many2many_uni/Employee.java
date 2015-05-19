@@ -1,4 +1,4 @@
-package jpa.relationship.many2many_uni.model;
+package jpa.relationship.many2many_uni;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,7 +25,9 @@ public class Employee {
     private String name;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "MMB_EMPLOYEE_PROJECT", joinColumns = @JoinColumn(name="EMPLOYEE_ID"), inverseJoinColumns = @JoinColumn(name="PROJECT_ID"))
+    @JoinTable(name = "MMB_EMPLOYEE_PROJECT",
+            joinColumns = @JoinColumn(name="EMPLOYEE_ID"),
+            inverseJoinColumns = @JoinColumn(name="PROJECT_ID"))
     private Set<Project> projects;
 
     public long getId() {

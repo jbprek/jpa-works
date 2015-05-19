@@ -6,7 +6,7 @@
   </head>
   <body>
     <h3>Chapter 5: Employee Edit Session Example</h3>
-     This example shows how to use a SFSB and an extended EntityManager to 
+     This example shows how to use a SFSB and an extended EntityManager to
      avoid detaching/merging entities.
 
     <form action="EmployeeEditServlet" method="POST">
@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <c:forEach items="${employees}" var="emp">
+          <c:forEach items="${employeesByAssignment}" var="emp">
             <tr>
               <td><c:out value="${emp.id}"/> </td>
               <td><c:out value="${emp.name}"/> </td>

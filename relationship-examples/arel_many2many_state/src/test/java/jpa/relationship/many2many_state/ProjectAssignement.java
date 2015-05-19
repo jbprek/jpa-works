@@ -1,6 +1,5 @@
 package jpa.relationship.many2many_state;
 
-import org.bagab.entity.relationships.many2many.*;
 
 import javax.persistence.*;
 import java.util.Date;

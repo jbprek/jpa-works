@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <c:forEach items="${employees}" var="emp">
+        <c:forEach items="${employeesByAssignment}" var="emp">
           <tr>
             <td><c:out value="${emp.name}"/></td>
             <td><c:out value="${emp.department.name}"/></td>

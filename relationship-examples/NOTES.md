@@ -15,13 +15,16 @@ JPA Relationships and operations on entities
 * [Composite PK - Use of @EmbeddedIds](#EMBEDDEDID) 
 
 ##[Collection Mapping](#CM)
+* [Introduction](#CMIN)
 * [@ElementCollection Example](#CMEC)
 * [List Ordering @OrderBy and @OrderColumn](#CMLO)   
 * [Map keyed by basic (String)](#CMKB)
 * [Map keyed by Enum (String)](#CMKE)
+* [Map used in One to Many relationship](#CMOM)
+* [Map used in One to Many relationship **Not Working**](#CMMM)
 
 ## [Entity Inheritance](#INH)
-* [Intoduction](#INH_INTRO)
+* [Introduction](#INH_INTRO)
 * [Single Table Strategy](#INH_ST)
 * [Join Strategy](#INH_J)
 * [Table per class Strategy](#INH_TBC)
@@ -45,7 +48,7 @@ Key terms : *Single Value Association*, *Collection Value Association*.
             @Id private long id;        
             @OneToOne
             //@JoinColumn(name = "PARKING_ID")
-            private ParkingLotEntity parkingLot;
+            private ParkingLotEntity phones;
             ...
 
         @Entity
@@ -58,12 +61,35 @@ Key terms : *Single Value Association*, *Collection Value Association*.
     
 ###2.  <a name="SRO2OB">One to One bidirectional</a> , see project rel_one2one_bi 
 
-    Relationship of Employee and ParkingLot again.
+    Relationship of Employee and ParkingLot again.  Parking differs from above.
+    
+    @Entity
+    @Table(name="PARKING_LOT")
+    public class ParkingLot{    
+        @Id private long id;
+        
+        /* If mappedBy is removed then foreign keys are created on both tables */
+        @OneToOne(mappedBy = "phones")
+        private Employee employee;
+
     
     
 ###3. <a name="SRM2O">Many to One</a> , see project rel_many2one
 
     Relationship of Employee and Department.
+    
+    @Entity
+    public class Employee {    
+        @Id private long id;
+        ...    
+        @ManyToOne
+        @JoinColumn(name = "DEPT_ID")
+        
+        
+        @Entity
+        public class Department {
+            @Id private long id;
+
     
     
 ###4. <a name="SRO2MU">One to Many unidirectional</a>, see project rel_one2many_uni
@@ -80,7 +106,7 @@ Key terms : *Single Value Association*, *Collection Value Association*.
             @Id  private long id;
             ....
             @OneToMany(mappedBy="department")
-            private List<Employee> employees = new ArrayList<>();
+            private List<Employee> employeesByAssignment = new ArrayList<>();
 
         @Entity
         public class Employee {        
@@ -117,7 +143,7 @@ Key terms : *Single Value Association*, *Collection Value Association*.
             @Id  private long id;
             ...
             @ManyToMany(mappedBy = "projects")
-            private Set<Employee> employees;
+            private Set<Employee> employeesByAssignment;
 
 ##<a name="MP">Mappings</a>
 
@@ -174,9 +200,62 @@ Demonstration of @Embeddable
             @EmbeddedId
             private EmployeeId id;
 
+-------------------
 
 ## <a name = "CM">Collection Mappings</a>
--------------------
+
+###0. <a name = "CMIN">Introduction</a>
+
+####Rules for Maps
+* Use the **@MapKeyClass** and **targetEntity/targetClass** elements of the relationship and
+element collection mappings to specify the classes when an untyped Map is used.
+* Use **@MapKey** with one-to-many or many-to-many relationship Map that is keyed on an attribute
+of the target entity.
+* Use **@MapKeyJoinColumn** to override the join column of the entity key.
+* Use **@Column** to override the column storing the values of an element collection of basic types.
+* Use **@MapKeyColumn** to override the column storing the keys when keyed by a basic type.
+* Use **@MapKeyTemporal** and **@MapKeyEnumerated** if you need to further qualify a basic key that is
+a temporal or enumerated type.
+* Use **@AttributeOverride** with a “key.” or “value.” prefix to override the column of an
+embeddable attribute type that is a Map key or a value, respectively.
+
+####Summary of Mapping a Map
+
+    Map                         Mapping                 Key Annotation              Value Annotation
+    
+    Map<Basic,Basic>            @ElementCollection      @MapKeyColumn,              @Column
+                                                        @MayKeyEnumerated,
+                                                        @MapKeyTemporal
+    
+    Map<Basic,Embeddable>       @ElementCollection      @MapKeyColumn,              Mapped by embeddable,
+                                                        @MayKeyEnumerated,          @AttributeOverride,
+                                                        @MapKeyTemporal             @AssociationOverride
+    
+    Map<Basic,Entity>           @OneToMany,             @MapKey,                    Mapped by entity
+                                @ManyToMany             @MapKeyColumn,
+                                                        @MayKeyEnumerated,
+                                                        @MapKeyTemporal
+    
+    Map<Embeddable,Basic>       @ElementCollection      Mapped by embeddable,       @Column
+                                                        @AttributeOverride
+    
+    Map<Embeddable,Embeddable>  @ElementCollection      Mapped by embeddable,       Mapped by embeddable,
+                                                        @AttributeOverride          @AttributeOverride,
+                                                                                    @AssociationOverride
+    
+    Map<Embeddable,Entity>      @OneToMany,            Mapped by embeddable         Mapped by entity
+                                @ManyToMany            @AttributeOverride
+    
+    Map<Entity,Basic>           @ElementCollection      @MapKeyJoinColumn           @Column
+    
+    
+    Map<Entity,Embeddable>      @ElementCollection      @MapKeyJoinColumn           Mapped by embeddable,
+                                                                                    @AttributeOverride,
+      
+    Map<Entity,Entity>          @OneToMany,             @MapKeyJoinColumn           Mapped by entity
+                                @ManyToMany
+
+
 
 ###1. <a name="CMEC">@ElementCollection Example</a>, see project cm_element_collection 
 
@@ -211,7 +290,7 @@ Demonstration of @Embeddable
     - Use of @OrderBy in Employees-Department relationship, Unresolved **problem**: cannot obtain sorted list of department employess.
     - Example of @OrderColumn  with PrintQueue PrintJob, same  **problem** cannot get them in proper order
     
-3. **Map mapping keyed by basic type**, String in our case, see project cm_map_key_basic
+###3. <a name="CMKB">Map mapping keyed by basic type</a>, String in our case, see project cm_map_key_basic
     - Key is String under package jpa.relationship.mapuse.stringkey
     
         Person with phones mapped by category
@@ -226,15 +305,13 @@ Demonstration of @Embeddable
             @Column(name = "PHONE_NUM")
             private Map<String, String> phoneNumbers = new HashMap<>();
 
-4. **Map mapping keyed by enum**, see project cm_map_key_enum       
+###4. <a name="CMKE">Map mapping keyed by enum</a>, see project cm_map_key_enum       
         
     - Key is Emum under package jpa.relationship.mapuse.emumkey
     
      Same as above using an Enum instead of a String.
         
-        public enum PhoneType {
-            HOME, MOBILE
-        }
+        public enum PhoneType { HOME, MOBILE }
          
         @Entity
         public class PersonEnumPhoneType {        
@@ -246,7 +323,7 @@ Demonstration of @Embeddable
             @Column(name = "PHONE_NUM")
             private Map<PhoneType, String> phoneNumbers = new HashMap<>();
  
-5. **Map used in One to Many relationship**, see project cm_map_one2many
+###5. <a name="CMOM">Map used in One to Many relationship</a>, see project cm_map_one2many
 
         @Entity
         public class Employee {        
@@ -266,7 +343,7 @@ Demonstration of @Embeddable
             @MapKeyColumn(name="CUB_ID", nullable = true)
             private Map<String, Employee> employeesByCubicle;
 
-6. **Map used in Many to Many relationship**, see project cm_map_many2many
+##6. <a name="CMMM">Map used in Many to Many relationship</a>, see project cm_map_many2many
 
         @Entity
         public class Employee {        
@@ -277,14 +354,14 @@ Demonstration of @Embeddable
                     joinColumns = @JoinColumn(name="EMPLOYEE_ID"),
                     inverseJoinColumns = @JoinColumn(name="PROJECT_ID"))
             @MapKeyColumn(name="ASSIGNEMENT")
-            private Map<String, Project> projectsByAssignement = new HashMap<>();
+            private Map<String, Project> projects = new HashMap<>();
             
         @Entity
         public class Project {
             @Id  private long id;
             ...
-            @ManyToMany(mappedBy = "projectsByAssignement")
-            private Set<Employee> employees = new HashSet<>();
+            @ManyToMany(mappedBy = "projects")
+            private Set<Employee> employeesByAssignment = new HashSet<>();
             
     ***Not Working*** , see in DDL below that PK in CM_MMB_EMPLOYEE_PROJECT is (EMPLOYEE_ID, ASSIGNEMENT) instead of the expected (EMPLOYEE_ID, PROJECT_ID)
      
@@ -304,11 +381,8 @@ Demonstration of @Embeddable
         alter table CM_MMB_EMPLOYEE_PROJECT 
             add constraint FK_479ucto5kbsc9tqx4v2equvvw 
             foreign key (PROJECT_ID) references CM_MMB_PROJECT (id) 
-            
-Advanced Topics - Primary Key
----------------------------
-
-----
+ 
+--------------------
 
 ## <a name="INH">Entity Inheritance </a>
 

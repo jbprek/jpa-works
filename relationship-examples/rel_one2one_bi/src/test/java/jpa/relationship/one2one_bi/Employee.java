@@ -1,4 +1,4 @@
-package jpa.relationship.one2one_bi.model;
+package jpa.relationship.one2one_bi;
 
 import javax.persistence.*;
 
@@ -6,7 +6,7 @@ import javax.persistence.*;
  * @author prekezes.
  */
 
-@Table(name="OOB_EMPLOYEE")
+@Table(name="EMPLOYEE")
 @Entity
 public class Employee {
     @GeneratedValue
@@ -18,7 +18,7 @@ public class Employee {
 
     // optional attribute default=true
     @OneToOne
-//    @JoinColumn(name = "PARKING_ID")
+    @JoinColumn//(name = "PARKING_ID")
     private ParkingLot parkingLot;
 
      //------------ GET/SET -----------------------

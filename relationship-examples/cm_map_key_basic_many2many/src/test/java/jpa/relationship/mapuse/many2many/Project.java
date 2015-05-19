@@ -7,7 +7,7 @@ import java.util.*;
  * @author prekezes.
  */
 
-@Table(name = "CM_MMB_PROJECT")
+@Table(name = "PROJECT")
 @Entity
 public class Project {
     @Id
@@ -17,11 +17,11 @@ public class Project {
     private String name;
 
     @ManyToMany
-    @JoinTable(name = "CM_MMB_EMPLOYEE_PROJECT",
-            joinColumns = @JoinColumn(name="PROJECT_ID" ),
-            inverseJoinColumns = @JoinColumn(name="EMPLOYEE_ID"))
-    @MapKeyColumn(name="ASSIGNEMENT")
-    private Map<String, Employee> employees = new HashMap<>();
+    @JoinTable(name = "EMPLOYEE_PROJECT",
+            joinColumns = @JoinColumn(name="PROJECT_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name="EMPLOYEE_ID", referencedColumnName = "ID"))
+    @MapKeyColumn(name="ASSIGNMENT")
+    private Map<String, Employee> employeesByAssignment;
 
     public long getId() {
         return id;
@@ -39,11 +39,11 @@ public class Project {
         this.name = name;
     }
 
-    public Map<String, Employee> getEmployees() {
-        return employees;
+    public Map<String, Employee> getEmployeesByAssignment() {
+        return employeesByAssignment;
     }
 
-    public void setEmployees(Map<String, Employee> employees) {
-        this.employees = employees;
+    public void setEmployeesByAssignment(Map<String, Employee> employeesByAssignment) {
+        this.employeesByAssignment = employeesByAssignment;
     }
 }

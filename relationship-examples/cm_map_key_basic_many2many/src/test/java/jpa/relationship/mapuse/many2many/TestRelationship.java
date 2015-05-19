@@ -66,8 +66,8 @@ public class TestRelationship {
 //
 //    private void assignToProject(Employee e, Project p, String assignement) {
 //
-//        p.getEmployees().add(e);
-//        e.getProjectsByAssignement().put(assignement, p);
+//        p.getEmployeesByAssignment().add(e);
+//        e.getProjects().put(assignement, p);
 //        EntityTransaction tx = em.getTransaction();
 //        tx.begin();
 //        em.merge(e);
@@ -79,7 +79,7 @@ public class TestRelationship {
 //    private void dismissFromProject(Employee e, Project p) {
 //
 //        e.getProjects().remove(p);
-//        p.getEmployees().remove(e);
+//        p.getEmployeesByAssignment().remove(e);
 //
 //        EntityTransaction tx = em.getTransaction();
 //        tx.begin();
@@ -109,28 +109,28 @@ public class TestRelationship {
 //        // Assign John to Hell
 //        assignToProject(john, hell);
 //        Assert.assertEquals(1, findEmployee(john.getId()).getProjects().size());
-//        Assert.assertEquals(1, findProject(hell.getId()).getEmployees().size());
+//        Assert.assertEquals(1, findProject(hell.getId()).getEmployeesByAssignment().size());
 //         Assert.assertTrue(findEmployee(john.getId()).getProjects().contains(hell));
-//        Assert.assertTrue(findProject(hell.getId()).getEmployees().contains(john));
+//        Assert.assertTrue(findProject(hell.getId()).getEmployeesByAssignment().contains(john));
 //
 //        // Assign George to Inferno
 //        assignToProject(george, inferno);
 //        Assert.assertEquals(1, findEmployee(george.getId()).getProjects().size());
-//        Assert.assertEquals(1, findProject(inferno.getId()).getEmployees().size());
+//        Assert.assertEquals(1, findProject(inferno.getId()).getEmployeesByAssignment().size());
 //        Assert.assertTrue(findEmployee(george.getId()).getProjects().contains(inferno));
-//        Assert.assertTrue(findProject(inferno.getId()).getEmployees().contains(george));
+//        Assert.assertTrue(findProject(inferno.getId()).getEmployeesByAssignment().contains(george));
 //
 //        // Remove John from Hell
 //        dismissFromProject(john, hell);
 //        Assert.assertEquals(0, findEmployee(john.getId()).getProjects().size());
-//        Assert.assertEquals(0, findProject(hell.getId()).getEmployees().size());
+//        Assert.assertEquals(0, findProject(hell.getId()).getEmployeesByAssignment().size());
 //        Assert.assertFalse(findEmployee(john.getId()).getProjects().contains(hell));
 //
 //        // Assign George to Hell
 //        assignToProject(george, hell);
 //        Assert.assertEquals(2, findEmployee(george.getId()).getProjects().size());
-//        Assert.assertEquals(1, findProject(hell.getId()).getEmployees().size());
-//        Assert.assertEquals(1, findProject(inferno.getId()).getEmployees().size());
+//        Assert.assertEquals(1, findProject(hell.getId()).getEmployeesByAssignment().size());
+//        Assert.assertEquals(1, findProject(inferno.getId()).getEmployeesByAssignment().size());
 //        Assert.assertTrue(findEmployee(george.getId()).getProjects().contains(inferno));
 //        Assert.assertTrue(findEmployee(george.getId()).getProjects().contains(hell));
     }

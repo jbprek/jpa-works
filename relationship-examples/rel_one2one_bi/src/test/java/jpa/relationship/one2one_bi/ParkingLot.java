@@ -1,4 +1,4 @@
-package jpa.relationship.one2one_bi.model;
+package jpa.relationship.one2one_bi;
 
 import javax.persistence.*;
 
@@ -6,7 +6,7 @@ import javax.persistence.*;
  * @author prekezes.
  */
 @Entity
-@Table(name="OOB_PARKING_LOT")
+@Table(name="PARKING_LOT")
 public class ParkingLot{
 
     @GeneratedValue
@@ -16,7 +16,7 @@ public class ParkingLot{
     private String code;
 
     // If mappedBy is removed then foreign keys are created on both tables
-    @OneToOne(mappedBy = "parkingLot")
+    @OneToOne//(mappedBy = "parkingLot")
     private Employee employee;
 
     // -------- GET/SET ---------------
