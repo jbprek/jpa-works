@@ -64,11 +64,32 @@
             <version>5.1.35</version>
         </dependency>
 
+        <!-- Hibernate uses jboss-logging for logging, for the tutorials we will use the sl4fj-element_collection backend -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.5</version>
+        </dependency>
 
+        <!-- The tutorials use JUnit test cases to illustrate usage -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.3.8.Final</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>4.3.8.Final</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>9.4-1201-jdbc41</version>
+            <scope>test</scope>
         </dependency>
         <!--&lt;!&ndash; The tutorials use the H2 in-memory database &ndash;&gt;-->
         <!--<dependency>-->
