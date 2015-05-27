@@ -1,12 +1,6 @@
 package jpa.callbacks.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author prekezes.
@@ -15,9 +9,8 @@ import javax.persistence.Table;
 @Table(name = "ATCB_EMPLOYEE")
 @Entity
 public class Employee {
-    @SequenceGenerator(name = "someEntityIdSeq", sequenceName = "ATCB_EMPLOYEE_ID_SEQ")
     @Id
-    @GeneratedValue(generator = "someEntityIdSeq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Basic(optional = false)
