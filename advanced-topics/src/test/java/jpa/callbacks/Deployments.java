@@ -1,4 +1,4 @@
-package jpa.relationship.many2many_uni;
+package jpa.callbacks;
 
 import org.eu.ingwar.tools.arquillian.extension.suite.annotations.ArquillianSuiteDeployment;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -23,7 +23,6 @@ public class Deployments {
                 .addAsWebInfResource(new File("src/test/resources/jpaworks-ds.xml"))
                 .addAsResource("META-INF/persistence.xml")
                 .addPackages(true, Deployments.class.getPackage())
-
                 ;
     }
 

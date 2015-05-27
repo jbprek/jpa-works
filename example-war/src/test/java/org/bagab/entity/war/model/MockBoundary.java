@@ -1,6 +1,4 @@
-package org.bagab.entity.war.boundary;
-
-import org.bagab.entity.war.model.Employee;
+package org.bagab.entity.war.model;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -12,26 +10,22 @@ import java.util.List;
  * @author prekezes.
  */
 @Stateless
-public class EmployeeService {
+public class MockBoundary {
 
-    @PersistenceContext
+    @PersistenceContext(unitName="test-pu")
     protected EntityManager em;
 
-
-    EntityManager getEntityManager() {
-        return em;
-    }
     public Employee createEmployee( String name, long salary) {
         Employee emp = new Employee();
         emp.setName(name);
         emp.setSalary(salary);
-        getEntityManager().persist(emp);
+        em.persist(emp);
         return emp;
     }
     public void removeEmployee(int id) {
         Employee emp = findEmployee(id);
         if (emp != null) {
-            getEntityManager().remove(emp);
+            em.remove(emp);
         }
     }
     public Employee changeEmployeeSalary(int id, long newSalary) {
@@ -43,11 +37,11 @@ public class EmployeeService {
     }
 
     public Employee findEmployee(int id) {
-        return getEntityManager().find(Employee.class, id);
+        return em.find(Employee.class, id);
     }
 
     public List<Employee> findAllEmployees() {
-        TypedQuery query = getEntityManager().createQuery("SELECT e FROM Employee e", Employee.class);
+        TypedQuery query = em.createQuery("SELECT e FROM Employee e", Employee.class);
         return query.getResultList();
     }
 }
