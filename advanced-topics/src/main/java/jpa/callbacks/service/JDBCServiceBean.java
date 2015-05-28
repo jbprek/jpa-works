@@ -22,15 +22,15 @@ public class JDBCServiceBean {
     public static Logger log = Logger.getLogger(JDBCServiceBean.class.getName());
 
 //
-//    @Resource(name = "JpaWorksDS")
-//    private DataSource datasource;
+    @Resource(name = "JpaWorksDS")
+    private DataSource datasource;
 //
 //    private Connection connection;
 //    private String nextIdQuery = "SELECT "
 //    private String insStmQuery = "INSERT INTO ATCB_EMPLOYEE VALUES";
 //    private PreparedStatement insStm;
-//    private String findStmQuery = "INSERT INTO ATCB_EMPLOYEE VALUES";
-//    private PreparedStatement findStm;
+    private String findStmQuery = "SELECT * FROM  INTO ATCB_EMPLOYEE VALUES";
+    private PreparedStatement findStm;
 //    private String updateStmQuery = "INSERT INTO ATCB_EMPLOYEE VALUES";
 //    private PreparedStatement updateStm;
 //    private String deleteStmQuery = "INSERT INTO ATCB_EMPLOYEE VALUES";

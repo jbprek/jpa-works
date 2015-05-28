@@ -6,7 +6,8 @@
                 use-java-context="true">
 
         <connection-url>jdbc:mysql://localhost:3306/jpaworks</connection-url>
-        <driver>mysql-connector-java-5.1.35-bin.jar_com.mysql.jdbc.Driver_5_1</driver>
+        <!--<driver>mysql-connector-java-5.1.35-bin.jar_com.mysql.jdbc.Driver_5_1</driver>-->
+        <driver>mysql-connector-java-5.1.35.jar_com.mysql.jdbc.Driver_5_1</driver>
         <security>
             <user-name>jpaworks</user-name>
             <password>jpaworks</password>

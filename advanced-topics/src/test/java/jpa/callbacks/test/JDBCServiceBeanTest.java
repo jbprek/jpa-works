@@ -16,7 +16,7 @@ import javax.ejb.EJB;
  * Created by x on 5/1/15.
  */
 @RunWith(Arquillian.class)
-public class ServiceBeanTest {
+public class JDBCServiceBeanTest {
 
     @EJB
     private JPAServiceBean svc;

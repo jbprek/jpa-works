@@ -8,6 +8,7 @@ import javax.persistence.*;
 
 @Table(name = "ATCB_EMPLOYEE")
 @Entity
+@EntityListeners(EmployeeEntityListener.class)
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,5 +35,11 @@ public class Employee {
         this.name = name;
     }
 
-
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
