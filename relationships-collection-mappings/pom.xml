@@ -2,29 +2,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>jpa-works</artifactId>
+        <groupId>org.bagab.jpa</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.bagab.jpa</groupId>
-    <artifactId>jpa-works</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>relationships-collection-mappings</artifactId>
     <packaging>pom</packaging>
-    <name>${project.artifactId}</name>
 
     <modules>
-        <!-- Hibernate Entity Manager tutorial adapted -->
-        <module>hibernate-entity-manager-adapted</module>
-        <module>projpa-se</module>
-        <module>example-war</module>
-
-        <!-- ABien pattern -->
-        <module>generic-dao</module>
-        <module>ee7-persistence-tut</module>
-        <module>relationships-basic</module>
-        <module>jpa-app-model</module>
-        <module>advanced-topics</module>
-        <module>relationships-inheritance</module>
-        <module>relationships-collection-mappings</module>
-
+        <module>cm_element_collection</module>
+        <module>cm_list</module>
+        <module>cm_map_key_basic</module>
+        <module>cm_map_key_enum</module>
+        <module>cm_map_key_basic_one2many</module>
+        <module>cm_map_key_basic_many2many</module>
+        <module>arel_many2many_state</module>
+        <module>adv_map_cpk_idclass</module>
+        <module>adv_map_cpk_embedid</module>
+        <module>embed_example</module>
     </modules>
 
     <properties>
@@ -41,6 +39,10 @@
         <!-- Library versions -->
         <version.log4j>1.2.17</version.log4j>
         <version.junit>4.11</version.junit>
+        <hibernate.version>4.3.10.Final</hibernate.version>
+        <mysql-connector.version>5.1.35</mysql-connector.version>
+        <postgres.jdbc.version>9.4-1201-jdbc41</postgres.jdbc.version>
+
     </properties>
 
     <dependencies>
@@ -56,13 +58,13 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>4.3.8.Final</version>
+            <version>${hibernate.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.3.8.Final</version>
+            <version>${hibernate.version}</version>
         </dependency>
 
         <!-- The tutorials use JUnit test cases to illustrate usage -->
@@ -76,22 +78,21 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.35</version>
+            <version>${mysql-connector.version}</version>
         </dependency>
 
 
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <!--<version>9.3-1101-jdbc41</version>-->
-            <version>9.4-1201-jdbc41</version>
+            <version>${postgres.jdbc.version}</version>
         </dependency>
-        <!-- The tutorials use the H2 in-memory database -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.2.145</version>
-        </dependency>
+        <!--&lt;!&ndash; The tutorials use the H2 in-memory database &ndash;&gt;-->
+        <!--<dependency>-->
+        <!--<groupId>com.h2database</groupId>-->
+        <!--<artifactId>h2</artifactId>-->
+        <!--<version>1.2.145</version>-->
+        <!--</dependency>-->
 
     </dependencies>
 
@@ -111,4 +112,3 @@
     </build>
 
 </project>
-

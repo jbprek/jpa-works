@@ -2,30 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>relationships-inheritance</artifactId>
+        <groupId>org.bagab.jpa</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.bagab.jpa</groupId>
-    <artifactId>jpa-works</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <artifactId>inh_single_table_strategy</artifactId>
     <name>${project.artifactId}</name>
-
-    <modules>
-        <!-- Hibernate Entity Manager tutorial adapted -->
-        <module>hibernate-entity-manager-adapted</module>
-        <module>projpa-se</module>
-        <module>example-war</module>
-
-        <!-- ABien pattern -->
-        <module>generic-dao</module>
-        <module>ee7-persistence-tut</module>
-        <module>relationships-basic</module>
-        <module>jpa-app-model</module>
-        <module>advanced-topics</module>
-        <module>relationships-inheritance</module>
-        <module>relationships-collection-mappings</module>
-
-    </modules>
 
     <properties>
         <!-- Maven Plugin versions -->
@@ -40,7 +25,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <!-- Library versions -->
         <version.log4j>1.2.17</version.log4j>
-        <version.junit>4.11</version.junit>
+        <version.junit>4.12</version.junit>
     </properties>
 
     <dependencies>
@@ -83,15 +68,14 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <!--<version>9.3-1101-jdbc41</version>-->
             <version>9.4-1201-jdbc41</version>
         </dependency>
-        <!-- The tutorials use the H2 in-memory database -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.2.145</version>
-        </dependency>
+        <!--&lt;!&ndash; The tutorials use the H2 in-memory database &ndash;&gt;-->
+        <!--<dependency>-->
+        <!--<groupId>com.h2database</groupId>-->
+        <!--<artifactId>h2</artifactId>-->
+        <!--<version>1.2.145</version>-->
+        <!--</dependency>-->
 
     </dependencies>
 
