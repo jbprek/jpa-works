@@ -89,22 +89,18 @@ public class TestRelationship {
         Employee e1 = createEmployee("John");
         // Lookup Employee by id
         Assert.assertEquals("John", findEmployee(e1.getId()).getName());
-
         // Create Phone
         Phone p1 = createPhone("P1");
         // Lookup Phone by id
         Assert.assertEquals("P1", findPhone(p1.getId()).getCode());
-
         // Associate Phone with Employee
         deliverPhoneToEmployee(e1.getId(), p1.getId());
         // Verify Association
         Assert.assertTrue(findEmployee(e1.getId()).getPhones().contains(p1));
-
-        // Disasociatate Parking with Employee
+        // Dis-asociatate Parking with Employee
         removePhoneFromEmployee(e1.getId(), p1.getId());
         // Verify Association
         Assert.assertFalse(findEmployee(e1.getId()).getPhones().contains(p1));
-
     }
 
 }
