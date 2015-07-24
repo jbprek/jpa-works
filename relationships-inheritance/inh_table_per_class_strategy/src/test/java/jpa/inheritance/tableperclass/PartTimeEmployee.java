@@ -5,7 +5,7 @@ import javax.persistence.*;
 /**
  * @author prekezes.
  */
-@Table(name="PRTTIME_EMP")
+@Table(name="ITPC_PRTTIME_EMP")
 @Entity
 @AttributeOverride(name="manager", column=@Column(name="MGR"))
 public class PartTimeEmployee extends CompanyEmployee{

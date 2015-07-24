@@ -5,7 +5,7 @@ import javax.persistence.*;
 /**
  * @author prekezes.
  */
-@Table(name="FULTIME_EMP")
+@Table(name="ITPC_FULTIME_EMP")
 @Entity
 @AssociationOverride(name="department",joinColumns = @JoinColumn(name="DPT"))
 public class FullTimeEmployee extends CompanyEmployee {

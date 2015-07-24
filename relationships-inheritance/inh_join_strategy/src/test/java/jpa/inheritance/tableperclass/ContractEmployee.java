@@ -2,11 +2,13 @@ package jpa.inheritance.tableperclass;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * @author prekezes.
  */
 @Entity
+@Table(name="IJS_CONTRACT_EMPLOYEE")
 @DiscriminatorValue("1")
 public class ContractEmployee extends Employee {
     private int dailyRate;

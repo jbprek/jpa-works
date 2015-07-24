@@ -5,7 +5,7 @@ import javax.persistence.*;
 /**
  * @author prekezes.
  */
-@Table(name="CONTRACT_EMP")
+@Table(name="ITPC_CONTRACT_EMP")
 @Entity
 @AttributeOverrides({
         @AttributeOverride(name="name",column=@Column(name="FULLNAME")),

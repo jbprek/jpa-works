@@ -12,7 +12,7 @@ import java.util.List;
  * @author prekezes.
  */
 
-@Table(name="DEPARTMENT")
+@Table(name="IST_DEPARTMENT")
 @Entity
 public class Department {
 
