@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by john on 8/8/15.
  */
 @Entity
-public class Appartement {
+public class Apartment {
     @GeneratedValue
     @Id
     private long id;
@@ -14,18 +14,13 @@ public class Appartement {
     @Basic(optional = false)
     private String code;
 
+    /* Owner */
     // optional attribute default=true
     @OneToOne(optional=true)
     // if ommited a column with the name parkingLot_sn will be created
-    @JoinColumn(name="PARK_SN")
+//    @JoinColumn(name="PARK_SN")
     private ParkingLot parkingLot;
 
-    public Appartement() {
-    }
-
-    public Appartement(String code) {
-        this.code = code;
-    }
 
     //------------ GET/SET -----------------------
 

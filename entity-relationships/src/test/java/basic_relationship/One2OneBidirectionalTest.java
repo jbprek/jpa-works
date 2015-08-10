@@ -16,7 +16,7 @@ import javax.persistence.Persistence;
 /**
  * Created by x on 5/1/15.
  */
-public class TestOne2OneBidirectional {
+public class One2OneBidirectionalTest {
 
 
     private static EntityManagerFactory entityManagerFactory;
@@ -41,7 +41,6 @@ public class TestOne2OneBidirectional {
         tx.begin();
         return tx;
     }
-
 
     public Customer findCustomer(long id) {
         return em.find(Customer.class, id);
@@ -97,7 +96,7 @@ public class TestOne2OneBidirectional {
         reserveRoom("John", room1.getId());
         Customer john = room1.getCustomer();
         Assert.assertEquals("John", room1.getCustomer().getName());
-        Assert.assertEquals(room1.getId(), john.getRoom().getId());
+        Assert.assertEquals(room1.getCustomer().getId(), john.getId());
 
         // Free room
         freeRoom(room1.getId());

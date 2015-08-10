@@ -11,8 +11,9 @@ public class Room {
     @Id
     private long id;
 
+    /* Owner */
     @OneToOne
-    @JoinColumn(name = "CUST_ID")
+    //@JoinColumn(name = "CUST_ID")
     private Customer customer;
 
 

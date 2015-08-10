@@ -1,25 +1,20 @@
-package basic_relationship.one2many_bi;
+package basic_relationship.many2many_si;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
- * Created by john on 8/9/15.
+ * @author prekezes.
  */
 @Entity
-public class Service {
+public class Team {
+
     @GeneratedValue
     @Id
     private long id;
 
     private String name;
-
-    @OneToMany(mappedBy="service")
-    private Set<Subscriber> subscribers= new HashSet<>();
 
     public long getId() {
         return id;

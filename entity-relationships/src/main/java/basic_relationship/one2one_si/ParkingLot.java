@@ -13,12 +13,7 @@ public class ParkingLot {
     @Basic(optional = false)
     private String code;
 
-    public ParkingLot() {
-    }
 
-    public ParkingLot(String code) {
-        this.code = code;
-    }
 
     // -------- GET/SET ---------------
 

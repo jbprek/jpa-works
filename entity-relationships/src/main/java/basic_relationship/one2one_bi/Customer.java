@@ -15,7 +15,7 @@ public class Customer {
     private long id;
 
     private String name;
-
+    /* the mappedBy is necessary, otherwise to One2One relationships will be created */
     @OneToOne(mappedBy="customer")
     private Room room;
 

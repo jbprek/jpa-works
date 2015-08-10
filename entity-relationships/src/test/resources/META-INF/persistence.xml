@@ -11,7 +11,7 @@
         <!--  This doesnt prevent message from appearing -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <class>basic_relationship.one2one_si.Appartement</class>
+        <class>basic_relationship.one2one_si.Apartment</class>
         <class>basic_relationship.one2one_si.ParkingLot</class>
         <class>basic_relationship.one2one_bi.Customer</class>
         <class>basic_relationship.one2one_bi.Room</class>
@@ -19,15 +19,22 @@
         <class>basic_relationship.many2one.Unit</class>
         <class>basic_relationship.one2many_si.Student</class>
         <class>basic_relationship.one2many_si.Presentation</class>
+        <class>basic_relationship.one2many_bi.Subscriber</class>
+        <class>basic_relationship.one2many_bi.Service</class>
+        <class>basic_relationship.many2many_si.Task</class>
+        <class>basic_relationship.many2many_si.Team</class>
+        <class>basic_relationship.many2many_bi.BankCustomer</class>
+        <class>basic_relationship.many2many_bi.BankAccount</class>
+
 
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/jpaworks" />
-            <property name="javax.persistence.jdbc.user" value="jpaworks" />
-            <property name="javax.persistence.jdbc.password" value="jpaworks" />
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/jpaworks"/>
+            <property name="javax.persistence.jdbc.user" value="jpaworks"/>
+            <property name="javax.persistence.jdbc.password" value="jpaworks"/>
 
-            <property name="hibernate.show_sql" value="true" />
-            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
         </properties>
 
     </persistence-unit>
