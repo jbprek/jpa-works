@@ -9,7 +9,6 @@ import java.util.Date;
 
 @Entity
 @Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
-@DiscriminatorColumn(name="EMP_TYPE")
 public abstract class Employee {
 
     @Id

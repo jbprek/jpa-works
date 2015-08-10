@@ -1,6 +1,8 @@
-package jpa.relationship.one2many_uni;
+package basic_relationship;
 
 
+import basic_relationship.one2one_si.Appartement;
+import basic_relationship.one2one_si.ParkingLot;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -14,7 +16,7 @@ import javax.persistence.Persistence;
 /**
  * Created by x on 5/1/15.
  */
-public class TestRelationship {
+public class TestOne2OneSingle {
 
 
     private static EntityManagerFactory entityManagerFactory;
@@ -22,7 +24,7 @@ public class TestRelationship {
 
     @BeforeClass
     public static void setup() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("basic_relationship.one2one_bi");
+        entityManagerFactory = Persistence.createEntityManagerFactory("entity-relationships");
         em = entityManagerFactory.createEntityManager();
     }
 
@@ -46,16 +48,16 @@ public class TestRelationship {
         // Create a transaction
         EntityTransaction tx = null;
 
-        // Create Employee
+        // Create Appartement
         tx = beginTx();
-        Employee e1 = new Employee("John");
+        Appartement e1 = new Appartement("A1");
         em.persist(e1);
 
         // Create ParkingLot
         ParkingLot l1 = new ParkingLot("P1");
         em.persist(l1);
 
-        // Associate Parking with Employee
+        // Associate Parking with Appartement
         e1.setParkingLot(l1);
         e1 = em.merge(e1);
 
@@ -63,43 +65,43 @@ public class TestRelationship {
 
         tx = beginTx();
 
-        // Lookup Employee by id
-        Assert.assertEquals("John", em.find(Employee.class, e1.getId()).getName());
+        // Lookup Appartement by id
+        Assert.assertEquals("A1", em.find(Appartement.class, e1.getId()).getCode());
 
         // Lookup ParkingLot by id
-        Assert.assertEquals("P1", em.find(ParkingLot.class, l1.getId()).getCode());
+        Assert.assertEquals("P1", em.find(ParkingLot.class, l1.getSn()).getCode());
 
 
         // Verify Association
-        Employee test = em.find(Employee.class, e1.getId());
+        Appartement test = em.find(Appartement.class, e1.getId());
 
         Assert.assertEquals("P1", test.getParkingLot().getCode());
         tx.commit();
 
-        // Disasociatate Parking with Employee
+        // Dis-associate Parking with Appartement
         tx = beginTx();
-        test = em.find(Employee.class, e1.getId());
+        test = em.find(Appartement.class, e1.getId());
         test.setParkingLot(null);
         em.merge(test);
         tx.commit();
 
         tx = beginTx();
-        test = em.find(Employee.class, e1.getId());
+        test = em.find(Appartement.class, e1.getId());
         Assert.assertEquals(null, test.getParkingLot());
         tx.commit();
 //        freeParkingLot(e1.getId());
 //
-//        /** See what happens when we try to assign another employee to a used parking */
-//        parkingAssign(e1.getId(), l1.getId());
-//        Assert.assertEquals("P1", findEmployee(e1.getId()).getParkingLot().getCode());
+//        /** See what happens when we try to assign another Appartement to a used parking */
+//        reserveRoom(e1.getId(), l1.getId());
+//        Assert.assertEquals("P1", findAppartement(e1.getId()).getParkingLot().getCode());
 //
-//        Employee e2 = createEmployee("George");
-//        Assert.assertEquals("George", findEmployee(e2.getId()).getName());
+//        Appartement e2 = createAppartement("George");
+//        Assert.assertEquals("George", findAppartement(e2.getId()).getName());
 //
-//        parkingAssign(e2.getId(), l1.getId());
+//        reserveRoom(e2.getId(), l1.getId());
 //
-//        Assert.assertNull(findEmployee(e1.getId()).getParkingLot());
-//        Assert.assertEquals("P1", findEmployee(e2.getId()).getParkingLot().getCode());
+//        Assert.assertNull(findAppartement(e1.getId()).getParkingLot());
+//        Assert.assertEquals("P1", findAppartement(e2.getId()).getParkingLot().getCode());
 
     }
 }

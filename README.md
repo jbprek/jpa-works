@@ -4,6 +4,5 @@ Works on JPA 2.x
 Projects included
 -----------------
 
-1. **relationship-examples** JPA Relationship examples, basic and advanced.
-2. **advanced-topics** JPA Callbacks
+1. **relationship-basic** @Basic, @OneToOne, @OnetoMany, @ManyToOne @ManyToMany @JoinColumn use.
 3. **example-war** An example WAR application supporting JPA

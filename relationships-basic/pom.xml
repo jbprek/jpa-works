@@ -13,12 +13,12 @@
 
     <modules>
         <module>rel_one2one_uni</module>
-        <module>rel_one2one_bi</module>
+        <module>basic_relationship.rel_one2one_bi</module>
         <module>rel_many2one</module>
         <module>rel_one2many_uni</module>
         <module>rel_one2many_bi</module>
         <module>rel_many2many_uni</module>
-        <module>rel_many2many_bi</module>
+        <module>basic_relationship.rel_many2many_bi</module>
         <module>cm_element_collection</module>
         <module>cm_list</module>
         <module>cm_map_key_basic</module>

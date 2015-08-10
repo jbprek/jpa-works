@@ -29,27 +29,35 @@ The following describe the basic entity relationships, see more notes inside eac
 * [Many to Many bidirectional](#SRM2MB)   
 
 
-###1. **<a name="SRO2OU">One to One unidirectional</a>**, see project rel_one2one_uni
+###1. **<a name="SRO2OU">One to One unidirectional</a>**, see package basic_relationship.one2one_si
 
     Relationship of Employee and ParkingLot:
     
-        @Entity
-        public class Employee {
-            @Id private long id; 
-            /* Owner */
-            @OneToOne
+       @Entity
+       public class Appartement {
+           @GeneratedValue
+           @Id
+           private long id;
+       
+           @Basic(optional = false)
+           private String code;
+       
+           // optional attribute default=true
+           @OneToOne()
+           private ParkingLot parkingLot;
+           
             //@JoinColumn(name = "PARKING_ID")
             private ParkingLotEntity phones;
             ...
 
         @Entity
-        public class ParkingLotEntity {
+        public class ParkingLot {
             @Id private long id;
             ...
 #### Notes
     - Single Value Association
     - Owner is Employee
-    - Sideffect :It's possible for two Employess to refer to the same ParkingLot
+    - Sideffect :It's possible for two Appartments to refer to the same ParkingLot
     - 
 
     

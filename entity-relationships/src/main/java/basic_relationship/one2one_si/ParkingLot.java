@@ -1,29 +1,29 @@
-package jpa.relationship.one2many_uni;
+package basic_relationship.one2one_si;
 
 import javax.persistence.*;
 
 /**
- * @author prekezes.
+ * Created by john on 8/8/15.
  */
 @Entity
-@Table(name="PARKING_LOT")
-public class ParkingLot{
-
-    @GeneratedValue
-    @Id private long id;
+public class ParkingLot {
+    @Id
+    private long sn;
 
     @Basic(optional = false)
     private String code;
+
+    public ParkingLot() {
+    }
 
     public ParkingLot(String code) {
         this.code = code;
     }
 
-
     // -------- GET/SET ---------------
 
-    public long getId() {
-        return id;
+    public long getSn() {
+        return sn;
     }
 
 //    public void setId(long id) {
@@ -37,6 +37,5 @@ public class ParkingLot{
     public void setCode(String code) {
         this.code = code;
     }
-
 
 }

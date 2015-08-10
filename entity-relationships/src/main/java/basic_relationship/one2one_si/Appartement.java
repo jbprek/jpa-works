@@ -1,28 +1,30 @@
-package jpa.relationship.one2many_uni;
+package basic_relationship.one2one_si;
 
 import javax.persistence.*;
 
 /**
- * @author prekezes.
+ * Created by john on 8/8/15.
  */
-
-@Table(name="EMPLOYEE")
 @Entity
-public class Employee {
+public class Appartement {
     @GeneratedValue
     @Id
     private long id;
 
     @Basic(optional = false)
-    private String name;
+    private String code;
 
     // optional attribute default=true
-    @OneToOne
+    @OneToOne(optional=true)
+    // if ommited a column with the name parkingLot_sn will be created
+    @JoinColumn(name="PARK_SN")
     private ParkingLot parkingLot;
 
+    public Appartement() {
+    }
 
-    public Employee(String name) {
-        this.name = name;
+    public Appartement(String code) {
+        this.code = code;
     }
 
     //------------ GET/SET -----------------------
@@ -31,16 +33,12 @@ public class Employee {
         return id;
     }
 
-//    public void setId(long id) {
-//        this.id = id;
-//    }
-
-    public String getName() {
-        return name;
+    public String getCode() {
+        return code;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public ParkingLot getParkingLot() {

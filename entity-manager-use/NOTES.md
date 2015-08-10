@@ -1,8 +1,132 @@
-JPA Basic Relationships
-============================================
+Entity Manager
+==============
+
+- [Persistence Contexts](#PU)
+- [Entity Managers](#EM)
+    - [Container-Managed Entity Managers](#EM1)
+        - [Transaction Scoped ](#EM1.1)
+        - [Extended](#EM1.2)
+        - [@PersistenceContext Annotation](#EM1.3)
+    - [Application Managed Entity Managers](#EM2)
+- [Transaction Management](#TM)
+- JTA Transaction Management
+- Transaction Scoped Persistence Contexts
+- Extended Persistence Contexts
+    - Persistence Context Collision
+    - Persistence Context Inheritance
+- Application Managed Persistence Contexts
+- Unsynchronized Persistence Contexts
+
+Choosing n Entity Manager
+-------------------------
+
+
+
+Entity Manager Operations
+-------------------------
+
+- Persist an Entity
+- Finding an Entity
+- Removing an Entity
+- Cascading Operations
+    - Cascade Persist
+    - Cascade Remove
+- Clearing the Persistence Context
+- Synchronization with the Database
+- Detachement and Merging
+    - Detachement
+    - Merging
+    - Working with detached entities
+        - Planning for detachement
+            - Triggering lazy loading
+            - Configuring eager loading
+        - Avoiding detachment
+            - Transaction view
+            - Entity Manager per request
+        - Merge strategies
+            - Session Facade
+            - Edit Session
+            - Conversation
+      
+
+
+
+<a name="CP">Persistence Contexts</a>
+--------------------
+Terms
+
+- **Persistence Unit**: Named configuration of Entity classes.
+- **Persistence Context**: Set of *managed* Entity instances.
+- **Entity Manager**: Allows operations on *managed* instances of a Persistence Context.
+
+<a name="EM">Entity Managers</a>
+---------------
+JPA defines not fewer than 3 types of EMs.
+
+###<a name="EM1">Container-Managed Entity Managers</a>
+An EM obtainned in a Java EE environment through the @PersistenceContext annotation is considered container managed.
+There are two kind of them examined below.
+####<a name="EM1.1">Transaction Scoped Persistence Contexts</a>
+Most usually used in the scope of SLSB are created and live within the scope of a JTA transaction.
+If a bean calls another bean, within the same tx, Persistence Context is propagated to the called bean, if the call is within the same transaction.
+If the called bean starts a new TX ie with REQUIRED_NEW then the Persistence Context is **not** propagated. 
+####<a name="EM1.2">Extended Persistence Contexts</a>
+Used with SFSB. The stateful session bean is associated with a single extended persistence context that is created when the bean instance is created and closed when the bean
+               instance is removed. This has implications for both the association and propagation characteristics of the extended
+               persistence context.
+
+####<a name="EM1.3">@PersistenceContext Annotation</a>
+### <a name="EM2">Application Managed Entity Managers</a>
+
+
+Transaction Management
+----------------------
+- JTA Transaction Management
+- Transaction Scoped Persistence Contexts
+- Extended Persistence Contexts
+    - Persistence Context Collision
+    - Persistence Context Inheritance
+- Application Managed Persistence Contexts
+- Unsynchronized Persistence Contexts
+
+Choosing n Entity Manager
+-------------------------
+
+
+
+Entity Manager Operations
+-------------------------
+
+- Persist an Entity
+- Finding an Entity
+- Removing an Entity
+- Cascading Operations
+    - Cascade Persist
+    - Cascade Remove
+- Clearing the Persistence Context
+- Synchronization with the Database
+- Detachement and Merging
+    - Detachement
+    - Merging
+    - Working with detached entities
+        - Planning for detachement
+            - Triggering lazy loading
+            - Configuring eager loading
+        - Avoiding detachment
+            - Transaction view
+            - Entity Manager per request
+        - Merge strategies
+            - Session Facade
+            - Edit Session
+            - Conversation
+      
 
  - [Relationship Concepts](#CP)    
  - [Basic (Standard) Relationships](#SR)
+ 
+ 
+ 
+ 
  
  
 ##<a name="CP">Relationship Concepts</a>

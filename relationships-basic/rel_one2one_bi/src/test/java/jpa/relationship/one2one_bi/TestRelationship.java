@@ -24,7 +24,7 @@ public class TestRelationship {
 
     @BeforeClass
     public static void setup() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("one2one_bi");
+        entityManagerFactory = Persistence.createEntityManagerFactory("basic_relationship.one2one_bi");
         em = entityManagerFactory.createEntityManager();
     }
 

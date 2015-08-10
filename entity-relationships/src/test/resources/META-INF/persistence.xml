@@ -1,10 +1,9 @@
-
 <persistence xmlns="http://java.sun.com/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
 
-    <persistence-unit name="basic_relationship.one2one_bi" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="entity-relationships" transaction-type="RESOURCE_LOCAL">
         <description>
             Persistence unit for the JPA tutorial of the Hibernate Getting Started Guide
         </description>
@@ -12,6 +11,14 @@
         <!--  This doesnt prevent message from appearing -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
+        <class>basic_relationship.one2one_si.Appartement</class>
+        <class>basic_relationship.one2one_si.ParkingLot</class>
+        <class>basic_relationship.one2one_bi.Customer</class>
+        <class>basic_relationship.one2one_bi.Room</class>
+        <class>basic_relationship.many2one.Soldier</class>
+        <class>basic_relationship.many2one.Unit</class>
+        <class>basic_relationship.one2many_si.Student</class>
+        <class>basic_relationship.one2many_si.Presentation</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />

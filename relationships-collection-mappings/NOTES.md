@@ -53,7 +53,7 @@ Key terms : *Single Value Association*, *Collection Value Association*.
     Note: It's possible for two Employess to refer to the same ParkingLot
 
     
-###2.  <a name="SRO2OB">One to One bidirectional</a> , see project rel_one2one_bi 
+###2.  <a name="SRO2OB">One to One bidirectional</a> , see project basic_relationship.one2one_bi 
 
     Relationship of Employee and ParkingLot again.  Parking differs from above.
     
@@ -117,7 +117,7 @@ Key terms : *Single Value Association*, *Collection Value Association*.
 
      RelationShip of Tasks and Employees.  (Task is owner).
     
-###7. <a name="SRM2MU">**Many to Many bidirectional**</a> , see project rel_many2many_bi
+###7. <a name="SRM2MU">**Many to Many bidirectional**</a> , see project basic_relationship.many2many_bi
 
     Relationship of Employee and Project.
     
