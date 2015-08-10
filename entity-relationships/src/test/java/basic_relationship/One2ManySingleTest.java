@@ -57,11 +57,16 @@ public class One2ManySingleTest {
 
         john.getPresentations().add(hist);
         john.getPresentations().add(bio);
+        em.flush();
 
         tx.commit();
 
+        tx = beginTx();
+
         Student s = em.find(Student.class, john.getId());
         Assert.assertEquals(2, s.getPresentations().size());
+
+        tx.commit();
 
     }
 
