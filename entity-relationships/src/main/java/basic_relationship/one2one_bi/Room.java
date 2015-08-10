@@ -14,18 +14,18 @@ public class Room {
     /* Owner */
     @OneToOne
     //@JoinColumn(name = "CUST_ID")
-    private Customer customer;
+    private HotelCustomer customer;
 
 
     public long getId() {
         return id;
     }
 
-    public Customer getCustomer() {
+    public HotelCustomer getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(HotelCustomer customer) {
         this.customer = customer;
     }
 }

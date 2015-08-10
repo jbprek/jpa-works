@@ -13,7 +13,7 @@
 
         <class>basic_relationship.one2one_si.Apartment</class>
         <class>basic_relationship.one2one_si.ParkingLot</class>
-        <class>basic_relationship.one2one_bi.Customer</class>
+        <class>basic_relationship.one2one_bi.HotelCustomer</class>
         <class>basic_relationship.one2one_bi.Room</class>
         <class>basic_relationship.many2one.Soldier</class>
         <class>basic_relationship.many2one.Unit</class>
@@ -25,14 +25,16 @@
         <class>basic_relationship.many2many_si.Team</class>
         <class>basic_relationship.many2many_bi.BankCustomer</class>
         <class>basic_relationship.many2many_bi.BankAccount</class>
-
-
+        <class>collection_mappings.element_collection.CompanyEmployee</class>
+        <class>collection_mappings.list_ordering.OrderItem</class>
+        <class>collection_mappings.list_ordering.CustOrder</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/jpaworks"/>
             <property name="javax.persistence.jdbc.user" value="jpaworks"/>
             <property name="javax.persistence.jdbc.password" value="jpaworks"/>
 
+            <property name="hibernate.auto-import" value="false"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
         </properties>

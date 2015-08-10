@@ -9,7 +9,7 @@ import javax.persistence.OneToOne;
  * Created by john on 8/8/15.
  */
 @Entity
-public class Customer {
+public class HotelCustomer {
     @GeneratedValue
     @Id
     private long id;

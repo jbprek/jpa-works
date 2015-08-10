@@ -1,7 +1,7 @@
 package basic_relationship;
 
 
-import basic_relationship.one2one_bi.Customer;
+import basic_relationship.one2one_bi.HotelCustomer;
 import basic_relationship.one2one_bi.Room;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -42,8 +42,8 @@ public class One2OneBidirectionalTest {
         return tx;
     }
 
-    public Customer findCustomer(long id) {
-        return em.find(Customer.class, id);
+    public HotelCustomer findCustomer(long id) {
+        return em.find(HotelCustomer.class, id);
     }
 
     public Room createRoom() {
@@ -60,7 +60,7 @@ public class One2OneBidirectionalTest {
 
     public void reserveRoom(String name, long roomId) {
         EntityTransaction tx  = beginTx();
-        Customer customer = new Customer();
+        HotelCustomer customer = new HotelCustomer();
         customer.setName(name);
         em.persist(customer);
         Room room  = findRoom(roomId);
@@ -72,7 +72,7 @@ public class One2OneBidirectionalTest {
     public void freeRoom(long roomId){
         EntityTransaction tx  = beginTx();
         Room r = findRoom(roomId);
-        Customer c = r.getCustomer();
+        HotelCustomer c = r.getCustomer();
         em.remove(c);
         r.setCustomer(null);
         tx.commit();
@@ -94,7 +94,7 @@ public class One2OneBidirectionalTest {
 
         // Reserve Room 1
         reserveRoom("John", room1.getId());
-        Customer john = room1.getCustomer();
+        HotelCustomer john = room1.getCustomer();
         Assert.assertEquals("John", room1.getCustomer().getName());
         Assert.assertEquals(room1.getCustomer().getId(), john.getId());
 
