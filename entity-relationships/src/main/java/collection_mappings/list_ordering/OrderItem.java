@@ -1,20 +1,18 @@
 package collection_mappings.list_ordering;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * @author prekezes.
  */
 @Entity
-public class OrderItem {
+public class OrderItem implements Comparable{
     @Id
     @GeneratedValue
     private long id;
 
-    private String name;
+    @Basic(optional = false)
+    private String code;
 
     @ManyToOne
     private CustOrder order;
@@ -23,12 +21,12 @@ public class OrderItem {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getCode() {
+        return code;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public CustOrder getOrder() {
@@ -40,10 +38,16 @@ public class OrderItem {
     }
 
     @Override
+    public int compareTo(Object o) {
+        OrderItem other = (OrderItem) o;
+        return code.compareTo(other.getCode());
+    }
+
+    @Override
     public String toString() {
         return "OrderItem{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + code + '\'' +
                 ", order=" + order.getName() +
                 '}';
     }

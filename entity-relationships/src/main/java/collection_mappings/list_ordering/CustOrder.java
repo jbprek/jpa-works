@@ -13,14 +13,16 @@ import java.util.*;
 @Entity
 public class CustOrder {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private long id;
 
     private String name;
 
     @OneToMany(mappedBy = "order")
-    @OrderBy("name DESC") //   alternative ("name DESC")
-    private List<OrderItem> items = new ArrayList<>();
+//    @OrderBy("code DESC") //   alternative ("name DESC")
+//    private List<OrderItem> items  = new ArrayList<>();
+    private Set<OrderItem> items = new TreeSet<>();
 
     public long getId() {
         return id;
@@ -38,11 +40,11 @@ public class CustOrder {
         this.name = name;
     }
 
-    public List<OrderItem> getItems() {
+    public Set<OrderItem> getItems() {
         return items;
     }
 
-    public void setItems(List<OrderItem> employees) {
-        this.items = employees;
+    public void setItems(Set<OrderItem> items) {
+        this.items = items;
     }
 }

@@ -45,21 +45,22 @@ public class OrderListTest {
         d.setName("D1");
         em.persist(d);
 
+
+        OrderItem c = new OrderItem();
+        c.setCode("c-3");
+        em.persist(c);
+
         OrderItem a = new OrderItem();
-        a.setName("a");
+        a.setCode("a-1");
         em.persist(a);
 
         OrderItem b = new OrderItem();
-        b.setName("b");
+        b.setCode("b-2");
         em.persist(b);
 
-        OrderItem c = new OrderItem();
-        c.setName("c");
-        em.persist(c);
-
+        d.getItems().add(c);
         d.getItems().add(b);
         d.getItems().add(a);
-        d.getItems().add(c);
 
         b.setOrder(d);
         a.setOrder(d);
@@ -69,8 +70,7 @@ public class OrderListTest {
 
         CustOrder dc = em.find(CustOrder.class, d.getId());
         for( OrderItem e : dc.getItems())
-            System.out.println(e.getName());
-
+            System.out.println(e.getCode());
 
     }
 
