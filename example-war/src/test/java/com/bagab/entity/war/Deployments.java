@@ -19,7 +19,6 @@ public class Deployments {
 
 //                .addAsWebInfResource("src/test/resources/test-ds.xml")
                 // All classes under org.bagab.entity.war
-                .addPackage(Deployments.class.getPackage())
                 .addPackage(TestModel.class.getPackage())
                 .addPackage(TestBoundary.class.getPackage())
                 .addAsWebInfResource("test-ds.xml")
