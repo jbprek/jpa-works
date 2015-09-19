@@ -58,6 +58,8 @@ Caused by: javax.resource.ResourceException: No XADataSourceClass supplied!
 	... 12 more`
 	
 	
+### JTA Datasource	
+	
 ### Persistence unit for JTA datasource
     <persistence xmlns="http://java.sun.com/xml/ns/persistence"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
