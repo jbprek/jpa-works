@@ -29,8 +29,8 @@
 		<!-- By default, arquillian will use the JBOSS_HOME environment variable.
 			Alternatively, the configuration below can be uncommented. -->
 		<configuration>
-			<!-- <property name="javaHome">/Program Files/Java/jdk1.8.0_20</property>
-				<property name="jbossHome">/java-tools/jboss-as/wildfly-8.1.0.Final</property> -->
+			<!-- <property name="javaHome">/Program Files/Java/jdk1.8.0_20</property>-->
+			<property name="jbossHome">/home/public/JavaTools/JbossAS/wildfly-9.0.1.Final</property>
 		</configuration>
 	</container>
 

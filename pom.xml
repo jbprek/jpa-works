@@ -25,7 +25,7 @@
         <module>relationships-inheritance</module>
         <module>relationships-collection-mappings</module>
         <module>entity-manager-use</module>
-        <module>entity-relationships</module>
+        <!--<module>entity-relationships</module>-->
 
     </modules>
 

@@ -17,7 +17,6 @@ public class TestBoundary {
     @EJB
     private EmployeeService dao;
 
-
     @Test
     @OperateOnDeployment("test-suite")
     public void testModel() throws Exception {

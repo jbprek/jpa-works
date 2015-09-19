@@ -20,12 +20,12 @@ public class Deployments {
     public static Archive<?> generateDefaultDeployment() {
         return ShrinkWrap.create(WebArchive.class, "war-test.war")
 
-//                .addAsWebInfResource("src/test/resources/test-jpaworks-ds.xml")
+//                .addAsWebInfResource("src/test/resources/test-ds.xml")
                 // All classes under org.bagab.entity.war
                 .addPackage(Deployments.class.getPackage())
                 .addPackage(TestModel.class.getPackage())
                 .addPackage(TestBoundary.class.getPackage())
-                .addAsWebInfResource("test-jpaworks-ds.xml")
+                .addAsWebInfResource("test-ds.xml")
                 .addAsWebInfResource("beans.xml")
                 .addAsResource("test-persistence.xml", "META-INF/persistence.xml")
                 ;
