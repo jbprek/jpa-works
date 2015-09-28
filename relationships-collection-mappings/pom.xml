@@ -22,7 +22,6 @@
         <module>arel_many2many_state</module>
         <module>adv_map_cpk_idclass</module>
         <module>adv_map_cpk_embedid</module>
-        <module>embed_example</module>
     </modules>
 
     <properties>
