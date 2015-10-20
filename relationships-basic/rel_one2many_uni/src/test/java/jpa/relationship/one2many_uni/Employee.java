@@ -8,7 +8,7 @@ import java.util.Collection;
  * @author prekezes.
  */
 
-@Table(name="EMPLOYEE")
+@Table(name="O2MU_EMPLOYEE")
 @Entity
 public class Employee {
     @GeneratedValue
@@ -20,7 +20,7 @@ public class Employee {
 
     // optional attribute default=true
     @OneToMany
-    @JoinTable(name = "EMP_PHONE",
+    @JoinTable(name = "O2MU_EMP_PHONE",
             joinColumns = @JoinColumn(name = "EMP_ID"),
             inverseJoinColumns = @JoinColumn(name = "PHONE_ID"))
     private Collection<Phone> phones = new ArrayList<>();

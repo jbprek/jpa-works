@@ -1,19 +1,6 @@
 JPA Relationships and operations on entities
 ============================================
-##[Standard Relationships](#SR)
-* [One to One unidirectional](#SRO2OU)
-* [One to One bidirectional](#SRO2OB)   
-* [Many to One](#SRM2O)
-* [One to Many unidirectional](#SRO2MU)
-* [One to Many bidirectional](#SRO2MB)   
-* [Many to Many unidirectional](#SRM2MU)
-* [Many to Many bidirectional](#SRM2MB)   
-    
-##[Mappings](#MP)
-* [Use of @Embeddable](#EMBED) 
-* [Composite PK - Use of @IdClass](#IDCLASS)   
-* [Composite PK - Use of @EmbeddedIds](#EMBEDDEDID) 
-
+  
 ##[Collection Mapping](#CM)
 * [Introduction](#CMIN)
 * [@ElementCollection Example](#CMEC)
@@ -22,148 +9,17 @@ JPA Relationships and operations on entities
 * [Map keyed by Enum (String)](#CMKE)
 * [Map used in One to Many relationship](#CMOM)
 * [Map used in One to Many relationship **Not Working**](#CMMM)
+    
+##[Mappings](#MP)
+* [Use of @Embeddable](#EMBED) 
+* [Composite PK - Use of @IdClass](#IDCLASS)   
+* [Composite PK - Use of @EmbeddedIds](#EMBEDDEDID) 
+
 
 ## [Advanced Relationships](#ARL)
 * [Many to Many with relationship state](#ARLM2MS)
 
 
-##<a name="SR">Standard Relationships</a>
-
-The following describe the basic entity relationships, see more notes inside each project.
-
-Key terms : *Single Value Association*, *Collection Value Association*.
-
-###1. <a name="SRO2OU">**One to One unidirectional**</a>, see project rel_one2one_uni
-
-    Relationship of Employee and ParkingLot:
-    
-        @Entity
-        public class Employee {
-            @Id private long id;        
-            @OneToOne
-            //@JoinColumn(name = "PARKING_ID")
-            private ParkingLotEntity phones;
-            ...
-
-        @Entity
-        public class ParkingLotEntity {
-            @Id private long id;
-            ...
-
-    Note: It's possible for two Employess to refer to the same ParkingLot
-
-    
-###2.  <a name="SRO2OB">One to One bidirectional</a> , see project basic_relationship.one2one_bi 
-
-    Relationship of Employee and ParkingLot again.  Parking differs from above.
-    
-    @Entity
-    @Table(name="PARKING_LOT")
-    public class ParkingLot{    
-        @Id private long id;
-        
-        /* If mappedBy is removed then foreign keys are created on both tables */
-        @OneToOne(mappedBy = "phones")
-        private Employee employee;
-
-    
-    
-###3. <a name="SRM2O">Many to One</a> , see project rel_many2one
-
-    Relationship of Employee and Department.
-    
-    @Entity
-    public class Employee {    
-        @Id private long id;
-        ...    
-        @ManyToOne
-        @JoinColumn(name = "DEPT_ID")
-        
-        
-        @Entity
-        public class Department {
-            @Id private long id;
-
-    
-    
-###4. <a name="SRO2MU">One to Many unidirectional</a>, see project rel_one2many_uni
-
-    Relationship of Person and Phones
-    
-    
-###5. <a name="SRO2MB">**One to Many bidirectional**</a> , see project rel_one2many_bi
-
-    Relationship of Employee and Department again.
-    
-        @Entity
-        public class Department {        
-            @Id  private long id;
-            ....
-            @OneToMany(mappedBy="department")
-            private List<Employee> employeesByAssignment = new ArrayList<>();
-
-        @Entity
-        public class Employee {        
-            @Id private long id;
-            ....
-            /* OWNER SIDE*/
-            @ManyToOne
-            @JoinColumn(name = "DEPT_ID")
-            private Department department;
-    
-    
-    
-###6. <a name="SRM2MU">Many to Many unidirectional</a>, see project rel_many2many_uni
-
-     RelationShip of Tasks and Employees.  (Task is owner).
-    
-###7. <a name="SRM2MU">**Many to Many bidirectional**</a> , see project basic_relationship.many2many_bi
-
-    Relationship of Employee and Project.
-    
-        @Entity
-        public class Employee {
-            @Id  private long id;
-            ...
-            @ManyToMany
-            @JoinTable(name = "EMPLOYEE_PROJECT", 
-                joinColumns = @JoinColumn(name="EMPLOYEE_ID"), 
-                inverseJoinColumns = @JoinColumn(name="PROJECT_ID"))
-            private Set<Project> projects;
-            
-            
-        @Entity
-        public class Project {
-            @Id  private long id;
-            ...
-            @ManyToMany(mappedBy = "projects")
-            private Set<Employee> employeesByAssignment;
-
-##<a name="MP">Mappings</a>
-
-### <a name="EMBED">Embeddable use</a>, project embed_example
-Demonstration of @Embeddable 
-
-        @Embeddable
-        @Access(AccessType.FIELD)
-        public class Address implements Serializable {
-            private String street;
-            private String number;
-            private String town;
-            private String country;
-            @Column(name="ZIP_CODE")
-            private String zip;
-            
-        @Entity
-        public class Employee implements Serializable {
-            @Id  private long id;
-            @Embedded
-            @AttributeOverrides({
-                    @AttributeOverride(name= "country", column = @Column(name="CNTRY")),
-                    @AttributeOverride(name= "zip", column = @Column(name="ZIP")),
-            })
-            private Address address; 
-            ....
 
 ### <a name="IDCLASS">Compound PK @IdClass</a> , adv_map_cpk_idclass
 
@@ -208,8 +64,7 @@ of the target entity.
 * Use **@MapKeyJoinColumn** to override the join column of the entity key.
 * Use **@Column** to override the column storing the values of an element collection of basic types.
 * Use **@MapKeyColumn** to override the column storing the keys when keyed by a basic type.
-* Use **@MapKeyTemporal** and **@MapKeyEnumerated** if you need to further qualify a basic key that is
-a temporal or enumerated type.
+* Use **@MapKeyTemporal** and **@MapKeyEnumerated** if you need to further qualify a basic key that is  a temporal or enumerated type.
 * Use **@AttributeOverride** with a “key.” or “value.” prefix to override the column of an
 embeddable attribute type that is a Map key or a value, respectively.
 

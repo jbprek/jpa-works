@@ -6,7 +6,7 @@ import javax.persistence.*;
  * @author prekezes.
  */
 @Entity
-@Table(name="PARKING_LOT")
+@Table(name="O2MU_PHONE")
 public class Phone {
 
     @GeneratedValue

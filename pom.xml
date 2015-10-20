@@ -18,13 +18,16 @@
 
         <!-- ABien pattern -->
         <module>generic-dao</module>
-        <module>ee7-persistence-tut</module>
+
+        <!-- JPA CL -->
         <module>relationships-basic</module>
-        <module>jpa-app-model</module>
-        <module>advanced-topics</module>
         <module>relationships-inheritance</module>
         <module>relationships-collection-mappings</module>
         <module>entity-manager-use</module>
+
+        <module>ee7-persistence-tut</module>
+        <module>jpa-app-model</module>
+        <module>advanced-topics</module>
         <module>queries</module>
         <!--<module>entity-relationships</module>-->
 

@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -25,10 +26,10 @@ public class Employee {
     private String name;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "MMB_EMPLOYEE_PROJECT",
+    @JoinTable(name = "MMU_EMPLOYEE_TASK",
             joinColumns = @JoinColumn(name="EMPLOYEE_ID"),
-            inverseJoinColumns = @JoinColumn(name="PROJECT_ID"))
-    private Set<Project> projects;
+            inverseJoinColumns = @JoinColumn(name="TASK_ID"))
+    private Set<Task> tasks = new HashSet<>();
 
     public long getId() {
         return id;
@@ -46,12 +47,12 @@ public class Employee {
         this.name = name;
     }
 
-    public Set<Project> getProjects() {
-        return projects;
+    public Set<Task> getTasks() {
+        return tasks;
     }
 
-    public void setProjects(Set<Project> projects) {
-        this.projects = projects;
+    public void setTasks(Set<Task> tasks) {
+        this.tasks = tasks;
     }
 
     @Override

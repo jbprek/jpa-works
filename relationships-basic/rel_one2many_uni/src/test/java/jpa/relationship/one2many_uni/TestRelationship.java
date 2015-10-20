@@ -56,11 +56,11 @@ public class TestRelationship {
 
     public Phone createPhone(String code) {
         EntityTransaction tx  = beginTx();
-        Phone lot = new Phone();
-        lot.setCode(code);
-        em.persist(lot);
+        Phone phone = new Phone();
+        phone.setCode(code);
+        em.persist(phone);
         tx.commit();
-        return lot;
+        return phone;
     }
 
     public Phone findPhone(long id) {
@@ -78,29 +78,32 @@ public class TestRelationship {
     public void removePhoneFromEmployee(long employeeId, long phoneId){
         EntityTransaction tx  = beginTx();
         Employee e = findEmployee(employeeId);
-        Phone l = findPhone(phoneId);
-        e.setPhones(null);
+        Phone phone = findPhone(phoneId);
+        e.getPhones().remove(phone) ;
         tx.commit();
     }
 
     @Test
     public void test() {
         // Create Employee
-        Employee e1 = createEmployee("John");
+        Employee john = createEmployee("John");
         // Lookup Employee by id
-        Assert.assertEquals("John", findEmployee(e1.getId()).getName());
+        Assert.assertEquals("John", findEmployee(john.getId()).getName());
         // Create Phone
         Phone p1 = createPhone("P1");
         // Lookup Phone by id
         Assert.assertEquals("P1", findPhone(p1.getId()).getCode());
         // Associate Phone with Employee
-        deliverPhoneToEmployee(e1.getId(), p1.getId());
+        deliverPhoneToEmployee(john.getId(), p1.getId());
         // Verify Association
-        Assert.assertTrue(findEmployee(e1.getId()).getPhones().contains(p1));
+        Assert.assertTrue(findEmployee(john.getId()).getPhones().contains(p1));
         // Dis-asociatate Parking with Employee
-        removePhoneFromEmployee(e1.getId(), p1.getId());
+        removePhoneFromEmployee(john.getId(), p1.getId());
+
+        findEmployee(john.getId()).getPhones();
         // Verify Association
-        Assert.assertFalse(findEmployee(e1.getId()).getPhones().contains(p1));
+
+        Assert.assertFalse(findEmployee(john.getId()).getPhones().contains(p1));
     }
 
 }

@@ -52,47 +52,47 @@ public class Many2ManyUniTest {
         return em.find(Employee.class, id);
     }
 
-    private Project createProject(String name) {
+    private Task createProject(String name) {
         EntityTransaction tx = beginTx();
-        Project e = new Project();
+        Task e = new Task();
         e.setName(name);
         em.persist(e);
         tx.commit();
         return e;
     }
 
-    private Project findProject(long id) {
-        return em.find(Project.class, id);
+    private Task findTask(long id) {
+        return em.find(Task.class, id);
     }
 
-    private void assignToProject(long employeeId, long ProjectId) {
+    private void addTask(long employeeId, long taskId) {
         EntityTransaction tx = beginTx();
         Employee e = findEmployee(employeeId);
         Objects.nonNull(e);
 
-        Project p = findProject(ProjectId);
+        Task p = findTask(taskId);
         Objects.nonNull(p);
 
-        e.getProjects().add(p);
+        e.getTasks().add(p);
         tx.commit();
     }
 
-    private void dismissFromProject(long employeeId, long ProjectId) {
+    private void removeTask(long employeeId, long taskId) {
         EntityTransaction tx = beginTx();
         Employee e = findEmployee(employeeId);
         Objects.nonNull(e);
 
-        Project p = findProject(ProjectId);
+        Task p = findTask(taskId);
         Objects.nonNull(p);
 
-        e.getProjects().remove(p);
+        e.getTasks().remove(p);
         tx.commit();
     }
 
-    private Set<Project> getEmployeesProjects(long employeeId){
+    private Set<Task> getEmployeesProjects(long employeeId){
         Employee e = findEmployee(employeeId);
         Objects.nonNull(e);
-        return e.getProjects();
+        return e.getTasks();
     }
 
     @Test
@@ -105,33 +105,33 @@ public class Many2ManyUniTest {
         Assert.assertEquals("George", findEmployee(george.getId()).getName());
 
         // Create projects Hell and Inferno
-        Project hell = createProject("Hell");
-        Assert.assertEquals("Hell", findProject(hell.getId()).getName());
+        Task hell = createProject("Hell");
+        Assert.assertEquals("Hell", findTask(hell.getId()).getName());
 
-        Project inferno = createProject("Inferno");
-        Assert.assertEquals("Inferno", findProject(inferno.getId()).getName());
+        Task inferno = createProject("Inferno");
+        Assert.assertEquals("Inferno", findTask(inferno.getId()).getName());
 
         // Assign John to Hell
-        assignToProject(john.getId(), hell.getId());
-        Assert.assertEquals(1, findEmployee(john.getId()).getProjects().size());
-         Assert.assertTrue(findEmployee(john.getId()).getProjects().contains(hell));
+        addTask(john.getId(), hell.getId());
+        Assert.assertEquals(1, findEmployee(john.getId()).getTasks().size());
+         Assert.assertTrue(findEmployee(john.getId()).getTasks().contains(hell));
 
         // Assign George to Inferno
-        assignToProject(george.getId(), inferno.getId());
-        Assert.assertEquals(1, findEmployee(george.getId()).getProjects().size());
-        Assert.assertTrue(findEmployee(george.getId()).getProjects().contains(inferno));
+        addTask(george.getId(), inferno.getId());
+        Assert.assertEquals(1, findEmployee(george.getId()).getTasks().size());
+        Assert.assertTrue(findEmployee(george.getId()).getTasks().contains(inferno));
 
         // Remove John from Hell
-        dismissFromProject(john.getId(), hell.getId());
-        Assert.assertEquals(0, findEmployee(john.getId()).getProjects().size());
-        Assert.assertFalse(findEmployee(john.getId()).getProjects().contains(hell));
+        removeTask(john.getId(), hell.getId());
+        Assert.assertEquals(0, findEmployee(john.getId()).getTasks().size());
+        Assert.assertFalse(findEmployee(john.getId()).getTasks().contains(hell));
 
         // Assign George to Hell
-        assignToProject(george.getId(), hell.getId());
-        Assert.assertEquals(2, findEmployee(george.getId()).getProjects().size());
+        addTask(george.getId(), hell.getId());
+        Assert.assertEquals(2, findEmployee(george.getId()).getTasks().size());
 
-        Assert.assertTrue(findEmployee(george.getId()).getProjects().contains(inferno));
-        Assert.assertTrue(findEmployee(george.getId()).getProjects().contains(hell));
+        Assert.assertTrue(findEmployee(george.getId()).getTasks().contains(inferno));
+        Assert.assertTrue(findEmployee(george.getId()).getTasks().contains(hell));
     }
 
 }

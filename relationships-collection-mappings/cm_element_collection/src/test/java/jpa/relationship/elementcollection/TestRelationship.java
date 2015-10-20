@@ -61,17 +61,27 @@ public class TestRelationship {
 
 
     private void addNickName(Employee e, String nickname) {
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+
         e.getNickNames().add(nickname);
+        tx.commit();
     }
 
     private void removeNickName(Employee e, String nickName) {
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+
         e.getNickNames().remove(nickName);
+
+        tx.commit();
 
     }
 
 
     private void addVacationEntry(Employee e, LocalDate startDate, int duration) {
-
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
         VacationEntry v = new VacationEntry();
 
         Instant it = startDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
@@ -79,6 +89,8 @@ public class TestRelationship {
         v.setStartDate(Date.from(it));
         v.setDuration(duration);
         e.getVacationEntries().add(v);
+
+        tx.commit();
 
     }
 

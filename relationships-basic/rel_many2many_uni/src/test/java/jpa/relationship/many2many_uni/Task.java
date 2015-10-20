@@ -10,8 +10,8 @@ import java.util.Objects;
  * @author prekezes.
  */
 @Entity
-@Table(name = "MMU_PROJECT")
-public class Project {
+@Table(name = "MMU_TASK")
+public class Task {
     @Id
     @GeneratedValue
     private long id;
@@ -38,9 +38,9 @@ public class Project {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Project project = (Project) o;
-        return Objects.equals(id, project.id) &&
-                Objects.equals(name, project.name);
+        Task task = (Task) o;
+        return Objects.equals(id, task.id) &&
+                Objects.equals(name, task.name);
     }
 
     @Override

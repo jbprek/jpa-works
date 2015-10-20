@@ -11,7 +11,7 @@ JPA Basic Relationships
 - **Directionality** Relationships can be uni or bi directional.
 - **Cardinality** One to One, Many to Many or Many to One, * or 1 in UML diagram.
 - **Ordinality** 1 or 0 in the UML diagram.
-- **Ownership** The side who has the JOIN Column is the owner of the relationship, the other side is called the inverse side.
+- **Ownership** The side who has the JOIN Column is the owner of the relationship, the other side is called the inverse side with *mappedBy* attribute on relationship annotation.
 - **Single Value Association**
 - **Collection Value Association** 
 
@@ -58,7 +58,6 @@ The following describe the basic entity relationships, see more notes inside eac
     Relationship of Employee and ParkingLot again.  Parking differs from above.
     
     @Entity
-    @Table(name="PARKING_LOT")
     public class ParkingLot{    
         @Id private long id;
         
@@ -116,6 +115,22 @@ The following describe the basic entity relationships, see more notes inside eac
 ###6. <a name="SRM2MU">Many to Many unidirectional</a>, see project rel_many2many_uni
 
      RelationShip of Tasks and Employees.  (Task is owner).
+     @Entity
+     @Table(name = "MMU_EMPLOYEE")
+     public class Employee {
+     
+         @Id
+         @GeneratedValue
+         private long id;
+     
+         private String name;
+     
+         @ManyToMany(fetch = FetchType.EAGER)
+         @JoinTable(name = "MMB_EMPLOYEE_PROJECT",
+                 joinColumns = @JoinColumn(name="EMPLOYEE_ID"),
+                 inverseJoinColumns = @JoinColumn(name="PROJECT_ID"))
+         private Set<Project> projects;
+
     
 ###7. <a name="SRM2MU">**Many to Many bidirectional**</a> , see project basic_relationship.many2many_bi
 
