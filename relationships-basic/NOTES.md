@@ -77,11 +77,12 @@ The following describe the basic entity relationships, see more notes inside eac
         ...    
         @ManyToOne
         @JoinColumn(name = "DEPT_ID")
+        private Department department
+        .....
         
-        
-        @Entity
-        public class Department {
-            @Id private long id;
+    @Entity
+    public class Department {
+        @Id private long id;
 
     
     
