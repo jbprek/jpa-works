@@ -23,7 +23,7 @@ public class EmployeeServiceServlet extends HttpServlet {
         "Chapter 6: Extended Persistence Context Inheritance Example";
     
     private final String DESCRIPTION = 
-        "This example shows the basic use of an extended persistence " +
+        "This example shows the basicmapping use of an extended persistence " +
         "context and its inheritance in SFSBs.";
 
     

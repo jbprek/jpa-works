@@ -1,3 +1,3 @@
 #JPA Query topics#
 
-The project has the same entities as jpa-app-model project. Entities are augmented with query related annotations
+The bankAccount has the same entities as jpa-app-model bankAccount. Entities are augmented with query related annotations

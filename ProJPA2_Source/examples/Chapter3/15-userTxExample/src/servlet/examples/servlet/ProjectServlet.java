@@ -20,7 +20,7 @@ public class ProjectServlet extends HttpServlet {
         "Chapter 3: UserTransaction Example";
     
     private final String DESCRIPTION = 
-        "This example demonstrates the basic use of a UserTransaction in a Servlet. </br>" +
+        "This example demonstrates the basicmapping use of a UserTransaction in a Servlet. </br>" +
         "Click the 'Go' button.  This will trigger a servlet client that uses " +
         "a UserTransaction to demarcate the transaction semantics for the EJBs upon " +
         "which it invokes.";

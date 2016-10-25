@@ -29,11 +29,11 @@ JPA Relationships and operations on entities
 
 ##<a name="SR">Standard Relationships</a>
 
-The following describe the basic entity relationships, see more notes inside each project.
+The following describe the basic entity relationships, see more notes inside each bankAccount.
 
 Key terms : *Single Value Association*, *Collection Value Association*.
 
-###1. <a name="SRO2OU">**One to One unidirectional**</a>, see project rel_one2one_uni
+###1. <a name="SRO2OU">**One to One unidirectional**</a>, see bankAccount rel_one2one_uni
 
     Relationship of Employee and ParkingLot:
     
@@ -53,7 +53,7 @@ Key terms : *Single Value Association*, *Collection Value Association*.
     Note: It's possible for two Employess to refer to the same ParkingLot
 
     
-###2.  <a name="SRO2OB">One to One bidirectional</a> , see project basic_relationship.one2one_bi 
+###2.  <a name="SRO2OB">One to One bidirectional</a> , see bankAccount basic_relationship.one2one_bi 
 
     Relationship of Employee and ParkingLot again.  Parking differs from above.
     
@@ -64,11 +64,11 @@ Key terms : *Single Value Association*, *Collection Value Association*.
         
         /* If mappedBy is removed then foreign keys are created on both tables */
         @OneToOne(mappedBy = "phones")
-        private Employee employee;
+        private Employee track;
 
     
     
-###3. <a name="SRM2O">Many to One</a> , see project rel_many2one
+###3. <a name="SRM2O">Many to One</a> , see bankAccount rel_many2one
 
     Relationship of Employee and Department.
     
@@ -86,12 +86,12 @@ Key terms : *Single Value Association*, *Collection Value Association*.
 
     
     
-###4. <a name="SRO2MU">One to Many unidirectional</a>, see project rel_one2many_uni
+###4. <a name="SRO2MU">One to Many unidirectional</a>, see bankAccount rel_one2many_uni
 
     Relationship of Person and Phones
     
     
-###5. <a name="SRO2MB">**One to Many bidirectional**</a> , see project rel_one2many_bi
+###5. <a name="SRO2MB">**One to Many bidirectional**</a> , see bankAccount rel_one2many_bi
 
     Relationship of Employee and Department again.
     
@@ -99,7 +99,7 @@ Key terms : *Single Value Association*, *Collection Value Association*.
         public class Department {        
             @Id  private long id;
             ....
-            @OneToMany(mappedBy="department")
+            @OneToMany(mappedBy="schoolClass")
             private List<Employee> employeesByAssignment = new ArrayList<>();
 
         @Entity
@@ -109,15 +109,15 @@ Key terms : *Single Value Association*, *Collection Value Association*.
             /* OWNER SIDE*/
             @ManyToOne
             @JoinColumn(name = "DEPT_ID")
-            private Department department;
+            private Department schoolClass;
     
     
     
-###6. <a name="SRM2MU">Many to Many unidirectional</a>, see project rel_many2many_uni
+###6. <a name="SRM2MU">Many to Many unidirectional</a>, see bankAccount rel_many2many_uni
 
      RelationShip of Tasks and Employees.  (Task is owner).
     
-###7. <a name="SRM2MU">**Many to Many bidirectional**</a> , see project basic_relationship.many2many_bi
+###7. <a name="SRM2MU">**Many to Many bidirectional**</a> , see bankAccount basic_relationship.many2many_bi
 
     Relationship of Employee and Project.
     
@@ -129,19 +129,19 @@ Key terms : *Single Value Association*, *Collection Value Association*.
             @JoinTable(name = "EMPLOYEE_PROJECT", 
                 joinColumns = @JoinColumn(name="EMPLOYEE_ID"), 
                 inverseJoinColumns = @JoinColumn(name="PROJECT_ID"))
-            private Set<Project> projects;
+            private Set<Project> bankAccounts;
             
             
         @Entity
         public class Project {
             @Id  private long id;
             ...
-            @ManyToMany(mappedBy = "projects")
+            @ManyToMany(mappedBy = "bankAccounts")
             private Set<Employee> employeesByAssignment;
 
 ##<a name="MP">Mappings</a>
 
-### <a name="EMBED">Embeddable use</a>, project embed_example
+### <a name="EMBED">Embeddable use</a>, bankAccount embed_example
 Demonstration of @Embeddable 
 
         @Embeddable
@@ -251,7 +251,7 @@ embeddable attribute type that is a Map key or a value, respectively.
 
 
 
-###1. <a name="CMEC">@ElementCollection Example</a>, see project cm_element_collection 
+###1. <a name="CMEC">@ElementCollection Example</a>, see bankAccount cm_element_collection 
 
     Collection Mapping of Employee to NickName(s) and VacationEntry(ies). 
     
@@ -279,12 +279,12 @@ embeddable attribute type that is a Map key or a value, respectively.
 
 
     
-###2. <a name="CMLO">List Ordering @OrderBy and @OrderColumn</a> , see project  cm_list
+###2. <a name="CMLO">List Ordering @OrderBy and @OrderColumn</a> , see bankAccount  cm_list
     
-    - Use of @OrderBy in Employees-Department relationship, Unresolved **problem**: cannot obtain sorted list of department employess.
+    - Use of @OrderBy in Employees-Department relationship, Unresolved **problem**: cannot obtain sorted list of schoolClass employess.
     - Example of @OrderColumn  with PrintQueue PrintJob, same  **problem** cannot get them in proper order
     
-###3. <a name="CMKB">Map mapping keyed by basic type</a>, String in our case, see project cm_map_key_basic
+###3. <a name="CMKB">Map mapping keyed by basic type</a>, String in our case, see bankAccount cm_map_key_basic
     - Key is String under package jpa.relationship.mapuse.stringkey
     
         Person with phones mapped by category
@@ -299,7 +299,7 @@ embeddable attribute type that is a Map key or a value, respectively.
             @Column(name = "PHONE_NUM")
             private Map<String, String> phoneNumbers = new HashMap<>();
 
-###4. <a name="CMKE">Map mapping keyed by enum</a>, see project cm_map_key_enum       
+###4. <a name="CMKE">Map mapping keyed by enum</a>, see bankAccount cm_map_key_enum       
         
     - Key is Emum under package jpa.relationship.mapuse.emumkey
     
@@ -317,7 +317,7 @@ embeddable attribute type that is a Map key or a value, respectively.
             @Column(name = "PHONE_NUM")
             private Map<PhoneType, String> phoneNumbers = new HashMap<>();
  
-###5. <a name="CMOM">Map used in One to Many relationship</a>, see project cm_map_one2many
+###5. <a name="CMOM">Map used in One to Many relationship</a>, see bankAccount cm_map_one2many
 
         @Entity
         public class Employee {        
@@ -326,18 +326,18 @@ embeddable attribute type that is a Map key or a value, respectively.
             ...        
             @ManyToOne
             @JoinColumn(name = "DEPT_ID")
-            private Department department;
+            private Department schoolClass;
             
             
         @Entity
         public class Department {        
             @Id  private long id;
             ...
-            @OneToMany(mappedBy="department")
+            @OneToMany(mappedBy="schoolClass")
             @MapKeyColumn(name="CUB_ID", nullable = true)
             private Map<String, Employee> employeesByCubicle;
 
-##6. <a name="CMMM">Map used in Many to Many relationship</a>, see project cm_map_many2many
+##6. <a name="CMMM">Map used in Many to Many relationship</a>, see bankAccount cm_map_many2many
 
         @Entity
         public class Employee {        
@@ -348,13 +348,13 @@ embeddable attribute type that is a Map key or a value, respectively.
                     joinColumns = @JoinColumn(name="EMPLOYEE_ID"),
                     inverseJoinColumns = @JoinColumn(name="PROJECT_ID"))
             @MapKeyColumn(name="ASSIGNEMENT")
-            private Map<String, Project> projects = new HashMap<>();
+            private Map<String, Project> bankAccounts = new HashMap<>();
             
         @Entity
         public class Project {
             @Id  private long id;
             ...
-            @ManyToMany(mappedBy = "projects")
+            @ManyToMany(mappedBy = "bankAccounts")
             private Set<Employee> employeesByAssignment = new HashSet<>();
             
     ***Not Working*** , see in DDL below that PK in CM_MMB_EMPLOYEE_PROJECT is (EMPLOYEE_ID, ASSIGNEMENT) instead of the expected (EMPLOYEE_ID, PROJECT_ID)
@@ -382,7 +382,7 @@ embeddable attribute type that is a Map key or a value, respectively.
 ## <a name="ARL">Advanced Topics - Relationships</a>
 
 
-###1. <a name="ARLM2MS">Many To Many with relationship state</a>, project arel_many2many_state
+###1. <a name="ARLM2MS">Many To Many with relationship state</a>, bankAccount arel_many2many_state
 **Unresolved problem** follows the entities as they should be:
 
 
@@ -391,7 +391,7 @@ embeddable attribute type that is a Map key or a value, respectively.
     public class Employee {
         @Id  private long id;
         private String name;
-        @OneToMany(mappedBy = "employee")
+        @OneToMany(mappedBy = "track")
         private Set<ProjectAssignement> projectAssignements = new HashSet<>();
 
     //Project Entity
@@ -399,7 +399,7 @@ embeddable attribute type that is a Map key or a value, respectively.
     public class Project {
         @Id private long id;
         private String name;
-        @OneToMany(mappedBy = "project")
+        @OneToMany(mappedBy = "bankAccount")
         private Set<ProjectAssignement> projectAssignements = new HashSet<>();
 
     //IdClass for ProjectAssignement entity
@@ -414,11 +414,11 @@ embeddable attribute type that is a Map key or a value, respectively.
         @Id
         @ManyToOne
         @JoinColumn(name = "EMP_ID")
-        private Employee employee;
+        private Employee track;
         Id
         @ManyToOne
         @JoinColumn(name = "RROJ_ID")
-        private Project project;
+        private Project bankAccount;
    
 
 **Problem Description** Use of Id class combined with @Id within ProjectAssignement doesn't seem to work.
@@ -427,9 +427,9 @@ As a workaround a generated surrogate key is been used.
 Weaknesses
 ----------
 
-- Unresolved issues with @OrderBy project cm_list
-- Unresolved issues with ManyToMany and Map(s) project cm_map_many2many
-- Unresolved issues with @IdClass when their fields are used as part of @OneToMany, project arel_many2many_state
+- Unresolved issues with @OrderBy bankAccount cm_list
+- Unresolved issues with ManyToMany and Map(s) bankAccount cm_map_many2many
+- Unresolved issues with @IdClass when their fields are used as part of @OneToMany, bankAccount arel_many2many_state
     
 Future
 ------

@@ -24,7 +24,7 @@ public class ShoppingCartServlet extends HttpServlet {
         "Chapter 3: Container Managed Transaction (CMT) Example";
     
     private final String DESCRIPTION = 
-        "This example demonstrates the basic use of container managed transactions in an EJB. </br>" +
+        "This example demonstrates the basicmapping use of container managed transactions in an EJB. </br>" +
         "Click the 'Process' button.  This will trigger a servlet client that invokes " +
         "a SFSB that uses container managed transactions. The SFSB methods use different " +
         "TransactionAttributes on its methods to achieve different transaction semantics.";

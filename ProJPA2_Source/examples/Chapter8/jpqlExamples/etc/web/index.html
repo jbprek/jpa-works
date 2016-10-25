@@ -30,10 +30,10 @@
 	    <td>SELECT e.name </br>
 		    FROM Employee e</td></tr>
     <tr><td><input name="query" type="submit" value="SELECT5"/></td>
-	    <td>SELECT e.department </br>
+	    <td>SELECT e.schoolClass </br>
 		    FROM Employee e</td></tr>
     <tr><td><input name="query" type="submit" value="SELECT6"/></td>
-	    <td>SELECT DISTINCT e.department </br>
+	    <td>SELECT DISTINCT e.schoolClass </br>
 		    FROM Employee e</td></tr>
     <tr><td><input name="query" type="submit" value="SELECT7"/></td>
 	    <td>SELECT d.employeesByAssignment </br>
@@ -42,7 +42,7 @@
 	    <td>SELECT e.name, e.salary </br>
 		    FROM Employee e</td></tr>
     <tr><td><input name="query" type="submit" value="SELECT9"/></td>
-	    <td>SELECT NEW examples.model.EmployeeDetails(e.name, e.salary, e.department.name) </br>
+	    <td>SELECT NEW examples.model.EmployeeDetails(e.name, e.salary, e.schoolClass.name) </br>
 		    FROM Employee e</td></tr>
     <tr><td><input name="query" type="submit" value="SELECT10"/></td>
 	    <td>SELECT p </br>
@@ -63,32 +63,32 @@
 		    FROM Employee e JOIN e.phones p</td></tr>
     <tr><td><input name="query" type="submit" value="FROM4"/></td>
 	    <td>SELECT d </br>
-            FROM Employee e JOIN e.department d</td></tr>
+            FROM Employee e JOIN e.schoolClass d</td></tr>
     <tr><td><input name="query" type="submit" value="FROM5"/></td>
-	    <td>SELECT e.department </br>
+	    <td>SELECT e.schoolClass </br>
             FROM Employee e</td></tr>
     <tr><td><input name="query" type="submit" value="FROM6"/></td>
-	    <td>SELECT DISTINCT e.department </br>
+	    <td>SELECT DISTINCT e.schoolClass </br>
             FROM Project p JOIN p.employeesByAssignment e </br>
             WHERE p.name = 'Release1' AND e.address.state = 'CA'</td></tr>
     <tr><td><input name="query" type="submit" value="FROM7"/></td>
 	    <td>SELECT DISTINCT d </br>
-            FROM Project p JOIN p.employeesByAssignment e JOIN e.department d JOIN e.address a </br>
+            FROM Project p JOIN p.employeesByAssignment e JOIN e.schoolClass d JOIN e.address a </br>
             WHERE p.name = 'Release1' AND a.state = 'CA'</td></tr>
     <tr><td><input name="query" type="submit" value="FROM8"/></td>
 	    <td>SELECT DISTINCT d </br>
             FROM Department d, Employee e </br>
-            WHERE d = e.department</td></tr>
+            WHERE d = e.schoolClass</td></tr>
     <tr><td><input name="query" type="submit" value="FROM9"/></td>
 	    <td>SELECT d, m </br>
             FROM Department d, Employee m </br>
-            WHERE d = m.department AND m.directs IS NOT EMPTY</td></tr>
+            WHERE d = m.schoolClass AND m.directs IS NOT EMPTY</td></tr>
     <tr><td><input name="query" type="submit" value="FROM10"/></td>
 	    <td>SELECT DISTINCT p </br>
-            FROM Department d JOIN d.employeesByAssignment e JOIN e.projects p</td></tr>
+            FROM Department d JOIN d.employeesByAssignment e JOIN e.bankAccounts p</td></tr>
     <tr><td><input name="query" type="submit" value="FROM11"/></td>
 	    <td>SELECT e, d </br>
-            FROM Employee e LEFT JOIN e.department d</td></tr>
+            FROM Employee e LEFT JOIN e.schoolClass d</td></tr>
     <tr><td><input name="query" type="submit" value="FROM12"/></td>
 	    <td>SELECT e </br>
             FROM Employee e JOIN FETCH e.address</td></tr>
@@ -145,8 +145,8 @@
     <tr><td><input name="query" type="submit" value="WHERE9"/></td>
 	    <td>SELECT e </br>
             FROM Employee e </br>
-            WHERE e.department IN (SELECT DISTINCT d </br>
-            FROM Department d JOIN d.employeesByAssignment de JOIN de.projects p </br>
+            WHERE e.schoolClass IN (SELECT DISTINCT d </br>
+            FROM Department d JOIN d.employeesByAssignment de JOIN de.bankAccounts p </br>
             WHERE p.name LIKE 'QA%')</td></tr>
     <tr><td><input name="query" type="submit" value="WHERE10"/></td>
 	    <td>SELECT p </br>
@@ -181,8 +181,8 @@
     <tr><td><input name="query" type="submit" value="WHERE16"/></td>
 	    <td>SELECT e </br>
             FROM Employee e </br>
-            WHERE e.department = ANY (SELECT DISTINCT d </br>
-            FROM Department d JOIN d.employeesByAssignment de JOIN de.projects p </br>
+            WHERE e.schoolClass = ANY (SELECT DISTINCT d </br>
+            FROM Department d JOIN d.employeesByAssignment de JOIN de.bankAccounts p </br>
             WHERE p.name LIKE 'QA%')</td></tr>
     <tr><td><input name="query" type="submit" value="WHERE17"/></td>
 	    <td>SELECT d </br>
@@ -203,7 +203,7 @@
             ORDER BY e.name DESC</td></tr>
     <tr><td><input name="query" type="submit" value="ORDERBY2"/></td>
 	    <td>SELECT e </br>
-            FROM Employee e JOIN e.department d </br>
+            FROM Employee e JOIN e.schoolClass d </br>
             ORDER BY d.name, e.name DESC</td></tr>
     <tr><td><input name="query" type="submit" value="ORDERBY3"/></td>
 	    <td>SELECT e.name </br>
@@ -253,7 +253,7 @@
             GROUP BY d.name</td></tr>
     <tr><td><input name="query" type="submit" value="GROUPBY3"/></td>
 	    <td>SELECT d.name, e.salary, COUNT(p) </br>
-            FROM Department d JOIN d.employeesByAssignment e JOIN e.projects p </br>
+            FROM Department d JOIN d.employeesByAssignment e JOIN e.bankAccounts p </br>
             GROUP BY d.name, e.salary</td></tr>
     <tr><td><input name="query" type="submit" value="GROUPBY4"/></td>
 	    <td>SELECT COUNT(e), AVG(e.salary) </br>
@@ -264,7 +264,7 @@
     <table border="1"><tbody>
     <tr><td><input name="query" type="submit" value="HAVING"/></td>
 	    <td>SELECT e, COUNT(p) </br>
-            FROM Employee e JOIN e.projects p </br>
+            FROM Employee e JOIN e.bankAccounts p </br>
             GROUP BY e </br>
             HAVING COUNT(p) >= 2</td></tr>
     </tbody></table>
@@ -279,7 +279,7 @@
 	    <td>UPDATE Employee e </br>
             SET e.salary = e.salary + 5000 </br>
             WHERE EXISTS (SELECT p </br>
-            FROM e.projects p </br>
+            FROM e.bankAccounts p </br>
             WHERE p.name = 'Release1')</td></tr>
     <tr><td><input name="query" type="submit" value="UPDATE3"/></td>
 	    <td>UPDATE Phone p </br>
@@ -292,7 +292,7 @@
     <table border="1"><tbody>
     <tr><td><input name="query" type="submit" value="DELETE"/></td>
 	    <td>DELETE FROM Employee e </br>
-            WHERE e.department IS NULL</td></tr>
+            WHERE e.schoolClass IS NULL</td></tr>
     </tbody></table>
 </form>
 

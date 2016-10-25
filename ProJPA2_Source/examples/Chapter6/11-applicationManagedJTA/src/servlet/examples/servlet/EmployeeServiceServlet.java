@@ -23,7 +23,7 @@ public class EmployeeServiceServlet extends HttpServlet {
         "Chapter 6: Application Managed Persistence Context with JTA Example";
     
     private final String DESCRIPTION = 
-        "This example shows the basic use of an application managed " +
+        "This example shows the basicmapping use of an application managed " +
         "persistence context with JTA.";
 
     

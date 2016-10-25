@@ -22,7 +22,7 @@ public class HitCountServlet extends HttpServlet {
         "Chapter 3: Singleton Session Bean Example";
     
     private final String DESCRIPTION = 
-        "This example demonstrates the basic use of a " +
+        "This example demonstrates the basicmapping use of a " +
         "Singleton Session Bean. </br>" +
         "The simple example allows you to call and update the count stored in the singleton bean.";
 

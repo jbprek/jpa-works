@@ -25,7 +25,7 @@ public class EmployeeServiceServlet extends HttpServlet {
         "Chapter 6: Persistence Context Collision Example";
     
     private final String DESCRIPTION = 
-        "This example shows the basic use of an extended persistence " +
+        "This example shows the basicmapping use of an extended persistence " +
         "context and how to avoid collisions. The second create button " +
         "shows what happens when the 'addEmployee' operation is marked " +
         "REQUIRED and there's already a tx in place.";

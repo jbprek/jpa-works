@@ -17,7 +17,7 @@ public class OrderBrowserServlet extends HttpServlet {
         "Chapter 3: Stateful Session Bean Lifecycle Example";
     
     private final String DESCRIPTION = 
-        "This example demonstrates the basic use of lifecycle callbacks to " +
+        "This example demonstrates the basicmapping use of lifecycle callbacks to " +
         "initialize/cleanup a Stateful Session Bean. </br>" +
         "NOTE: The example doesn't show the details of issuing/parsing the jdbc to create " +
         "orders, hence no orders are displayed. See the code to see how to use the lifecycle callbacks.";

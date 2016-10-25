@@ -11,7 +11,10 @@
     <name>${project.artifactId}</name>
 
     <modules>
+        <module>basic-mappings</module>
+
         <!-- Hibernate Entity Manager tutorial adapted -->
+
         <module>hibernate-entity-manager-adapted</module>
         <module>projpa-se</module>
         <module>example-war</module>
@@ -23,12 +26,12 @@
         <module>relationships-basic</module>
         <module>relationships-inheritance</module>
         <module>relationships-collection-mappings</module>
-        <module>entity-manager-use</module>
 
         <module>ee7-persistence-tut</module>
         <module>jpa-app-model</module>
         <module>advanced-topics</module>
         <module>queries</module>
+        <module>spring-boot-simple-shop-oracle</module>
         <!--<module>entity-relationships</module>-->
 
     </modules>

@@ -17,7 +17,7 @@ public class ProcessingServiceServlet extends HttpServlet {
         "Chapter 3: Bean Managed Transaction (BMT) Example";
     
     private final String DESCRIPTION = 
-        "This example demonstrates the basic use of bean managed transactions in an EJB. </br>" +
+        "This example demonstrates the basicmapping use of bean managed transactions in an EJB. </br>" +
         "Click the 'Process' button.  This will trigger a servlet client that invokes " +
         "a SLSB that uses bean managed transactions. The SLSB first injects an instance of " +
         "UserTransaction and then uses its API to demarcate the transaction.";

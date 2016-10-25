@@ -1,0 +1,3 @@
+DROP  USER  orcltest  CASCADE;
+CREATE USER orcltest IDENTIFIED BY orcltest;
+GRANT dba TO orcltest WITH ADMIN OPTION;

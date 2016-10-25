@@ -18,7 +18,7 @@ public class EmployeeServiceServlet extends HttpServlet {
         "Chapter 7: Named Query Example";
     
     private final String DESCRIPTION = 
-        "This example demonstrates the basic use of a named query. </br>" +
+        "This example demonstrates the basicmapping use of a named query. </br>" +
         "The example allows you to try the named queries shown in this " +
         "section of the book.";
 

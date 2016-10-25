@@ -32,7 +32,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Illustrates basic use of Hibernate as a JPA provider.
+ * Illustrates basicmapping use of Hibernate as a JPA provider.
  *
  * @author Steve Ebersole
  */

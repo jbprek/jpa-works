@@ -16,7 +16,7 @@
         <c:forEach items="${employeesByAssignment}" var="emp">
           <tr>
             <td><c:out value="${emp.name}"/></td>
-            <td><c:out value="${emp.department.name}"/></td>
+            <td><c:out value="${emp.schoolClass.name}"/></td>
           </tr>
         </c:forEach>
       </tbody>

@@ -18,7 +18,7 @@ public class LoggingServlet extends HttpServlet {
         "Chapter 6: Resource-Local Transaction in EE Example";
     
     private final String DESCRIPTION = 
-        "This example shows the basic use of an application managed " +
+        "This example shows the basicmapping use of an application managed " +
         "EntityManager with ResourceLocal transactions in EE.";
 
     

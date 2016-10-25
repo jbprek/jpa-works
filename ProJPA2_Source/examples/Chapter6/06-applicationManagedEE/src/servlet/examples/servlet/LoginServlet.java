@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
         "Chapter 6: Application Managed EntityManager in EE Example";
     
     private final String DESCRIPTION = 
-        "This example demonstrates the basic use of an application-managed " +
+        "This example demonstrates the basicmapping use of an application-managed " +
         "EntityManager in an EE container.";
 
     

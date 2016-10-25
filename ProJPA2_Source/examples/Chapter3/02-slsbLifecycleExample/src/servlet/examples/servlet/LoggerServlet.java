@@ -17,7 +17,7 @@ public class LoggerServlet extends HttpServlet {
         "Chapter 3: Stateless Session Bean Lifecycle Example";
     
     private final String DESCRIPTION = 
-        "This example demonstrates the basic use of lifecycle callbacks to initialize a Stateless Session Bean. </br>" +
+        "This example demonstrates the basicmapping use of lifecycle callbacks to initialize a Stateless Session Bean. </br>" +
         "Enter a and click 'Go'.  This will trigger a servlet client that talks " +
         "to a Stateless Session Bean to log a message.";
 

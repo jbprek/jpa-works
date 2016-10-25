@@ -18,7 +18,7 @@ public class EmployeeServiceServlet extends HttpServlet {
         "Chapter 6: Tx-scoped Persistence Context Example";
     
     private final String DESCRIPTION = 
-        "This example shows the basic use of a tx-scoped persistence " +
+        "This example shows the basicmapping use of a tx-scoped persistence " +
         "context. The second create button shows what happens when the " +
         "'logTransaction' operation is marked REQUIRES_NEW";
 

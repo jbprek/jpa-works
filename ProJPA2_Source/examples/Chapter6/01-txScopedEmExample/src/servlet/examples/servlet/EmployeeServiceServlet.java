@@ -19,7 +19,7 @@ public class EmployeeServiceServlet extends HttpServlet {
         "Chapter 6: Transaction-scoped Container Managed EntityManager Example";
     
     private final String DESCRIPTION = 
-        "This example demonstrates the basic use of a tx-scoped EntityManager. </br>" +
+        "This example demonstrates the basicmapping use of a tx-scoped EntityManager. </br>" +
         "The example allows you to assign employees to projects.";
 
     

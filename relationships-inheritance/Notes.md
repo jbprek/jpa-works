@@ -113,7 +113,7 @@ See the use of @Inheritance(strategy= InheritanceType.TABLE_PER_CLASS), @Discrim
     
     @Table(name="FULTIME_EMP")
     @Entity
-    @AssociationOverride(name="department",joinColumns = @JoinColumn(name="DPT"))
+    @AssociationOverride(name="schoolClass",joinColumns = @JoinColumn(name="DPT"))
     public class FullTimeEmployee extends CompanyEmployee  
     ....
     @Table(name="PRTTIME_EMP")

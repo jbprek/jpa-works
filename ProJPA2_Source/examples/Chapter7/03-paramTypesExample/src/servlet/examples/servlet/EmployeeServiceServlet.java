@@ -21,7 +21,7 @@ public class EmployeeServiceServlet extends HttpServlet {
         "Chapter 7: Parameter Types Example";
     
     private final String DESCRIPTION = 
-        "This example demonstrates the basic use of various parameter types. </br>" +
+        "This example demonstrates the basicmapping use of various parameter types. </br>" +
         "The example allows you to execute the queries from this section of the book " +
         "and see how types like primitives and temporals are used.";
 
