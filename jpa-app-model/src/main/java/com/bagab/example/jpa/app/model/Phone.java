@@ -9,7 +9,8 @@ public class Phone {
     private long id;
     private String number;
     private String type;
-    @ManyToOne Employee employee;
+    @ManyToOne
+    Employee employee;
 
     public long getId() {
         return id;
