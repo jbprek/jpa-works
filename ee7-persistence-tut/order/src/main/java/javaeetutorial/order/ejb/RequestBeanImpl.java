@@ -33,7 +33,7 @@ public class RequestBeanImpl implements RequestBean {
     @PersistenceContext
     private EntityManager em;
 
-    private static final Logger logger = Logger.getLogger("javaeetutorial.order.ejb.RequestBeanImpl");
+    private static final Logger logger = Logger.getLogger("javaeetutorial.order_by.ejb.RequestBeanImpl");
     
     @Override
     public void createPart(String partNumber,
@@ -153,7 +153,7 @@ public class RequestBeanImpl implements RequestBean {
     public void addLineItem(Integer orderId, String partNumber, int revision, int quantity) {
         try {
             CustomerOrder order = em.find(CustomerOrder.class, orderId);
-            logger.log(Level.INFO, "Found order ID {0}", orderId);
+            logger.log(Level.INFO, "Found order_by ID {0}", orderId);
             
             PartKey pkey = new PartKey();
             pkey.setPartNumber(partNumber);
@@ -164,7 +164,7 @@ public class RequestBeanImpl implements RequestBean {
             LineItem lineItem = new LineItem(order, quantity, part.getVendorPart());
             order.addLineItem(lineItem);
         } catch (Exception e) {
-            logger.log(Level.WARNING, "Couldn''t add {0} to order ID {1}.", new Object[]{partNumber, orderId});
+            logger.log(Level.WARNING, "Couldn''t add {0} to order_by ID {1}.", new Object[]{partNumber, orderId});
             throw new EJBException(e.getMessage());
         }
     }

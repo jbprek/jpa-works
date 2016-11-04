@@ -50,7 +50,7 @@ public class TestPrintQueueJobs {
         PrintJob job = new PrintJob();
         job.setQueue(q);
         job.setPayload(payload);
-//        job.setPrintOrder(order);
+//        job.setPrintOrder(order_by);
         job.getQueue().getJobs().add(job);
         em.getTransaction().begin();
         em.persist(job);

@@ -29,7 +29,7 @@ public class OrderBrowserServlet extends HttpServlet {
         printHtmlHeader(out);
 
         
-        // create order browser if needed
+        // create order_by browser if needed
         OrderBrowser browser = (OrderBrowser) request.getSession().getAttribute("browser");
         if (browser == null) {
             // lookup the OrderBrowser

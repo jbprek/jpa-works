@@ -40,7 +40,7 @@ public class OrderManager implements Serializable{
     @Inject
     private RequestBean request;
 
-    private static final Logger logger = Logger.getLogger("order.web.OrderManager");
+    private static final Logger logger = Logger.getLogger("order_by.web.OrderManager");
     private List<CustomerOrder> orders;
     private Integer currentOrder;
     private Integer newOrderId;
@@ -83,7 +83,7 @@ public class OrderManager implements Serializable{
             UIParameter param = (UIParameter) event.getComponent().findComponent("deleteOrderId");
             Integer id = Integer.parseInt(param.getValue().toString());
             request.removeOrder(id);
-            logger.log(Level.INFO, "Removed order {0}.", id);
+            logger.log(Level.INFO, "Removed order_by {0}.", id);
         } catch (NumberFormatException e) {
         }
     }
@@ -104,7 +104,7 @@ public class OrderManager implements Serializable{
             request.createOrder(newOrderId, newOrderStatus, newOrderDiscount,
                     newOrderShippingInfo);
 
-            logger.log(Level.INFO, "Created new order with order ID {0}, status {1}, "
+            logger.log(Level.INFO, "Created new order_by with order_by ID {0}, status {1}, "
                     + "discount {2}, and shipping info {3}.", 
                     new Object[]{newOrderId, newOrderStatus, newOrderDiscount, newOrderShippingInfo});
             this.newOrderId = null;
@@ -112,7 +112,7 @@ public class OrderManager implements Serializable{
             this.newOrderParts = null;
             this.newOrderShippingInfo = null;
         } catch (Exception e) {
-            logger.warning("Problem creating order in submitOrder.");
+            logger.warning("Problem creating order_by in submitOrder.");
         }
     }
 
@@ -125,11 +125,11 @@ public class OrderManager implements Serializable{
                     this.selectedPartNumber,
                     this.selectedPartRevision,
                     1);
-            logger.log(Level.INFO, "Adding line item to order # {0}", 
+            logger.log(Level.INFO, "Adding line item to order_by # {0}",
                     this.currentOrder);
             //this.clearSelected();
         } catch (Exception e) {
-            logger.log(Level.WARNING, "Problem adding line items to order ID {0}", 
+            logger.log(Level.WARNING, "Problem adding line items to order_by ID {0}",
                     newOrderId);
         }
     }

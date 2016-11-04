@@ -19,7 +19,7 @@ public class ShoppingCartServlet extends HttpServlet {
     private final String DESCRIPTION = 
         "This example demonstrates the basics of defining and accessing a Stateful Session Bean. </br>" +
         "The simple example allows you to add/remove items to/from a shopping cart and then checkout " +
-        "or cancel your order.";
+        "or cancel your order_by.";
 
     
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -102,7 +102,7 @@ public class ShoppingCartServlet extends HttpServlet {
         out.println("<input name=\"add\" type=\"submit\" value=\"Add Item\"/>");
         out.println("<input name=\"remove\" type=\"submit\" value=\"Remove Item\"/>");
         out.println("<hr/>");
-        out.println("Complete order </br>");
+        out.println("Complete order_by </br>");
         out.println("<table><tbody>");
         out.println("<tr><td>Payment Id:</td>");
         out.println("<td><input type=\"text\" name=\"payment\"/>(int)</td></tr>");

@@ -48,7 +48,7 @@ public class OrderItem implements Comparable{
         return "OrderItem{" +
                 "id=" + id +
                 ", name='" + code + '\'' +
-                ", order=" + order.getName() +
+                ", order_by=" + order.getName() +
                 '}';
     }
 }

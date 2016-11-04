@@ -40,7 +40,7 @@ public class Department {
     }
     
     public void addEmployee(Employee employee) {
-        // Need to add it in the correct position to maintain the order
+        // Need to add it in the correct position to maintain the order_by
         int initialSize = employees.size();
         if (!employees.contains(employee)) {
             for (int i=0; i < initialSize; i++) {

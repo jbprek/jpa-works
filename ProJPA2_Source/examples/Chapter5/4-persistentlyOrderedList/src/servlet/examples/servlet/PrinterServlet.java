@@ -20,7 +20,7 @@ public class PrinterServlet extends HttpServlet {
         "Chapter 5: Persistently Ordered List Example";
     
     private final String DESCRIPTION = 
-        "This example demonstrates how to work with Lists that maintain their order in the database.</br> ";
+        "This example demonstrates how to work with Lists that maintain their order_by in the database.</br> ";
     
     @EJB PrintService printService;
     
