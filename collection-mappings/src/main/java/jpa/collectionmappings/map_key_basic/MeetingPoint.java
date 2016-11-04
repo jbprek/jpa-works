@@ -8,39 +8,39 @@ import java.io.Serializable;
  */
 @Embeddable
 public class MeetingPoint implements Serializable{
-    public double longititude;
-    public double lattitude;
+    public double longitude;
+    public double latitude;
 
 
     public MeetingPoint() {
     }
 
-    public MeetingPoint(double longititude, double lattitude) {
-        this.longititude = longititude;
-        this.lattitude = lattitude;
+    public MeetingPoint(double longitude, double latitude) {
+        this.longitude = longitude;
+        this.latitude = latitude;
     }
 
-    public double getLongititude() {
-        return longititude;
+    public double getLongitude() {
+        return longitude;
     }
 
-    public void setLongititude(double longititude) {
-        this.longititude = longititude;
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
-    public double getLattitude() {
-        return lattitude;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setLattitude(double lattitude) {
-        this.lattitude = lattitude;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("MeetingPoint{");
-        sb.append("longititude=").append(longititude);
-        sb.append(", lattitude=").append(lattitude);
+        sb.append("longitude=").append(longitude);
+        sb.append(", latitude=").append(latitude);
         sb.append('}');
         return sb.toString();
     }
