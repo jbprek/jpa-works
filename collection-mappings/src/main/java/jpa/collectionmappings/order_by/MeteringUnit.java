@@ -1,6 +1,7 @@
 package jpa.collectionmappings.order_by;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,9 +14,10 @@ public class MeteringUnit {
     @Id
     private long id;
 
-    @OneToMany(mappedBy = "meteringUnit", fetch = FetchType.EAGER)
-    @OrderBy("measuredAt DESC") // ASC is the default
-    private List<Sensor> sensors;
+    @OneToMany(mappedBy = "meteringUnit", fetch = FetchType.EAGER,
+    cascade = { CascadeType.ALL})
+    @OrderBy("value DESC") // ASC is the default
+    private List<Sensor> sensors = new ArrayList<>();
 
 
     public MeteringUnit() {

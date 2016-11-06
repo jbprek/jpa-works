@@ -39,10 +39,10 @@ public class Salesman {
     @ElementCollection
     @CollectionTable(name="SALESMAN_MEETING")
     @MapKeyTemporal(TemporalType.DATE)
-   @AttributeOverrides({
-            @AttributeOverride(name="longitude", column=@Column(name="GEO_LON")),
-            @AttributeOverride(name="latitude", column = @Column(name="GEO_LAT")),
-    })
+//   @AttributeOverrides({
+//            @AttributeOverride(name="value.longitude", column=@Column(name="GEO_LON")),
+//            @AttributeOverride(name="value.latitude", column = @Column(name="GEO_LAT")),
+//    })
     private Map<Date, MeetingPoint> meetings = new HashMap<>();
 
     public long getId() {

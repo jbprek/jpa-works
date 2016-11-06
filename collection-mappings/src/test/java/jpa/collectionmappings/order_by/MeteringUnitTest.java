@@ -6,11 +6,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.*;
 
 import static org.hamcrest.Matchers.hasItems;
@@ -23,45 +26,53 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
+@SpringBootTest
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 
-@Transactional(propagation = Propagation.NOT_SUPPORTED)
 public class MeteringUnitTest {
 
     static Logger log = Logger.getLogger(MeteringUnitTest.class);
 
     @Autowired
-    private MeteringUnitRepository unitRepository;
+    private MeteringUnitRepository meteringUnitRepository;
 
     @Autowired
     private SensorRepository sensorRepository;
+
+
 
     @Test
     public void createReadDeleteTest() throws InterruptedException {
 
         MeteringUnit unit = new MeteringUnit();
 
-        Long id = unitRepository.save(unit).getId();
+        Long id = unit.getId();
+
+        log.info("### unit=" + unit);
+
+        Sensor s1 = new Sensor(java.sql.Timestamp.from(Instant.now().minus(10, ChronoUnit.SECONDS)), 0.5);
+        unit.getSensors().add(s1);
+
+        Sensor s2 = new Sensor(java.sql.Timestamp.from(Instant.now().minus(5, ChronoUnit.SECONDS)), 0.7);
+        unit.getSensors().add(s2);
+
+        Sensor s3 = new Sensor(java.sql.Timestamp.from(Instant.now()), 0.9);
+        unit.getSensors().add(s3);
 
 
-        Sensor s1 = new Sensor(java.sql.Timestamp.from(Instant.now()), 0.5, unit);
-        Thread.sleep(1000);
-        Sensor s2 = new Sensor(java.sql.Timestamp.from(Instant.now()), 0.7, unit);
-        Thread.sleep(1000);
-        Sensor s3 = new Sensor(java.sql.Timestamp.from(Instant.now()), 0.9, unit);
-        Thread.sleep(1000);
 
-        sensorRepository.save(s1);
-        sensorRepository.save(s2);
-        sensorRepository.save(s3);
 
-        unit.setSensors(Arrays.asList(s1, s2, s3));
-        unitRepository.save(unit);
+//        unit = meteringUnitRepository.findOne(id).get();
+//        unit.setSensors(Arrays.asList(s1, s2, s3));
+        unit = meteringUnitRepository.save(unit);
 
-        Optional<MeteringUnit> unit1 = unitRepository.findOne(id);
+        Optional<MeteringUnit> unit1 = meteringUnitRepository.findOne(unit.getId());
         assertTrue(unit1.isPresent());
 
         // Sensor info is displayed in descending order
         log.info(unit1.get());
+        List<Sensor> sensors = unit1.get().getSensors();
+        sensors.forEach(w->log.info("\t"+w));
     }
 
 

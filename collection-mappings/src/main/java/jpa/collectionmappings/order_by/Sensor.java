@@ -19,16 +19,16 @@ public class Sensor {
     private Double value;
 
     @ManyToOne
+    @JoinColumn(name = "METERING_UNIT_ID")
     private MeteringUnit meteringUnit;
 
 
     public Sensor() {
     }
 
-    public Sensor(Date measuredAt, Double value, MeteringUnit meteringUnit) {
+    public Sensor(Date measuredAt, Double value) {
         this.measuredAt = measuredAt;
         this.value = value;
-        this.meteringUnit = meteringUnit;
     }
 
     public long getId() {
