@@ -6,6 +6,7 @@ import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -59,7 +60,7 @@ public interface CustomerRepository  extends JpaRepository<Customer, Long> {
      * @return
      */
     @Query("select u from Customer u where u.firstname = :name or u.lastname = :name")
-    List<Customer> findByFirstnameOrLastname(String name);
+    List<Customer> findByFirstnameOrLastname(@Param("name") String name);
 
     /**
      * Returns the total number of entries deleted as their lastnames match the given one.
@@ -110,4 +111,4 @@ public interface CustomerRepository  extends JpaRepository<Customer, Long> {
      * @return
      */
     @Query("select u from Customer u where u.firstname = :#{#customer.firstname} or u.lastname = :#{#customer.lastname}")
-    Iterable<Customer> findByFirstnameOrLastname(Customer customer);}
+    Iterable<Customer> findByFirstnameOrLastname(@Param("customer") Customer customer);}
