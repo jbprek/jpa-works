@@ -27,9 +27,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "Customer")
 @NamedQuery(name = "Customer.findByTheUsername", query = "from Customer u where u.username = ?1")
 public class Customer {
-    @Id     @GeneratedValue
+    @Id
+    @GeneratedValue
     private long id;
-    @Column(unique = true) private String username;
+    @Column(unique = true)
+    private String username;
     private String firstname;
     private String lastname;
 
